@@ -10,7 +10,7 @@ struct coordinats {
 	int y;
 };
 
- // Checking how Git Push and Commit works
+ // Welcome Shahmeer Pai
 
 //Drawing the background
 void createBack(RenderWindow& window) {
