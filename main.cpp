@@ -3,7 +3,7 @@
 //#include"../SFML/Images/"
 using namespace sf;
 using namespace std;
-
+// hello i chnaged
 
 struct coordinats {
 	int x;
