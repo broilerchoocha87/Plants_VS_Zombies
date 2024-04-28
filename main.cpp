@@ -10,7 +10,7 @@ struct coordinats {
 	int y;
 };
 
-// Hello
+ 
 
 //Drawing the background
 void createBack(RenderWindow& window) {
