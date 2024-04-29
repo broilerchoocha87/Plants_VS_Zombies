@@ -10,8 +10,6 @@ struct coordinates {
 	int y;
 };
 
- // Welcome Shahmeer Pai
-
 void createBack(RenderWindow& window) {
 	//Drawing the background
 	Image map_image;
