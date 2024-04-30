@@ -3,20 +3,17 @@
 //#include"../SFML/Images/"
 using namespace sf;
 using namespace std;
-// hello i chnaged
 
-struct coordinats {
+
+struct coordinates {
 	int x;
 	int y;
 };
 
- // Welcome Shahmeer Pai
-
-//Drawing the background
 void createBack(RenderWindow& window) {
 	//Drawing the background
 	Image map_image;
-	map_image.loadFromFile("Images/backwindow.jpg");
+	map_image.loadFromFile("Images/Backgrounds/level1.png");
 	Texture map;
 	map.loadFromImage(map_image);
 	Sprite s_map;
@@ -25,25 +22,25 @@ void createBack(RenderWindow& window) {
 	window.draw(s_map);
 }
 
-//Drawing the map
-void createMap(RenderWindow& window) {
-	//Drawing a map
-	Image map_image;//объект изображения для карты
-	map_image.loadFromFile("Images/grid.png");//load the file for the map
-	Texture map;
-	map.loadFromImage(map_image);
-	Sprite s_map;
-	s_map.setTexture(map);
-	s_map.setPosition(300, 160);
-
-	window.draw(s_map);
-}
+////Drawing the map
+//void createMap(RenderWindow& window) {
+//	//Drawing a map
+//	Image map_image;//объект изображения для карты
+//	map_image.loadFromFile("Images/grid.png");//load the file for the map
+//	Texture map;
+//	map.loadFromImage(map_image);
+//	Sprite s_map;
+//	s_map.setTexture(map);
+//	s_map.setPosition(300, 160);
+//
+//	window.draw(s_map);
+//}
 
 
 int main()
 {
 	//Create a window, n*n
-	RenderWindow window(VideoMode(1200, 700), "Plants Vs Zombies");
+	RenderWindow window(VideoMode(1014, 600), "Plants Vs Zombies");
 	//Game icon
 	Image icon;
 	if (!icon.loadFromFile("Images/icon.png"))
@@ -91,12 +88,12 @@ int main()
 
 		//Create a background
 		createBack(window);
-		createMap(window);
+		//createMap(window);
 	
 
 		
 
-		window.setSize(sf::Vector2u(550, 340));
+		window.setSize(sf::Vector2u(1014, 600));
 		window.display();
 	}
 	return 0;
