@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Plants.h"
+#include "Plants.cpp"
 class PlantFactory
 {
     protected:

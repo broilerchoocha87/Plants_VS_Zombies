@@ -4,11 +4,12 @@
 class Game
 {
     protected:
-        sf::RenderWindow* window;
+        
         beginnerGarden temp;
     public:
+    sf::RenderWindow window;
         Game();
-        ~Game();
+        
         void handleInput();
         void update();
         void render();

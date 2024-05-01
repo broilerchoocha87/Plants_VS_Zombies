@@ -1,5 +1,5 @@
 #pragma once
-#include "PlantFactory.h"
+#include "PlantFactory.cpp"
 class levels
 {
     protected:
@@ -7,7 +7,8 @@ class levels
         PlantFactory myPlantFactory;
         int* myAllowedPlants;
         int myNumAllowedPlants;
-        int sun;
+        sf::Texture textureBackground;
+        sf::Sprite spriteBackground;
         // Add info for zombie as well
     public:
         virtual ~levels()=0;
@@ -18,6 +19,7 @@ class beginnerGarden:public levels
     public:
         beginnerGarden();
         void createPlant(int thisplantCode, int x, int y);
+        void drawBackground(sf::RenderWindow &window);
 
         
 };

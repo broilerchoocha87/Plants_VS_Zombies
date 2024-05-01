@@ -1,5 +1,6 @@
-#include "bullet.h"
 
+#pragma once
+#include "bullet.h"
 bullet::bullet()
 {
     bulletExists=false;

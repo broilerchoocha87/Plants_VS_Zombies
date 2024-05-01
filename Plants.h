@@ -1,10 +1,6 @@
 #pragma once
 #include "bullets.cpp"
-struct coordinates
-{
-    int x;
-    int y;
-};
+
 
 class Plants
 {

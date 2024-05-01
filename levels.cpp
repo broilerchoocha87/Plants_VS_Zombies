@@ -18,6 +18,11 @@ beginnerGarden::beginnerGarden()
     
 }
 
+levels::~levels()
+{
+    delete [] myAllowedPlants;
+}
+
 void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
 {
     bool plantAllowed=false;
