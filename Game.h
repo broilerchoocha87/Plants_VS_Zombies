@@ -7,11 +7,9 @@ class Game
         
         beginnerGarden temp;
     public:
-    sf::RenderWindow window;
         Game();
-        
         void handleInput();
         void update();
-        void render();
+        void render(sf::RenderWindow& window);
        
 };

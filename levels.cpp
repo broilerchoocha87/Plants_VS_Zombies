@@ -37,7 +37,12 @@ void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
 
 void beginnerGarden:: drawBackground(sf:: RenderWindow &window)
 {
-    textureBackground.loadFromFile("Images/Backgrounds/level1.png");
+    imageBackground.loadFromFile("Images/Backgrounds/level1.png");
+    textureBackground.loadFromImage(imageBackground);
     spriteBackground.setTexture(textureBackground);
+    spriteBackground.setPosition(0, 0);
     window.draw(spriteBackground);
+    //textureBackground.loadFromFile("Images/Backgrounds/level1.png");
+    //spriteBackground.setTexture(textureBackground);
+    //window.draw(spriteBackground);
 }

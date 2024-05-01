@@ -7,6 +7,7 @@ class levels
         PlantFactory myPlantFactory;
         int* myAllowedPlants;
         int myNumAllowedPlants;
+        sf::Image imageBackground;
         sf::Texture textureBackground;
         sf::Sprite spriteBackground;
         // Add info for zombie as well
