@@ -11,18 +11,22 @@ Plants::Plants (int thisHealth, int xCoord, int yCoord)
     plantCoord.x=xCoord;
     plantCoord.y=yCoord;
     health=thisHealth;
+    
 }
 
 
-PeaShooter::PeaShooter(int thisHealth,int xCoord, int yCoord): Plants(300,xCoord,yCoord)
+PeaShooter::PeaShooter(int xCoord, int yCoord): Plants(300,xCoord,yCoord)
 {
+    myPlantCode=0;
     myBullet= new bullet[3]; // The maximum bullets at a time for peashooter can be 3(rough)
+
     // Set damage and Speed
     for(int i =0;i<3;i++)
     {
         myBullet[i].bulletDamage=20;
         myBullet[i].bulletSpeed=0.8;    
     }
+   
 }
 
 void PeaShooter :: shootBullet()
@@ -40,10 +44,14 @@ void PeaShooter :: shootBullet()
     // Where to make bullet move?
 } 
 
-Wallnut::Wallnut(int thisHealth,int xCoord,int yCoord):Plants(4000, xCoord, yCoord){}
-
-Repeater:: Repeater(int thisHealth,int xCoord,int yCoord):Plants(300, xCoord, yCoord)
+Wallnut::Wallnut(int xCoord,int yCoord):Plants(4000, xCoord, yCoord)
 {
+    myPlantCode=1;
+}
+
+Repeater:: Repeater(int xCoord,int yCoord):Plants(300, xCoord, yCoord)
+{
+    myPlantCode=2;
     myBullet= new bullet[4]; //  The maximum bullets at a time for peashooter can be 3(rough)
     // Set damage
     for(int i =0;i<4;i++)
@@ -67,8 +75,9 @@ void Repeater :: shootBullet()
     // Where to make bullet move?
 } 
 
-SnowPea:: SnowPea(int thisHealth,int xCoord,int yCoord):Plants(300, xCoord, yCoord)
+SnowPea:: SnowPea(int xCoord,int yCoord):Plants(300, xCoord, yCoord)
 {
+    myPlantCode=3;
     myBullet= new SnowBullet[3]; //  The maximum bullets at a time for peashooter can be 3(rough)
     // Set damage
     for(int i =0;i<3;i++)

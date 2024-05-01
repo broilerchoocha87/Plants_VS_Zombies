@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
+#include "Game.cpp"
 //#include"../SFML/Images/"
 using namespace sf;
 using namespace std;
