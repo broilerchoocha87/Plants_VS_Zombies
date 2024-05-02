@@ -1,8 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <ctime>
-using namespace sf;
+#include "SFML/Graphics.hpp"
 using namespace std;
 
 struct coordinates {
@@ -25,6 +23,8 @@ public:
 class SimpleZombie :public Zombie
 {
 protected:
+
+	sf::Texture sZombieTexture;
 
 public:
 	SimpleZombie();

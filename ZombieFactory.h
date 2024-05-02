@@ -18,5 +18,6 @@ public:
 	ZombieFactory();
 	ZombieFactory(int myTotalZombies, int* myZombieTypes, int* myGameGrid);
 	void animateZombies(sf::RenderWindow& window);
+	~ZombieFactory();
 };
 
