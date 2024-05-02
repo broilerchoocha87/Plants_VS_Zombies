@@ -48,9 +48,10 @@ int main()
 		}
 
 		window.setSize(sf::Vector2u(1014, 600));
-		window.display();
 
 		game.render(window);
+
+		window.display();
 	}
 	return 0;
 }

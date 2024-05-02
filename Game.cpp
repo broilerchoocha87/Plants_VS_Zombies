@@ -8,5 +8,5 @@ Game::Game()
 void Game::render(sf::RenderWindow& window)
 {
     temp.drawBackground(window);
-    temp.animate(window);
+    //temp.animate(window);
 }
