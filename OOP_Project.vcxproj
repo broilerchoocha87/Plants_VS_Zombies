@@ -139,11 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bullets.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="levels.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlantFactory.cpp" />
+    <ClCompile Include="Plants.cpp" />
     <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="ZombieFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bullet.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="levels.h" />
+    <ClInclude Include="PlantFactory.h" />
+    <ClInclude Include="Plants.h" />
     <ClInclude Include="Zombie.h" />
+    <ClInclude Include="ZombieFactory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

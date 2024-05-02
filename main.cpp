@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
-#include "Game.cpp"
+#include "Game.h"
 //#include"../SFML/Images/"
 using namespace sf;
 using namespace std;
@@ -52,6 +52,8 @@ int main()
 		//game.handleInput();
 		//game.update();
 		game.render(window);
+
+		window.display();
 	}
 	return 0;
 }

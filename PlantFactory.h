@@ -1,5 +1,10 @@
+#pragma once
+
+#ifndef PLANTFACTORY_H
+#define PLANTFACTORY_H
+
 #include <SFML/Graphics.hpp>
-#include "Plants.cpp"
+#include "Plants.h"
 class PlantFactory
 {
     protected:
@@ -23,3 +28,5 @@ class PlantFactory
         
 
 };
+
+#endif // !PLANTFACTORY_H
