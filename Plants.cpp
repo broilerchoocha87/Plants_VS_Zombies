@@ -1,5 +1,6 @@
 #include "Plants.h"
-#include "bullets.cpp"
+#include "bullet.h"
+
 /*
 -- Will have to calculate exact coordinates of bullet
 -- Will have to decide on where to use moveBullet function

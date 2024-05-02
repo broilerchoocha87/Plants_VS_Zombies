@@ -1,6 +1,9 @@
 #pragma once
-#include "bullets.cpp"
 
+#ifndef PLANTS_H
+#define PLANTS_H
+
+#include "bullet.h"
 
 class Plants
 {
@@ -46,3 +49,5 @@ class SnowPea: public Plants
         SnowPea(int xCoord, int yCoord);
         void shootBullet();
 };
+
+#endif // !PLANTS_H

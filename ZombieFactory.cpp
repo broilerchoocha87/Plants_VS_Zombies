@@ -9,11 +9,10 @@ ZombieFactory::ZombieFactory()
 	myGameGrid = nullptr;
 }
 
-ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes, int* GameGrid)
+ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
 {
 	myTotalZombies = TotalZombies;
 	myZombieTypes = ZombieTypes;
-	myGameGrid = GameGrid;
 
 	myActiveZombies = new Zombie * [myTotalZombies];
 
@@ -30,4 +29,22 @@ ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes, int* GameGrid)
 		else if (myZombieTypes[i] == 5)
 			myActiveZombies[i] = new DolphinRiderZombie;
 	}
+}
+
+void ZombieFactory::animateZombies(sf::RenderWindow& window)
+{
+	for (int i = 0; i < myTotalZombies; i++)
+	{
+		if (myZombieTypes[i] == 1)
+		{
+			SimpleZombie* zPtr = (SimpleZombie*)&(myActiveZombies[i]);
+			zPtr->animate(window);
+		}
+	}
+}
+
+ZombieFactory::~ZombieFactory()
+{
+	for (int i = 0; i < myTotalZombies; i++)
+		delete myActiveZombies[i];
 }

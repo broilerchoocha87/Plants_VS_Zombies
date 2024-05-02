@@ -15,12 +15,18 @@ beginnerGarden::beginnerGarden()
     myAllowedPlants[0]= 0;
     myNumAllowedPlants=1;
 
-    
+    myTotalZombies = 1;
+    myZombieTypes = new int[myTotalZombies] {1};
+
+    myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
+
 }
 
 levels::~levels()
 {
     delete [] myAllowedPlants;
+    delete[] myAllowedPlants;
+    delete myZombieFactory;
 }
 
 void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
@@ -42,7 +48,9 @@ void beginnerGarden:: drawBackground(sf:: RenderWindow &window)
     spriteBackground.setTexture(textureBackground);
     spriteBackground.setPosition(0, 0);
     window.draw(spriteBackground);
-    //textureBackground.loadFromFile("Images/Backgrounds/level1.png");
-    //spriteBackground.setTexture(textureBackground);
-    //window.draw(spriteBackground);
+}
+
+void beginnerGarden::animate(sf::RenderWindow& window)
+{
+    myZombieFactory->animateZombies(window);
 }
