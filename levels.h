@@ -33,7 +33,7 @@ public:
 	beginnerGarden();
 	void createPlant(int thisplantCode, int x, int y);
 	void drawBackground(sf::RenderWindow& window);
-	void animateLevel(sf::RenderWindow& window);
+	void animateLevelZombies(sf::RenderWindow& window);
 };
 
 #endif // !LEVELS_H

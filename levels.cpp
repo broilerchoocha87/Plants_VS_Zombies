@@ -50,7 +50,7 @@ void beginnerGarden:: drawBackground(sf:: RenderWindow &window)
     window.draw(spriteBackground);
 }
 
-void beginnerGarden::animateLevel(sf::RenderWindow& window)
+void beginnerGarden::animateLevelZombies(sf::RenderWindow& window)
 {
     myZombieFactory->animateZombies(window);
 }
