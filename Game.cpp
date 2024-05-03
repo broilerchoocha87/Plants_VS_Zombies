@@ -7,6 +7,11 @@ Game::Game()
 
 void Game::render(sf::RenderWindow& window)
 {
+    //BackGround
     temp.drawBackground(window);
-    temp.animateLevel(window);
+    //CardDeck
+    
+    //Plants and bullets if present
+
+    //Zombies
 }
