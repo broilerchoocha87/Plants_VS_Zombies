@@ -3,6 +3,8 @@
 #ifndef BULLETS_H
 #define BULLETS_H
 
+#include"SFML/Graphics.hpp"
+
 /*
     will have to prevent snow bullet from stacking
 */

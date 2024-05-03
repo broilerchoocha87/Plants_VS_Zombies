@@ -4,6 +4,7 @@
 #define PLANTS_H
 
 #include "bullet.h"
+#include"SFML/Graphics.hpp"
 
 class Plants
 {

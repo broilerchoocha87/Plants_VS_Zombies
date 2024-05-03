@@ -5,6 +5,7 @@
 
 #include"PlantFactory.h"
 #include"ZombieFactory.h"
+#include"SFML/Graphics.hpp"
 
 class levels
 {
@@ -32,7 +33,7 @@ public:
 	beginnerGarden();
 	void createPlant(int thisplantCode, int x, int y);
 	void drawBackground(sf::RenderWindow& window);
-	void animate(sf::RenderWindow& window);
+	void animateLevel(sf::RenderWindow& window);
 };
 
 #endif // !LEVELS_H

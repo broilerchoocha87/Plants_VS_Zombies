@@ -19,7 +19,6 @@ protected:
 	float speed;
 	float attackDamage;
 	//coordinates Pos;
-	Clock zombieClock;
 
 public:
 	Zombie();
@@ -31,12 +30,14 @@ protected:
 
 	Image sZombieImage;
 	Texture sZombieTexture;
-	Sprite sZombieSprite;
-	int spriteX;
+	Sprite zombieFrames[7];
+	Clock zombieClock;
+	Time zombieTime;
+	int spriteCount;
 
 public:
 	SimpleZombie();
-	void animate(sf::RenderWindow& window);
+	void animateZombie(sf::RenderWindow& window);
 };
 
 class FootballZombie :public Zombie

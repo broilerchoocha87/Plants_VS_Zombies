@@ -14,31 +14,42 @@ SimpleZombie::SimpleZombie()
 	health = 240;
 	speed = 1;
 	attackDamage = 100;
+	spriteCount = 0;
 	//Pos.x = 0;
 	//Pos.y = rand() % 5;
-	spriteX = 0;
+
+	sZombieImage.loadFromFile("D:\Downloads\OOP_Project\Images\Zombies\DS DSi - Plants vs Zombies - Zombie.png");
+	sZombieTexture.loadFromImage(sZombieImage);
+	
+	for (int i = 0; i < 7; i++)
+	{
+		zombieFrames[i].setTexture(sZombieTexture);
+		zombieFrames[i].setTextureRect(sf::IntRect(i * 50, 59, 42, 54));
+	}
 }
 
-void SimpleZombie::animate(sf::RenderWindow& window)
+void SimpleZombie::animateZombie(sf::RenderWindow& window)
 {
-	sZombieImage.loadFromFile("Images\Zombies\DS DSi - Plants vs Zombies - Zombie.png");
-	sZombieTexture.loadFromImage(sZombieImage);
-	sZombieSprite.setTextureRect(sf::IntRect(spriteX, 59, 42, 54));
-	sZombieSprite.setPosition(200, 200);
-	window.draw(sZombieSprite);
+	if (spriteCount > 6)
+		spriteCount = 0;
 
-	sf::Time zombieTime = zombieClock.getElapsedTime();
+	zombieFrames[spriteCount].setPosition(0, 0);
+	window.draw(zombieFrames[spriteCount]);
 
-	if (spriteX < 342 && zombieTime.asMilliseconds() > 100)
-	{
-		spriteX += 50;
-		zombieClock.restart();
-	}
-	else if (spriteX > 342 && zombieTime.asMilliseconds() > 100)
-	{
-		spriteX = 0;
-		zombieClock.restart();
-	}
+	spriteCount++;
+
+	//zombieTime = zombieClock.getElapsedTime();
+
+	//if (spriteX < 342 && zombieTime.asMilliseconds() > 100)
+	//{
+	//	spriteX += 50;
+	//	zombieClock.restart();
+	//}
+	//else if (spriteX > 342 && zombieTime.asMilliseconds() > 100)
+	//{
+	//	spriteX = 0;
+	//	zombieClock.restart();
+	//}
 }
 
 FootballZombie::FootballZombie()
