@@ -18,7 +18,6 @@ protected:
 	int* myZombieTypes;
 	int myNumAllowedPlants;
 	int myTotalZombies;
-	sf::Image imageBackground;
 	sf::Texture textureBackground;
 	sf::Sprite spriteBackground;
 

@@ -25,7 +25,7 @@ beginnerGarden::beginnerGarden()
 levels::~levels()
 {
     delete [] myAllowedPlants;
-    delete[] myAllowedPlants;
+    delete[] myZombieTypes;
     delete myZombieFactory;
 }
 
@@ -43,8 +43,7 @@ void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
 
 void beginnerGarden:: drawBackground(sf:: RenderWindow &window)
 {
-    imageBackground.loadFromFile("Images/Backgrounds/level1.png");
-    textureBackground.loadFromImage(imageBackground);
+    textureBackground.loadFromFile("Images/Backgrounds/level1.png");
     spriteBackground.setTexture(textureBackground);
     spriteBackground.setPosition(0, 0);
     window.draw(spriteBackground);

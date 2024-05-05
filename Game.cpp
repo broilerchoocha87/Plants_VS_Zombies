@@ -14,6 +14,6 @@ void Game::render(sf::RenderWindow& window)
     //Plants and bullets if present
 
     //Zombies
-    //temp.animateLevelZombies(window); Not working currently, typecasting error? Console says picture not loading
+    temp.animateLevelZombies(window); //Not working currently, typecasting error? Console says picture not loading
     // and gives access violation 
 }

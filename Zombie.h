@@ -28,11 +28,9 @@ class SimpleZombie :public Zombie
 {
 protected:
 
-	Image sZombieImage;
 	Texture sZombieTexture;
-	Sprite zombieFrames[7];
+	Sprite zombieFrame;
 	Clock zombieClock;
-	Time zombieTime;
 	int spriteCount;
 
 public:
