@@ -14,7 +14,7 @@ protected:
 
 public:
 
-	Game();
+	//Game();
 	void handleInput();
 	void update();
 	void render(sf::RenderWindow& window);

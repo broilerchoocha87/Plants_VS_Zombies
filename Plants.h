@@ -9,46 +9,30 @@
 class Plants
 {
 public:
-    int health; // Subject to change
-    coordinates plantCoord;
+    int myHealth;
     int myCost;
     int myPlantCode;
-    Plants(int thisHealth, int xCoord,int yCoord );
-            
+    coordinates myPlantCoord;
+    sf:: Clock plantClock;
+    sf::Texture plantTexture; //Loads the spriteSheet
+    sf:: Sprite plantSprite; // Stores different variations of peashooter at different times
+    sf:: IntRect frame; // Used in Animation() to choose different sprites
+    Plants(int xCoord,int yCoord ); // For ease of coordinate assignment 
+    virtual ~Plants()=0; // pure virtual function to make class abstract
+           
 };
 
 class PeaShooter : public Plants
 {
     protected:
         bullet * myBullet;
+        int myNumbullets;
     public:
         PeaShooter(int xCoord,int yCoord);
         void shootBullet();
+        void animatePeaShooter(sf::RenderWindow& window);
 };
 
-class Wallnut : public Plants
-{
-    public:
-        Wallnut(int xCoord,int yCoord);
-        
-};
 
-class Repeater: public Plants
-{
-    protected:
-        bullet * myBullet;
-    public:
-        Repeater( int xCoord, int yCoord);
-        void shootBullet();
-};
-
-class SnowPea: public Plants
-{
-    protected:
-        SnowBullet* myBullet;
-    public:
-        SnowPea(int xCoord, int yCoord);
-        void shootBullet();
-};
 
 #endif // !PLANTS_H
