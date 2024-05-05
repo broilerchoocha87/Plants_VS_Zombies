@@ -13,7 +13,6 @@ protected:
 	
 	int gameGrid[5][9]; // Stores whether plantable area or not and its reason
 	
-	ZombieFactory* myZombieFactory;
 	int* myAllowedPlants;
 	int* myZombieTypes;
 	int myNumAllowedPlants;
@@ -23,6 +22,7 @@ protected:
 
 public:
 	PlantFactory myPlantFactory;
+	ZombieFactory* myZombieFactory;
 	virtual ~levels() = 0;
 };
 

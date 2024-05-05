@@ -24,14 +24,14 @@ SimpleZombie::SimpleZombie()
 
 void SimpleZombie::animateZombie(sf::RenderWindow& window)
 {
-	if (zombieClock.getElapsedTime().asMilliseconds() < 100)
-		return;
+	//if (zombieClock.getElapsedTime().asMilliseconds() < 100)
+	//	return;
 
-	zombieClock.restart();
+	//zombieClock.restart();
 
 
-	if (spriteCount > 6)
-		spriteCount = 0;
+	//if (spriteCount > 6)
+	//	spriteCount = 0;
 
 	zombieFrame.setTextureRect(sf::IntRect(spriteCount * 50, 46, 42, 54));
 	zombieFrame.setPosition(100, 100);

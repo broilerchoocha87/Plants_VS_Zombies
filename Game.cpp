@@ -11,6 +11,6 @@ void Game::render(sf::RenderWindow& window)
     //temp.createPlant(0,32,32); memory issues
     //temp.myPlantFactory.animatePlants(window);
     //Zombies
-    temp.animateLevelZombies(window); //Not working currently, typecasting error? Console says picture not loading
+     temp.myZombieFactory->animateZombies(window); //Not working currently, typecasting error? Console says picture not loading
     // and gives access violation 
 }
