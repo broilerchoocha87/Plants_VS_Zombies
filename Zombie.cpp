@@ -18,7 +18,7 @@ SimpleZombie::SimpleZombie()
 	//Pos.x = 0;
 	//Pos.y = rand() % 5;
 
-	sZombieImage.loadFromFile("D:\Downloads\OOP_Project\Images\Zombies\DS DSi - Plants vs Zombies - Zombie.png");
+	sZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieTexture.loadFromImage(sZombieImage);
 	
 	for (int i = 0; i < 7; i++)

@@ -12,7 +12,7 @@ class levels
 protected:
 	
 	int gameGrid[5][9]; // Stores whether plantable area or not and its reason
-	PlantFactory myPlantFactory;
+	
 	ZombieFactory* myZombieFactory;
 	int* myAllowedPlants;
 	int* myZombieTypes;
@@ -23,7 +23,7 @@ protected:
 	sf::Sprite spriteBackground;
 
 public:
-
+	PlantFactory myPlantFactory;
 	virtual ~levels() = 0;
 };
 

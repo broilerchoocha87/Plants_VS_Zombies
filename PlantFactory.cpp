@@ -1,10 +1,6 @@
 #include "PlantFactory.h"
 
-PlantFactory:: PlantFactory()
-{
-    myActivePlants=nullptr;
-    texturePeashooter.loadFromFile("Images/Plants/Peashooter.png");
-}
+
 
 // Upon selection of user and condtions being met, a new plant is created and added to the array
 bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
@@ -33,7 +29,26 @@ bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
     return true;
 
 }
-
+// Animates all plants stored in myActivePlants
+void PlantFactory:: animatePlants(sf::RenderWindow &window)
+{
+    for(int i =0; i<myNumPlants;i++)
+    {
+        
+        //Check plant type
+        switch(myActivePlants[i]->myPlantCode)
+        {
+            case 0:
+                // To access derived class members
+                PeaShooter* temp= dynamic_cast<PeaShooter*>((myActivePlants[i]));
+                // Animating
+                temp->animatePeaShooter(window);
+                temp=0;
+                break;
+            //--> Add more plants    
+        }
+    }
+}
 
 
 PlantFactory:: ~PlantFactory()
