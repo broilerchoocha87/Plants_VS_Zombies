@@ -15,29 +15,43 @@ SimpleZombie::SimpleZombie()
 	speed = 1;
 	attackDamage = 100;
 	spriteCount = 0;
-	//Pos.x = 0;
-	//Pos.y = rand() % 5;
+	Pos.x = 1000;
+	Pos.y = 465;
 
-	sZombieTexture.loadFromFile("Zombie.png");
-	zombieFrame.setTexture(sZombieTexture);
+	sZombieImage.loadFromFile("D:/Downloads/OOP_Project/Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
+	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
+	sZombieTexture.loadFromImage(sZombieImage);
+
+	for (int i = 0; i < 7; i++)
+	{
+		zombieFrame[i].setTexture(sZombieTexture);
+		zombieFrame[i].setTextureRect(sf::IntRect(i * 50, 59, 42, 54));
+		zombieFrame[i].setScale(2,2);
+	}
 }
 
-void SimpleZombie::animateZombie(sf::RenderWindow& window)
+void SimpleZombie::moveZombie()
 {
-	//if (zombieClock.getElapsedTime().asMilliseconds() < 100)
-	//	return;
+	if (moveClock.getElapsedTime().asMilliseconds() > 200)
+	{
+		Pos.x -= 5;
+		moveClock.restart();
+	}
+}
 
-	//zombieClock.restart();
+void SimpleZombie::drawZombie(sf::RenderWindow& window)
+{
+	if (animClock.getElapsedTime().asMilliseconds() > 200)
+	{
+		spriteCount++;
+		animClock.restart();
+	}
 
+	if (spriteCount > 6)
+		spriteCount = 0;
 
-	//if (spriteCount > 6)
-	//	spriteCount = 0;
-
-	zombieFrame.setTextureRect(sf::IntRect(spriteCount * 50, 46, 42, 54));
-	zombieFrame.setPosition(100, 100);
-	window.draw(zombieFrame);
-
-	//spriteCount++;
+	zombieFrame[spriteCount].setPosition(Pos.x, Pos.y);
+	window.draw(zombieFrame[spriteCount]);
 }
 
 FootballZombie::FootballZombie()

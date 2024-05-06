@@ -37,7 +37,7 @@ void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
     plantAllowed=myPlantFactory.createPlant(thisplantCode,x,y);
     if(plantAllowed)
     {
-        gameGrid[y][x]=2; //Plant placed
+       // gameGrid[y][x]=2; //Plant placed
     }
 }
 
@@ -47,9 +47,4 @@ void beginnerGarden:: drawBackground(sf:: RenderWindow &window)
     spriteBackground.setTexture(textureBackground);
     spriteBackground.setPosition(0, 0);
     window.draw(spriteBackground);
-}
-
-void beginnerGarden::animateLevelZombies(sf::RenderWindow& window)
-{
-    myZombieFactory->animateZombies(window);
 }

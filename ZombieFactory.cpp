@@ -38,7 +38,8 @@ void ZombieFactory::animateZombies(sf::RenderWindow& window)
 		if (myZombieTypes[i] == 1)
 		{
 			SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
-			zPtr->animateZombie(window);
+			zPtr->moveZombie();
+			zPtr->drawZombie(window);
 		}
 	}
 }

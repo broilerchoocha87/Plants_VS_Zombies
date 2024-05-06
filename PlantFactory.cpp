@@ -12,7 +12,8 @@ bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
         temp[i]=myActivePlants[i];
     }
     // Delete the array of pointers (Not the object) subject to discussion
-    delete [] myActivePlants;
+    for(int i =0;i<myNumPlants;i++)
+        delete myActivePlants[i];
 
     myActivePlants=temp;
     temp=0;

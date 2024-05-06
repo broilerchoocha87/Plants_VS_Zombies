@@ -36,6 +36,7 @@ using namespace std;
 int main()
 {
 	RenderWindow window(VideoMode(1014, 600), "My Window");
+	window.setSize(sf::Vector2u(1014, 600));
 
 	Game game;
 	while (window.isOpen())
@@ -47,13 +48,13 @@ int main()
 				window.close();
 		}
 
-		window.setSize(sf::Vector2u(1014, 600));
-		window.display();
+
 		//game.handleInput();
 		//game.update();
 		game.render(window);
 
 		window.display();
+		window.clear();
 	}
 	return 0;
 }

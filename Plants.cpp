@@ -3,7 +3,6 @@
 #include<iostream>
 
 
-
 Plants::~Plants (){} // Definition of destructor required for a virtual destructor
 
 Plants::Plants (int x, int y) // For ease of coordinate assignment 

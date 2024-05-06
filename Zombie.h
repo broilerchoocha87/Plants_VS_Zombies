@@ -7,10 +7,10 @@
 using namespace std;
 using namespace sf;
 
-//struct coordinates {
-//	int x;
-//	int y;
-//};
+struct zombiePos {
+	int x;
+	int y;
+};
 
 class Zombie
 {
@@ -18,7 +18,7 @@ protected:
 	double health;
 	float speed;
 	float attackDamage;
-	//coordinates Pos;
+	zombiePos Pos;
 
 public:
 	Zombie();
@@ -28,14 +28,17 @@ class SimpleZombie :public Zombie
 {
 protected:
 
+	Image sZombieImage;
 	Texture sZombieTexture;
-	Sprite zombieFrame;
-	Clock zombieClock;
+	Sprite zombieFrame [7];
+	Clock animClock;
+	Clock moveClock;
 	int spriteCount;
 
 public:
 	SimpleZombie();
-	void animateZombie(sf::RenderWindow& window);
+	void drawZombie(sf::RenderWindow& window);
+	void moveZombie();
 };
 
 class FootballZombie :public Zombie
