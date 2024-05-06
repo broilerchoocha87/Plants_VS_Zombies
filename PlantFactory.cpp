@@ -1,7 +1,7 @@
 #include "PlantFactory.h"
 
-
-
+#include <iostream>
+using namespace std;
 // Upon selection of user and condtions being met, a new plant is created and added to the array
 bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
 {
@@ -12,9 +12,8 @@ bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
         temp[i]=myActivePlants[i];
     }
     // Delete the array of pointers (Not the object) subject to discussion
-    for(int i =0;i<myNumPlants;i++)
-        delete myActivePlants[i];
-
+    //for(int i =0;i<myNumPlants;i++)
+        delete [] myActivePlants;
     myActivePlants=temp;
     temp=0;
 
@@ -26,7 +25,7 @@ bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
             break;
         // Add more plants-->
     }
-
+    myNumPlants++;
     return true;
 
 }
@@ -35,7 +34,7 @@ void PlantFactory:: animatePlants(sf::RenderWindow &window)
 {
     for(int i =0; i<myNumPlants;i++)
     {
-        
+
         //Check plant type
         switch(myActivePlants[i]->myPlantCode)
         {
@@ -46,7 +45,7 @@ void PlantFactory:: animatePlants(sf::RenderWindow &window)
                 temp->animatePeaShooter(window);
                 temp=0;
                 break;
-            //--> Add more plants    
+            //--> Add more plants
         }
     }
 }
@@ -59,7 +58,7 @@ PlantFactory:: ~PlantFactory()
     {
         for(int i=0; i<myNumPlants;i++)
         {
-            delete[]myActivePlants[i];
+            delete myActivePlants[i];
         }
         delete[] myActivePlants;
     }

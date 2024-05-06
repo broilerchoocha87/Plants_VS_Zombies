@@ -1,5 +1,6 @@
 #include "levels.h"
-
+#include <iostream>
+using namespace std;
 beginnerGarden::beginnerGarden()
 {
     // Set GameGrid
@@ -14,7 +15,7 @@ beginnerGarden::beginnerGarden()
     myAllowedPlants=new int [1];
     myAllowedPlants[0]= 0;
     myNumAllowedPlants=1;
-
+    createPlant(0,255,470);
     myTotalZombies = 1;
     myZombieTypes = new int[myTotalZombies] {1};
 
@@ -32,7 +33,7 @@ levels::~levels()
 void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
 {
     bool plantAllowed=false;
-
+     cout<<"he3"<<endl;
     // check if that plant is allowed (for further levels)
     plantAllowed=myPlantFactory.createPlant(thisplantCode,x,y);
     if(plantAllowed)

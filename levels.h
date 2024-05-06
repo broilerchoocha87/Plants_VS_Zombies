@@ -10,9 +10,9 @@
 class levels
 {
 protected:
-	
+
 	int gameGrid[5][9]; // Stores whether plantable area or not and its reason
-	
+
 	int* myAllowedPlants;
 	int* myZombieTypes;
 	int myNumAllowedPlants;
