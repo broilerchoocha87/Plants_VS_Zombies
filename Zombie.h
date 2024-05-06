@@ -19,8 +19,12 @@ protected:
 	float speed;
 	float attackDamage;
 	zombiePos Pos;
+	Clock animClock;
+	Clock moveClock;
+	int spriteCount;
 
 public:
+	int zombieCode;
 	Zombie();
 };
 
@@ -31,9 +35,6 @@ protected:
 	Image sZombieImage;
 	Texture sZombieTexture;
 	Sprite zombieFrame [7];
-	Clock animClock;
-	Clock moveClock;
-	int spriteCount;
 
 public:
 	SimpleZombie();
