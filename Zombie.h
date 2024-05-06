@@ -1,11 +1,13 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <ctime>
-using namespace sf;
-using namespace std;
+#ifndef ZOMBIE_H
+#define ZOMBIE_H
 
-struct coordinates {
+#include "SFML/Graphics.hpp"
+using namespace std;
+using namespace sf;
+
+struct zombiePos {
 	int x;
 	int y;
 };
@@ -16,7 +18,7 @@ protected:
 	double health;
 	float speed;
 	float attackDamage;
-	coordinates Pos;
+	zombiePos Pos;
 
 public:
 	Zombie();
@@ -26,8 +28,17 @@ class SimpleZombie :public Zombie
 {
 protected:
 
+	Image sZombieImage;
+	Texture sZombieTexture;
+	Sprite zombieFrame [7];
+	Clock animClock;
+	Clock moveClock;
+	int spriteCount;
+
 public:
 	SimpleZombie();
+	void drawZombie(sf::RenderWindow& window);
+	void moveZombie();
 };
 
 class FootballZombie :public Zombie
@@ -61,3 +72,5 @@ protected:
 public:
 	DolphinRiderZombie();
 };
+
+#endif // !ZOMBIE_H

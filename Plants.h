@@ -1,51 +1,38 @@
 #pragma once
-#include "bullets.cpp"
-struct coordinates
-{
-    int x;
-    int y;
-};
+
+#ifndef PLANTS_H
+#define PLANTS_H
+
+#include "bullet.h"
+#include"SFML/Graphics.hpp"
 
 class Plants
 {
-protected:
-    int health; // Subject to change
-    coordinates plantCoord;
 public:
-    Plants(int thisHealth, int xCoord,int yCoord );
-            
+    int myHealth;
+    int myCost;
+    int myPlantCode;
+    coordinates myPlantCoord;
+    sf:: Clock plantClock;
+    sf::Texture plantTexture; //Loads the spriteSheet
+    sf:: Sprite plantSprite; // Stores different variations of peashooter at different times
+    sf:: IntRect frame; // Used in Animation() to choose different sprites
+    Plants(int xCoord,int yCoord ); // For ease of coordinate assignment 
+    virtual ~Plants()=0; // pure virtual function to make class abstract
+           
 };
 
 class PeaShooter : public Plants
 {
     protected:
         bullet * myBullet;
+        int myNumbullets;
     public:
-        PeaShooter(int thisHealth,int xCoord,int yCoord);
+        PeaShooter(int xCoord,int yCoord);
         void shootBullet();
+        void animatePeaShooter(sf::RenderWindow& window);
 };
 
-class Wallnut : public Plants
-{
-    public:
-        Wallnut(int thisHealth,int xCoord,int yCoord);
-        
-};
 
-class Repeater: public Plants
-{
-    protected:
-        bullet * myBullet;
-    public:
-        Repeater(int thisHealth, int xCoord, int yCoord);
-        void shootBullet();
-};
 
-class SnowPea: public Plants
-{
-    protected:
-        SnowBullet* myBullet;
-    public:
-        SnowPea(int thisHealth, int xCoord, int yCoord);
-        void shootBullet();
-};
+#endif // !PLANTS_H

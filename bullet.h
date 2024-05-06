@@ -1,4 +1,10 @@
 #pragma once
+
+#ifndef BULLETS_H
+#define BULLETS_H
+
+#include"SFML/Graphics.hpp"
+
 /*
     will have to prevent snow bullet from stacking
 */
@@ -31,3 +37,5 @@ public:
     SnowBullet();
     SnowBullet(int xCoord, int yCoord, bool thisbulletExists, int thisbulletDamage,float thisBulletSpeed);
 };
+
+#endif // !BULLETS_H
