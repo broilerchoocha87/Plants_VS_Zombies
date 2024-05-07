@@ -1,4 +1,5 @@
 #include "Zombie.h"
+#include<iostream>
 
 Zombie::Zombie()
 {
@@ -16,7 +17,7 @@ SimpleZombie::SimpleZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	Pos.x = 1000;
-	Pos.y = 60 + (/*rand() % 5*/ 5 * 95);
+	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 1;
 	isMoving = true;
 
@@ -34,13 +35,14 @@ SimpleZombie::SimpleZombie()
 
 void SimpleZombie::moveZombie()
 {
-	if (!isMoving)
-		return;
+	if (isMoving) {
 
-	if (moveClock.getElapsedTime().asMilliseconds() > 300)
-	{
-		Pos.x -= 2;
-		moveClock.restart();
+		if (moveClock.getElapsedTime().asMilliseconds() > 300)
+		{
+			Pos.x -= 2;
+			cout << "X = " << Pos.x << " Y = " << Pos.y << endl;
+			moveClock.restart();
+		}
 	}
 }
 
@@ -50,10 +52,22 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			/*zombieFrame[i].setTexture(sZombieTexture);*/
+			zombieFrame[i].setTexture(sZombieTexture);
 			zombieFrame[i].setTextureRect(sf::IntRect(i * 50, 224, 42, 54));
 			zombieFrame[i].setScale(2.2, 2.2);
 		}
+
+		if (animClock.getElapsedTime().asMilliseconds() > 200)
+		{
+			spriteCount++;
+			animClock.restart();
+		}
+
+		if (spriteCount > 5)
+			spriteCount = 0;
+
+		zombieFrame[spriteCount].setPosition(Pos.x, Pos.y);
+		window.draw(zombieFrame[spriteCount]);
 	}
 
 	else
@@ -74,13 +88,17 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 
 bool SimpleZombie::plantCollision(int plantX, int plantY)
 {
-	//if (Pos.x <= (plantX + 5) && Pos.y <= (plantY + 32) && Pos.y >= (plantY - 32))
-	//{
-	//	isMoving = false;
-	//	return true;
-	//}
+	if (Pos.x <= (plantX + 32) && Pos.y >= (plantY - 500) && Pos.y <= (plantY + 500))
+	{
+		isMoving = false;
+		return true;
+	}
 
-	//else return false;
+	return true;
+}
+
+bool SimpleZombie::bulletCollision(int bulletX, int bulletY)
+{
 	return true;
 }
 

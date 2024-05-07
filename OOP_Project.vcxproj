@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="bullets.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameGrid.cpp" />
     <ClCompile Include="levels.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlantFactory.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameGrid.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="PlantFactory.h" />
     <ClInclude Include="Plants.h" />

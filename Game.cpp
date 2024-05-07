@@ -15,6 +15,7 @@ void Game::render(sf::RenderWindow& window)
      temp.myPlantFactory.animatePlants(window);
     //Zombies
      temp.myZombieFactory->animateZombies(window);
+     //temp.checkCollisions();
 }
 
 void Game:: handleInput(sf::RenderWindow& window)

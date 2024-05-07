@@ -17,3 +17,17 @@ GameGrid::GameGrid()
         }
     }
 }
+
+bool GameGrid::anyPlanted()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (grid[i][j] == plantable)
+                return true;
+        }
+    }
+
+    return false;
+}

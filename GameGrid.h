@@ -19,6 +19,6 @@ class GameGrid
         const int planted=3;
 
         GameGrid();
-
+        bool anyPlanted();
 };
 #endif

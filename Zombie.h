@@ -29,8 +29,8 @@ public:
 	Zombie();
 	virtual void drawZombie(sf::RenderWindow&) = 0;
 	virtual void moveZombie() = 0;
-	//virtual bool bulletCollision(int plantX, int plantY) = 0;
-	//virtual bool plantCollision(int, int) = 0;
+	virtual bool bulletCollision(int, int) = 0;
+	virtual bool plantCollision(int, int) = 0;
 };
 
 class SimpleZombie :public Zombie
@@ -45,8 +45,8 @@ public:
 	SimpleZombie();
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
-	/*virtual*/ bool bulletCollision(int bulletX, int bulletY);
-	/*virtual*/ bool plantCollision(int plantX, int plantY);
+	virtual bool bulletCollision(int bulletX, int bulletY);
+	virtual bool plantCollision(int plantX, int plantY);
 };
 
 //class FootballZombie :public Zombie
