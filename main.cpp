@@ -22,12 +22,9 @@ int main()
 				window.close();
 		}
 
-<<<<<<< HEAD
 
 
-=======
-		//game.handleInput();
->>>>>>> 1527a49c4c78eb895a9caadfd05978318f1e06d6
+		game.handleInput(window);
 		//game.update();
 		game.render(window);
         game.handleInput(window);
