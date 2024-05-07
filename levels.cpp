@@ -49,3 +49,15 @@ void beginnerGarden::drawBackground(sf::RenderWindow& window)
     spriteBackground.setPosition(0, 0);
     window.draw(spriteBackground);
 }
+
+void beginnerGarden::checkCollisions()
+{
+    //for (int i = 0; i < myTotalZombies; i++)
+    //{
+    //    for (int j = 0; j < myNumAllowedPlants; j++)
+    //    {
+    //        PeaShooter* pPtr = dynamic_cast<PeaShooter*>(myPlantFactory.myActivePlants[i]);
+    //        myZombieFactory->myActiveZombies[i]->plantCollision(pPtr->myPlantCoord.x, pPtr->myPlantCoord.y);
+    //    }
+    //}
+}

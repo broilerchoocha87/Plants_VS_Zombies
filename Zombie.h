@@ -22,10 +22,15 @@ protected:
 	Clock animClock;
 	Clock moveClock;
 	int spriteCount;
+	bool isMoving;
 
 public:
 	int zombieCode;
 	Zombie();
+	virtual void drawZombie(sf::RenderWindow&) = 0;
+	virtual void moveZombie() = 0;
+	//virtual bool bulletCollision(int plantX, int plantY) = 0;
+	//virtual bool plantCollision(int, int) = 0;
 };
 
 class SimpleZombie :public Zombie
@@ -38,40 +43,42 @@ protected:
 
 public:
 	SimpleZombie();
-	void drawZombie(sf::RenderWindow& window);
-	void moveZombie();
+	virtual void drawZombie(sf::RenderWindow& window);
+	virtual void moveZombie();
+	/*virtual*/ bool bulletCollision(int bulletX, int bulletY);
+	/*virtual*/ bool plantCollision(int plantX, int plantY);
 };
 
-class FootballZombie :public Zombie
-{
-protected:
-
-public:
-	FootballZombie();
-};
-
-class FlyingZombie :public Zombie
-{
-protected:
-
-public:
-	FlyingZombie();
-};
-
-class DancingZombie :public Zombie
-{
-protected:
-
-public:
-	DancingZombie();
-};
-
-class DolphinRiderZombie :public Zombie
-{
-protected:
-
-public:
-	DolphinRiderZombie();
-};
+//class FootballZombie :public Zombie
+//{
+//protected:
+//
+//public:
+//	FootballZombie();
+//};
+//
+//class FlyingZombie :public Zombie
+//{
+//protected:
+//
+//public:
+//	FlyingZombie();
+//};
+//
+//class DancingZombie :public Zombie
+//{
+//protected:
+//
+//public:
+//	DancingZombie();
+//};
+//
+//class DolphinRiderZombie :public Zombie
+//{
+//protected:
+//
+//public:
+//	DolphinRiderZombie();
+//};
 
 #endif // !ZOMBIE_H

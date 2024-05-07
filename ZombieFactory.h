@@ -11,13 +11,12 @@ class ZombieFactory
 
 protected:
 
+public:
+
 	Zombie** myActiveZombies;
 	int myTotalZombies;
 	int* myZombieTypes;
 	int* myGameGrid;
-
-public:
-
 	ZombieFactory();
 	ZombieFactory(int myTotalZombies, int* myZombieTypes);
 	void animateZombies(sf::RenderWindow& window);

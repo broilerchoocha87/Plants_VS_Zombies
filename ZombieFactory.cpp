@@ -20,14 +20,14 @@ ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
 	{
 		if (myZombieTypes[i] == 1)
 			myActiveZombies[i] = new SimpleZombie;
-		else if (myZombieTypes[i] == 2)
-			myActiveZombies[i] = new FootballZombie;
-		else if (myZombieTypes[i] == 3)
-			myActiveZombies[i] = new FlyingZombie;
-		else if (myZombieTypes[i] == 4)
-			myActiveZombies[i] = new DancingZombie;
-		else if (myZombieTypes[i] == 5)
-			myActiveZombies[i] = new DolphinRiderZombie;
+		//else if (myZombieTypes[i] == 2)
+		//	myActiveZombies[i] = new FootballZombie;
+		//else if (myZombieTypes[i] == 3)
+		//	myActiveZombies[i] = new FlyingZombie;
+		//else if (myZombieTypes[i] == 4)
+		//	myActiveZombies[i] = new DancingZombie;
+		//else if (myZombieTypes[i] == 5)
+		//	myActiveZombies[i] = new DolphinRiderZombie;
 	}
 }
 
@@ -37,9 +37,9 @@ void ZombieFactory::animateZombies(sf::RenderWindow& window)
 	{
 		if (myActiveZombies[i]->zombieCode == 1)
 		{
-			SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
-			zPtr->moveZombie();
-			zPtr->drawZombie(window);
+			//SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
+			myActiveZombies[i]->moveZombie();
+			myActiveZombies[i]->drawZombie(window);
 		}
 	}
 }
@@ -48,4 +48,6 @@ ZombieFactory::~ZombieFactory()
 {
 	for (int i = 0; i < myTotalZombies; i++)
 		delete myActiveZombies[i];
+
+	delete[] myActiveZombies;
 }
