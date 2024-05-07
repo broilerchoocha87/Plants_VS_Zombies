@@ -3,19 +3,11 @@
 using namespace std;
 beginnerGarden::beginnerGarden()
 {
-    // Set GameGrid
-    for (int i =0;i<5;i++)
-    {
-        for (int j=0;j<9;j++)
-        {
-            gameGrid[i][j]=1; // Plantable
-        }
-    }
     //declare allowed plants
     myAllowedPlants=new int [1];
     myAllowedPlants[0]= 0;
     myNumAllowedPlants=1;
-    createPlant(0,255,470);
+    //createPlant(0,255,470);
     myTotalZombies = 1;
     myZombieTypes = new int[myTotalZombies] {1};
 
@@ -33,7 +25,6 @@ levels::~levels()
 void beginnerGarden::createPlant(int thisplantCode, int x, int y)
 {
     bool plantAllowed=false;
-     cout<<"he3"<<endl;
     // check if that plant is allowed (for further levels)
     plantAllowed=myPlantFactory.createPlant(thisplantCode,x,y);
     if(plantAllowed)
