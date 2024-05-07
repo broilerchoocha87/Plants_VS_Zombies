@@ -16,7 +16,8 @@ SimpleZombie::SimpleZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	Pos.x = 1000;
-	Pos.y = 460;
+	Pos.y = 60 + (rand()%5 * 100);
+	zombieCode = 1;
 
 	sZombieImage.loadFromFile("D:/Downloads/OOP_Project/Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
@@ -26,7 +27,7 @@ SimpleZombie::SimpleZombie()
 	{
 		zombieFrame[i].setTexture(sZombieTexture);
 		zombieFrame[i].setTextureRect(sf::IntRect(i * 50, 59, 42, 54));
-		zombieFrame[i].setScale(2.1, 2.1);
+		zombieFrame[i].setScale(2.2, 2.2);
 	}
 }
 
@@ -34,7 +35,7 @@ void SimpleZombie::moveZombie()
 {
 	if (moveClock.getElapsedTime().asMilliseconds() > 300)
 	{
-		Pos.x -= 3;
+		Pos.x -= 2;
 		moveClock.restart();
 	}
 }

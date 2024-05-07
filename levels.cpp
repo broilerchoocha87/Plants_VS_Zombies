@@ -11,18 +11,18 @@ beginnerGarden::beginnerGarden()
     myTotalZombies = 1;
     myZombieTypes = new int[myTotalZombies] {1};
 
-    myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
+	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
 
 }
 
 levels::~levels()
 {
-    delete [] myAllowedPlants;
-    delete[] myZombieTypes;
-    delete myZombieFactory;
+	delete[] myAllowedPlants;
+	delete[] myZombieTypes;
+	delete myZombieFactory;
 }
 
-void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
+void beginnerGarden::createPlant(int thisplantCode, int x, int y)
 {
     bool plantAllowed=false;
     // check if that plant is allowed (for further levels)
@@ -33,7 +33,7 @@ void beginnerGarden:: createPlant(int thisplantCode, int x, int y)
     }
 }
 
-void beginnerGarden:: drawBackground(sf:: RenderWindow &window)
+void beginnerGarden::drawBackground(sf::RenderWindow& window)
 {
     textureBackground.loadFromFile("Images/Backgrounds/level1.png");
     spriteBackground.setTexture(textureBackground);

@@ -8,9 +8,10 @@
 class PlantFactory
 {
     protected:
-        Plants **myActivePlants;
         int myNumPlants;// stores number of plants and next free location in myActivePlants
     public:
+        Plants** myActivePlants;
+
         //PlantFactory();
         
 
