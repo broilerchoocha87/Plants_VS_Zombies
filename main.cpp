@@ -49,10 +49,10 @@ int main()
 		}
 
 
-		//game.handleInput();
+
 		//game.update();
 		game.render(window);
-
+        game.handleInput(window);
 		window.display();
 		window.clear();
 	}

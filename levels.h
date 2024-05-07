@@ -2,7 +2,7 @@
 
 #ifndef LEVELS_H
 #define LEVELS_H
-
+#include"GameGrid.h"
 #include"PlantFactory.h"
 #include"ZombieFactory.h"
 #include"SFML/Graphics.hpp"
@@ -11,8 +11,8 @@ class levels
 {
 protected:
 
-	int gameGrid[5][9]; // Stores whether plantable area or not and its reason
-
+	 // Stores whether plantable area or not and its reason
+	
 	int* myAllowedPlants;
 	int* myZombieTypes;
 	int myNumAllowedPlants;
@@ -21,6 +21,7 @@ protected:
 	sf::Sprite spriteBackground;
 
 public:
+	GameGrid myGameGrid;
 	PlantFactory myPlantFactory;
 	ZombieFactory* myZombieFactory;
 	virtual ~levels() = 0;

@@ -58,12 +58,16 @@ void PeaShooter :: animatePeaShooter(sf::RenderWindow& window)
     //if(shootClock.getElapsedTime().asSeconds()>1.05f)
         shootBullet();
 
-    //for(int i =0; i<3; i++)
-    //{
-        myBullet[0].animateBullet(window);
-        myBullet[0].moveBullet();
-        
-   // }
+    for(int i =0; i<1; i++)
+    {
+        if(myBullet[i].bulletExists==true)
+        {
+            myBullet[i].animateBullet(window);
+            myBullet[i].moveBullet();
+        }
+
+
+   }
     shootClock.restart();
    window.draw(plantSprite);
 
@@ -81,8 +85,8 @@ void PeaShooter :: shootBullet()// Creates a new bullet
         if(myBullet[i].bulletExists==false) // Check space to create new bullet
         {
             myBullet[i].bulletExists=true;
-            myBullet[i].bulletCoord.x=320;//255
-            myBullet[i].bulletCoord.y=480;//470
+            myBullet[i].bulletCoord.x=myPlantCoord.x+25;//255
+            myBullet[i].bulletCoord.y=myPlantCoord.y+10;//470
             myBullet[i].bulletDamage=200;
             myBullet[i].bulletSpeed=1;
             myBullet[i].bulletSprite.setPosition(myBullet[i].bulletCoord.x,myBullet[i].bulletCoord.y);
