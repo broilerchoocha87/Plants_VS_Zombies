@@ -2,6 +2,15 @@
 
 #include <iostream>
 using namespace std;
+
+//Constructor
+
+PlantFactory::PlantFactory()
+{
+    myNumPlants=0;
+}
+
+
 // Upon selection of user and condtions being met, a new plant is created and added to the array
 bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
 {
