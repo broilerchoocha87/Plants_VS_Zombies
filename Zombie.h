@@ -39,7 +39,7 @@ protected:
 
 	Image sZombieImage;
 	Texture sZombieTexture;
-	Sprite zombieFrame [7];
+	Sprite zombieFrame;
 
 public:
 	SimpleZombie();

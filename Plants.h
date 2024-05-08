@@ -26,13 +26,14 @@ public:
 class PeaShooter : public Plants
 {
     protected:
-        bullet * myBullet;
         int myNumbullets;
         sf:: Clock shootClock;
     public:
+        bullet* myBullet;
         PeaShooter(int xCoord,int yCoord);
         void shootBullet();
         void animatePeaShooter(sf::RenderWindow& window);
+        void zombieDamage(int Zombietype);
         ~PeaShooter();
 };
 

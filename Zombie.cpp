@@ -24,13 +24,6 @@ SimpleZombie::SimpleZombie()
 	sZombieImage.loadFromFile("D:/Downloads/OOP_Project/Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
 	sZombieTexture.loadFromImage(sZombieImage);
-
-	for (int i = 0; i < 7; i++)
-	{
-		zombieFrame[i].setTexture(sZombieTexture);
-		zombieFrame[i].setTextureRect(sf::IntRect(i * 50, 59, 42, 54));
-		zombieFrame[i].setScale(2.2, 2.2);
-	}
 }
 
 void SimpleZombie::moveZombie()
@@ -48,47 +41,39 @@ void SimpleZombie::moveZombie()
 
 void SimpleZombie::drawZombie(sf::RenderWindow& window)
 {
-	if (!isMoving)
+	if (isMoving)
 	{
-		for (int i = 0; i < 6; i++)
-		{
-			zombieFrame[i].setTexture(sZombieTexture);
-			zombieFrame[i].setTextureRect(sf::IntRect(i * 50, 224, 42, 54));
-			zombieFrame[i].setScale(2.2, 2.2);
-		}
-
-		if (animClock.getElapsedTime().asMilliseconds() > 200)
-		{
-			spriteCount++;
-			animClock.restart();
-		}
-
-		if (spriteCount > 5)
+		if (spriteCount > 6)
 			spriteCount = 0;
 
-		zombieFrame[spriteCount].setPosition(Pos.x, Pos.y);
-		window.draw(zombieFrame[spriteCount]);
+		zombieFrame.setTexture(sZombieTexture);
+		zombieFrame.setTextureRect(sf::IntRect(spriteCount * 50, 59, 42, 54));
 	}
 
 	else
 	{
-		if (animClock.getElapsedTime().asMilliseconds() > 200)
-		{
-			spriteCount++;
-			animClock.restart();
-		}
 
-		if (spriteCount > 6)
+		if (spriteCount > 5)
 			spriteCount = 0;
 
-		zombieFrame[spriteCount].setPosition(Pos.x, Pos.y);
-		window.draw(zombieFrame[spriteCount]);
+		zombieFrame.setTexture(sZombieTexture);
+		zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 224, 37, 51));
 	}
+
+	if (animClock.getElapsedTime().asMilliseconds() > 200)
+	{
+		spriteCount++;
+		animClock.restart();
+	}
+
+	zombieFrame.setScale(2.2, 2.2);
+	zombieFrame.setPosition(Pos.x, Pos.y);
+	window.draw(zombieFrame);
 }
 
 bool SimpleZombie::plantCollision(int plantX, int plantY)
 {
-	if (Pos.x <= (plantX + 32) && Pos.y >= (plantY - 500) && Pos.y <= (plantY + 500))
+	if (Pos.x <= (plantX + 36) && Pos.y >= (plantY - 250) && Pos.y <= (plantY + 250))
 	{
 		isMoving = false;
 		return true;
@@ -99,7 +84,13 @@ bool SimpleZombie::plantCollision(int plantX, int plantY)
 
 bool SimpleZombie::bulletCollision(int bulletX, int bulletY)
 {
-	return true;
+	if (Pos.x <= (bulletX + 10) && Pos.y >= (bulletY - 100) && Pos.y <= (bulletY + 100))
+	{
+		
+		return true;
+	}
+
+	return false;
 }
 
 //FootballZombie::FootballZombie()

@@ -24,7 +24,7 @@ bool GameGrid::anyPlanted()
     {
         for (int j = 0; j < 9; j++)
         {
-            if (grid[i][j] == plantable)
+            if (grid[i][j] == planted)
                 return true;
         }
     }

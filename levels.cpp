@@ -52,8 +52,18 @@ void beginnerGarden::checkCollisions()
 			for (int j = 0; j < myNumAllowedPlants; j++)
 			{
 				PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[i]);
-				SimpleZombie* zPtr = (SimpleZombie*)myZombieFactory->myActiveZombies[i];
-				zPtr->plantCollision(pPtr->myPlantCoord.x, pPtr->myPlantCoord.y);
+				SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
+				
+				if (zPtr->plantCollision(pPtr->myPlantCoord.x, pPtr->myPlantCoord.y))
+				{
+					
+				}
+
+				if (zPtr->bulletCollision(pPtr->myBullet->bulletCoord.x, pPtr->myBullet->bulletCoord.y))
+				{
+					
+					pPtr->myBullet->bulletExists = false;
+				}
 			}
 		}
 	}
