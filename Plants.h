@@ -4,8 +4,8 @@
 #define PLANTS_H
 
 #include "bullet.h"
-#include"SFML/Graphics.hpp"
 #include "Zombie.h"
+#include"SFML/Graphics.hpp"
 
 class Plants //Abstract class
 {
@@ -20,7 +20,7 @@ public:
 	sf::Sprite plantSprite; // Stores different variations of peashooter at different times
 	sf::IntRect frame; // Used in Animation() to choose different sprites
 	Plants(int xCoord, int yCoord); // For ease of coordinate assignment
-	virtual bool zombieCollision(Zombie* zPtr) = 0;
+	virtual void zombieCollision(Zombie* zPtr) = 0;
 	virtual void animatePlant(sf:: RenderWindow& window) =0;
 	virtual ~Plants() = 0; // pure virtual function to make class abstract
 
@@ -37,8 +37,8 @@ public:
 	bullet* myBullet;
 	PeaShooter(int xCoord, int yCoord);
 	void shootBullet();
-	void animatePlant(sf::RenderWindow& window); 
-	virtual bool zombieCollision(Zombie* zPtr);
+	void animatePlant(sf::RenderWindow& window);
+	virtual void zombieCollision(Zombie* zPtr);
 	~PeaShooter();
 };
 
@@ -47,7 +47,7 @@ class Wallnut : public Plants
 	public:
 		Wallnut(int xCoord, int yCoord);
 		void animatePlant(sf::RenderWindow& window);
-		virtual bool zombieCollision(Zombie* zPtr);
+		virtual void zombieCollision(Zombie* zPtr);
 		//~Wallnut(); // Not required since no dynamic memory
 		
 };

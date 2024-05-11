@@ -132,6 +132,7 @@ void PeaShooter::zombieCollision(Zombie* zPtr)
 			myHealth -= zPtr->attackDamage;
 			if (myHealth <= 0)
 				zPtr->isMoving = true;
+
 			zPtr->zombieAttackClock.restart();
 		}
 
