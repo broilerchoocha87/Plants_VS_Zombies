@@ -35,12 +35,9 @@ void ZombieFactory::animateZombies(sf::RenderWindow& window)
 {
 	for (int i = 0; i < myTotalZombies; i++)
 	{
-		if (myActiveZombies[i] != nullptr)
-		{
-			//SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
-			myActiveZombies[i]->moveZombie();
-			myActiveZombies[i]->drawZombie(window);
-		}
+		//SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
+		myActiveZombies[i]->moveZombie();
+		myActiveZombies[i]->drawZombie(window);
 	}
 }
 
@@ -48,8 +45,6 @@ void ZombieFactory::updateZombies()
 {
 	for (int i = 0; i < myTotalZombies; i++)
 	{
-		if (myActiveZombies[i] != nullptr)
-		{
 			if (myActiveZombies[i]->dyingSpriteCount >= 8)
 			{
 				removeZombie(i);
@@ -60,7 +55,6 @@ void ZombieFactory::updateZombies()
 				myActiveZombies[i]->isDying = true;
 				myActiveZombies[i]->isMoving = false;
 			}
-		}
 	}
 }
 
@@ -79,7 +73,7 @@ void ZombieFactory::removeZombie(int deadZombieIndex)
 	{
 		Zombie** updatedZombies;
 		updatedZombies = new Zombie * [myTotalZombies - 1];
-		
+
 		int c = 0;
 		for (int i = 0; i < myTotalZombies; i++)
 		{

@@ -120,7 +120,7 @@ void PeaShooter::shootBullet()// Creates a new bullet
 	}
 }
 
-bool PeaShooter::zombieCollision(Zombie* zPtr)
+void PeaShooter::zombieCollision(Zombie* zPtr)
 {
 	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
 	{
@@ -129,14 +129,15 @@ bool PeaShooter::zombieCollision(Zombie* zPtr)
 		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
 		{
 			myHealth -= zPtr->attackDamage;
+			if (myHealth <= 0)
+				zPtr->isMoving = true;
 			zPtr->zombieAttackClock.restart();
 		}
 
-		return true;
+		return;
 	}
 
 	zPtr->isMoving = true;
-	return false;
 }
 
 PeaShooter::~PeaShooter()

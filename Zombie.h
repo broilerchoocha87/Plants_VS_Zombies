@@ -5,6 +5,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "bullet.h"
+#include "Plants.h"
 using namespace std;
 using namespace sf;
 
@@ -36,6 +37,7 @@ public:
 	virtual void drawZombie(sf::RenderWindow&) = 0;
 	virtual void moveZombie() = 0;
 	virtual void bulletCollision(bullet* bPtr) = 0;
+	//virtual void plantCollision(Plants* pPtr) = 0;
 };
 
 class SimpleZombie :public Zombie
@@ -51,7 +53,7 @@ public:
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
-	//virtual bool plantCollision(Plants* pPtr);
+	//virtual void plantCollision(Plants* pPtr);
 };
 
 //class FootballZombie :public Zombie

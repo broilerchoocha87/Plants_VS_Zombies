@@ -136,6 +136,24 @@ void SimpleZombie::bulletCollision(bullet* bPtr)
 	}
 }
 
+//void SimpleZombie::plantCollision(Plants* pPtr)
+//{
+//	if (Pos.x <= (pPtr->myPlantCoord.x + 36) && Pos.y >= (pPtr->myPlantCoord.y - 125) && Pos.y <= (pPtr->myPlantCoord.y + 125))
+//	{
+//		isMoving = false;
+//
+//		if (zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
+//		{
+//			pPtr->myHealth -= attackDamage;
+//			zombieAttackClock.restart();
+//		}
+//
+//		return;
+//	}
+//
+//	isMoving = true;
+//}
+
 //FootballZombie::FootballZombie()
 //{
 //	health = 1600;

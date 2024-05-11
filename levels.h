@@ -6,6 +6,8 @@
 #include"GameGrid.h"
 #include"PlantFactory.h"
 #include"ZombieFactory.h"
+#include"Plants.h"
+#include"Zombie.h"
 #include"SFML/Graphics.hpp"
 
 class levels // Abstract class

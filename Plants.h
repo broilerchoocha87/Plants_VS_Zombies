@@ -20,7 +20,7 @@ public:
 	sf::Sprite plantSprite; // Stores different variations of peashooter at different times
 	sf::IntRect frame; // Used in Animation() to choose different sprites
 	Plants(int xCoord, int yCoord); // For ease of coordinate assignment
-	virtual bool zombieCollision(Zombie* zPtr) = 0;
+	virtual void zombieCollision(Zombie* zPtr) = 0;
 	virtual ~Plants() = 0; // pure virtual function to make class abstract
 
 };
@@ -37,7 +37,7 @@ public:
 	PeaShooter(int xCoord, int yCoord);
 	void shootBullet();
 	void animatePeaShooter(sf::RenderWindow& window);
-	virtual bool zombieCollision(Zombie* zPtr);
+	virtual void zombieCollision(Zombie* zPtr);
 	~PeaShooter();
 };
 

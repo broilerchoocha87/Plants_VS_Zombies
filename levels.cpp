@@ -1,6 +1,4 @@
 #include "levels.h"
-#include"Zombie.h"
-#include"Plants.h"
 #include <iostream>
 using namespace std;
 beginnerGarden::beginnerGarden()
@@ -45,19 +43,15 @@ void beginnerGarden::drawBackground(sf::RenderWindow& window)
 
 void beginnerGarden::checkCollisions()
 {
-		for (int i = 0; i < myZombieFactory->myTotalZombies; i++)
+	for (int i = 0; i < myZombieFactory->myTotalZombies; i++)
+	{
+		for (int j = 0; j < myPlantFactory.myNumPlants; j++)
 		{
-			for (int j = 0; j < myPlantFactory.myNumPlants; j++)
-			{
-				/*if (myZombieFactory->myActiveZombies[i] != nullptr && myPlantFactory.myActivePlants[j] != nullptr)
-				{*/
-					PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
-					SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
+			PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
+			SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
 
-					zPtr->bulletCollision(pPtr->myBullet);
-
-					pPtr->zombieCollision(zPtr);
-				/*}*/
-			}
+			zPtr->bulletCollision(pPtr->myBullet);
+			pPtr->zombieCollision(zPtr);
 		}
+	}
 }
