@@ -22,14 +22,13 @@ int main()
 				window.close();
 		}
 
-
-
 		game.handleInput(window);
-		//game.update();
+		game.update();
 		game.render(window);
         game.handleInput(window);
 		window.display();
 		window.clear();
 	}
+
 	return 0;
 }

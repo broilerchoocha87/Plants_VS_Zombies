@@ -2,6 +2,7 @@
 
 #ifndef LEVELS_H
 #define LEVELS_H
+
 #include"GameGrid.h"
 #include"PlantFactory.h"
 #include"ZombieFactory.h"
@@ -11,8 +12,7 @@ class levels
 {
 protected:
 
-	 // Stores whether plantable area or not and its reason
-	
+	// Stores whether plantable area or not and its reason
 	int* myAllowedPlants;
 	int* myZombieTypes;
 	int myNumAllowedPlants;

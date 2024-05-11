@@ -20,6 +20,8 @@ public:
 	ZombieFactory();
 	ZombieFactory(int myTotalZombies, int* myZombieTypes);
 	void animateZombies(sf::RenderWindow& window);
+	void updateZombies();
+	void removeZombie(int index);
 	~ZombieFactory();
 };
 

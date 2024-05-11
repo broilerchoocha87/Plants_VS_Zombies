@@ -10,8 +10,8 @@ beginnerGarden::beginnerGarden()
 	myAllowedPlants[0] = 0;
 	myNumAllowedPlants = 1;
 	//createPlant(0,255,470);
-	myTotalZombies = 1;
-	myZombieTypes = new int[myTotalZombies] {1};
+	myTotalZombies = 2;
+	myZombieTypes = new int[myTotalZombies] {1, 1};
 
 	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
 
@@ -51,18 +51,20 @@ void beginnerGarden::checkCollisions()
 		{
 			for (int j = 0; j < myNumAllowedPlants; j++)
 			{
-				PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[i]);
-				SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
-				
-				if (zPtr->plantCollision(pPtr->myPlantCoord.x, pPtr->myPlantCoord.y))
+				if (myZombieFactory->myActiveZombies[i] != nullptr && myPlantFactory.myActivePlants[j] != nullptr)
 				{
-					
-				}
+					PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
+					SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
 
-				if (zPtr->bulletCollision(pPtr->myBullet->bulletCoord.x, pPtr->myBullet->bulletCoord.y))
-				{
-					
-					pPtr->myBullet->bulletExists = false;
+					if (pPtr->zombieCollision(zPtr))
+					{
+
+					}
+
+					if (zPtr->bulletCollision(pPtr->myBullet))
+					{
+
+					}
 				}
 			}
 		}

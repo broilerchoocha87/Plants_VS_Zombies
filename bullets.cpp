@@ -11,8 +11,8 @@ bullet::bullet()
 	bulletCoord.x = 0;
 	bulletCoord.y = 0;
 	bulletExists = true;
-	bulletDamage = 200;
-	bulletSpeed = 30;
+	bulletDamage = 20;
+	bulletSpeed = 50;
 
 	// Initialising sprite
 	bulletImage.loadFromFile("Images/Plants/Peashooter.png");
@@ -42,8 +42,6 @@ void bullet::moveBullet()
 		bulletMoveClock.restart();
 	}
 }
-
-
 
 SnowBullet::SnowBullet()
 {

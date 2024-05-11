@@ -4,6 +4,7 @@
 #define ZOMBIE_H
 
 #include "SFML/Graphics.hpp"
+#include "bullet.h"
 using namespace std;
 using namespace sf;
 
@@ -15,22 +16,25 @@ struct zombiePos {
 class Zombie
 {
 protected:
+	int spriteCount;
+	int dyingSpriteCount;
+
+public:
 	double health;
 	float speed;
 	float attackDamage;
 	zombiePos Pos;
 	Clock animClock;
 	Clock moveClock;
-	int spriteCount;
 	bool isMoving;
+	bool isDying;
+	bool isDead;
 
-public:
 	int zombieCode;
 	Zombie();
 	virtual void drawZombie(sf::RenderWindow&) = 0;
 	virtual void moveZombie() = 0;
-	virtual bool bulletCollision(int, int) = 0;
-	virtual bool plantCollision(int, int) = 0;
+	virtual bool bulletCollision(bullet* bPtr) = 0;
 };
 
 class SimpleZombie :public Zombie
@@ -45,8 +49,8 @@ public:
 	SimpleZombie();
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
-	virtual bool bulletCollision(int bulletX, int bulletY);
-	virtual bool plantCollision(int plantX, int plantY);
+	virtual bool bulletCollision(bullet* bPtr);
+	//virtual bool plantCollision(Plants* pPtr);
 };
 
 //class FootballZombie :public Zombie

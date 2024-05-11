@@ -16,10 +16,13 @@ SimpleZombie::SimpleZombie()
 	speed = 1;
 	attackDamage = 100;
 	spriteCount = 0;
-	Pos.x = 1000;
+	dyingSpriteCount = 0;
+	Pos.x = 900;
 	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 1;
 	isMoving = true;
+	isDying = false;
+	isDead = false;
 
 	sZombieImage.loadFromFile("D:/Downloads/OOP_Project/Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
@@ -33,7 +36,6 @@ void SimpleZombie::moveZombie()
 		if (moveClock.getElapsedTime().asMilliseconds() > 300)
 		{
 			Pos.x -= 2;
-			cout << "X = " << Pos.x << " Y = " << Pos.y << endl;
 			moveClock.restart();
 		}
 	}
@@ -41,24 +43,68 @@ void SimpleZombie::moveZombie()
 
 void SimpleZombie::drawZombie(sf::RenderWindow& window)
 {
-	if (isMoving)
+	if (isDying)
 	{
-		if (spriteCount > 6)
-			spriteCount = 0;
-
 		zombieFrame.setTexture(sZombieTexture);
-		zombieFrame.setTextureRect(sf::IntRect(spriteCount * 50, 59, 42, 54));
+		zombieFrame.setTextureRect(sf::IntRect(dyingSpriteCount * 52, 385, 44, 34));
+
+		if (dyingSpriteCount > 8)
+		{
+			isDead = true;
+			isDying = false;
+			return;
+		}
+
+		if (animClock.getElapsedTime().asMilliseconds() > 200)
+		{
+			dyingSpriteCount++;
+			animClock.restart();
+		}
 	}
 
 	else
+
 	{
+		if (isMoving)
+		{
+			if (health >= 200)
+			{
+				zombieFrame.setTexture(sZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 50, 59, 42, 54));
+			}
 
-		if (spriteCount > 5)
-			spriteCount = 0;
+			else if (health >= 140)
+			{
+				zombieFrame.setTexture(sZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 121, 37, 54));
+			}
 
-		zombieFrame.setTexture(sZombieTexture);
-		zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 224, 37, 51));
+			else if (health < 140)
+			{
+				zombieFrame.setTexture(sZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 752, 37, 54));
+			}
+		}
+
+		else
+
+		{
+			if (health >= 200)
+			{
+				zombieFrame.setTexture(sZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 224, 37, 51));
+			}
+
+			else if (health <  140)
+			{
+				zombieFrame.setTexture(sZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 283, 37, 51));
+			}
+		}
 	}
+
+	if (spriteCount >= 6)
+		spriteCount = 0;
 
 	if (animClock.getElapsedTime().asMilliseconds() > 200)
 	{
@@ -71,22 +117,29 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 	window.draw(zombieFrame);
 }
 
-bool SimpleZombie::plantCollision(int plantX, int plantY)
-{
-	if (Pos.x <= (plantX + 36) && Pos.y >= (plantY - 250) && Pos.y <= (plantY + 250))
-	{
-		isMoving = false;
-		return true;
-	}
+//bool SimpleZombie::plantCollision(int plantX, int plantY)
+//{
+//	if (Pos.x <= (plantX + 36) && Pos.y >= (plantY - 250) && Pos.y <= (plantY + 250))
+//	{
+//		isMoving = false;
+//		return true;
+//	}
+//
+//	return true;
+//}
 
-	return true;
-}
-
-bool SimpleZombie::bulletCollision(int bulletX, int bulletY)
+bool SimpleZombie::bulletCollision(bullet* bPtr)
 {
-	if (Pos.x <= (bulletX + 10) && Pos.y >= (bulletY - 100) && Pos.y <= (bulletY + 100))
+	if (Pos.x <= (bPtr->bulletCoord.x + 10) && Pos.y >= (bPtr->bulletCoord.y - 100) && Pos.y <= (bPtr->bulletCoord.y + 100))
 	{
-		
+		health -= bPtr->bulletDamage;
+		bPtr->bulletExists = false;
+
+		//if (health = 0)
+		//{
+
+		//}
+
 		return true;
 	}
 
