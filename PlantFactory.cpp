@@ -42,30 +42,7 @@ bool PlantFactory::createPlant(int thisplantCode, int x, int y)
     myNumPlants++;
     
     return true;
-	// Create a similar but larger temporary dynamic memory
-	Plants** temp = new Plants * [myNumPlants + 1];
-	for (int i = 0; i < myNumPlants; i++)
-	{
-		temp[i] = myActivePlants[i];
-	}
-	// Delete the array of pointers (Not the object) subject to discussion
-	//for(int i =0;i<myNumPlants;i++)
-	delete[] myActivePlants;
-	myActivePlants = temp;
-	temp = 0;
-
-	// Actually create the new plant
-	switch (thisplantCode)
-	{
-	case 0://Peashooter
-		myActivePlants[myNumPlants] = new PeaShooter(x, y);
-		break;
-		// Add more plants-->
-	}
-
-	myNumPlants++;
-
-	return true;
+	
 }
 // Animates all plants stored in myActivePlants
 void PlantFactory::animatePlants(sf::RenderWindow& window)
