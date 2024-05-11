@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+#include "D:\Downloads\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include\SFML\Graphics.hpp"
 #include <ctime>
 #include "Game.h"
 //#include"../SFML/Images/"

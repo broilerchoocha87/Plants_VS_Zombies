@@ -40,7 +40,7 @@ beginnerGarden::beginnerGarden()
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
 	myTotalZombies = 2;
-	myZombieTypes = new int[myTotalZombies] {1, 1};
+	myZombieTypes = new int[myTotalZombies] {2, 1};
 
 	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
 	myFallingSun=new SunFromSky;
@@ -75,11 +75,25 @@ void beginnerGarden::checkCollisions()
 	{
 		for (int j = 0; j < myPlantFactory.myNumPlants; j++)
 		{
-			PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
-			SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
+			Zombie* zPtr = (myZombieFactory->myActiveZombies[i]);
+			
+			if (myPlantFactory.myActivePlants[j]->myPlantCode == 0)
+			{
+				PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
+				zPtr->bulletCollision(pPtr->myBullet);
+				pPtr->zombieCollision(zPtr);
+			}
 
-			zPtr->bulletCollision(pPtr->myBullet);
-			pPtr->zombieCollision(zPtr);
+			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 2)
+			{
+				Wallnut* pPtr = (Wallnut*)(myPlantFactory.myActivePlants[j]);
+				pPtr->zombieCollision(zPtr);
+			}
+
+			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 1)
+			{
+
+			}
 		}
 	}
 }
