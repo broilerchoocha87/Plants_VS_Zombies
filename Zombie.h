@@ -5,7 +5,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "bullet.h"
-#include "Plants.h"
+//#include "Plants.h"   ---Causes circular dependency
 using namespace std;
 using namespace sf;
 

@@ -23,7 +23,7 @@ int main()
 			game.handleInput(window,event);
 		}
 
-		//game.update();
+		game.update();
 		game.render(window);
 		window.display();
 		window.clear();

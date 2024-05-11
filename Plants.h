@@ -38,7 +38,7 @@ public:
 	PeaShooter(int xCoord, int yCoord);
 	void shootBullet();
 	void animatePlant(sf::RenderWindow& window);
-	virtual void zombieCollision(Zombie* zPtr);
+	void zombieCollision(Zombie*zPtr);
 	~PeaShooter();
 };
 
@@ -47,8 +47,20 @@ class Wallnut : public Plants
 	public:
 		Wallnut(int xCoord, int yCoord);
 		void animatePlant(sf::RenderWindow& window);
-		virtual void zombieCollision(Zombie* zPtr);
+		void zombieCollision(Zombie* zPtr);
 		//~Wallnut(); // Not required since no dynamic memory
+		
+};
+
+class Sunflower : public Plants
+{
+	public:
+		Sunflower(int xCoord, int yCoord);
+		void animateSunflower(sf::RenderWindow& window);
+		void releaseSun();
+		void removeSun();
+		void zombieCollision(Zombie* zPtr);
+		~Sunflower();
 		
 };
 

@@ -11,6 +11,8 @@ class GameGrid
         float maxBoundy;// max y value of grid
         int xBlocks;// number of col
         int yBlocks;// number of row
+        int gridLenght;
+        int gridHeight;
         int grid[5][9];
         //Codes
         const int plantable=0;

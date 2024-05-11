@@ -171,10 +171,9 @@ Wallnut :: Wallnut (int thisX, int thisY) : Plants(thisX, thisY)
 
 void Wallnut :: animatePlant(sf:: RenderWindow& window)
 {
-	cout<<"Hello0"<<endl;
 	if (plantClock.getElapsedTime().asMilliseconds() > 200)
 		{
-			cout<<"Hello5"<<endl;
+			
 			if (frame.left >= 108)
 			{
 				frame.left = 0;
@@ -189,7 +188,7 @@ void Wallnut :: animatePlant(sf:: RenderWindow& window)
 	window.draw(plantSprite);
 }
 
-bool Wallnut::zombieCollision(Zombie* zPtr)
+void Wallnut::zombieCollision(Zombie* zPtr)
 {
-return true;
+
 }

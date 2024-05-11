@@ -47,11 +47,11 @@ bool PlantFactory::createPlant(int thisplantCode, int x, int y)
 // Animates all plants stored in myActivePlants
 void PlantFactory::animatePlants(sf::RenderWindow& window)
 {
-    cout<<"My numplant: "<<myNumPlants<<endl;
+    
 
     for(int i =0; i<myNumPlants;i++)
     {
-        cout<<"i: "<<i<<endl;
+        
         //Check plant type
         switch(myActivePlants[i]->myPlantCode)
         {
@@ -70,9 +70,9 @@ void PlantFactory::animatePlants(sf::RenderWindow& window)
                 // To access derived class members
                 Wallnut* temp2= dynamic_cast<Wallnut*>((myActivePlants[i]));
                 // Animating
-                cout<<"Wallnut casted"<<endl;
+
                 temp2->animatePlant(window);
-                cout<<"Plant animated"<<endl;
+
                 temp2=0;
                 break;
             }

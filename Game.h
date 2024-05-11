@@ -2,7 +2,6 @@
 
 #ifndef GAME_H
 #define	GAME_H
-
 #include "levels.h"
 #include"SFML/Graphics.hpp"
 
