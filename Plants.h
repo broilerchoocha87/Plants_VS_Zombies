@@ -7,7 +7,7 @@
 #include"SFML/Graphics.hpp"
 #include "Zombie.h"
 
-class Plants
+class Plants //Abstract class
 {
 public:
 	int myHealth;

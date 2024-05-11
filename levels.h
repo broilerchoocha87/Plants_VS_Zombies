@@ -2,26 +2,24 @@
 
 #ifndef LEVELS_H
 #define LEVELS_H
-
 #include"GameGrid.h"
 #include"PlantFactory.h"
 #include"ZombieFactory.h"
 #include"SFML/Graphics.hpp"
 
-class levels
+class levels // Abstract class
 {
 protected:
-
-	// Stores whether plantable area or not and its reason
-	int* myAllowedPlants;
-	int* myZombieTypes;
-	int myNumAllowedPlants;
+	
+	int* myAllowedPlants; // pointer to array of allowed plants' codes
+	int* myZombieTypes;   
+	int myNumAllowedPlants; // size of array
 	int myTotalZombies;
-	sf::Texture textureBackground;
-	sf::Sprite spriteBackground;
+	sf::Texture textureBackground; // Background texture
+	sf::Sprite spriteBackground; // Backrground sprite
 
 public:
-	GameGrid myGameGrid;
+	GameGrid myGameGrid; 
 	PlantFactory myPlantFactory;
 	ZombieFactory* myZombieFactory;
 	virtual ~levels() = 0;
