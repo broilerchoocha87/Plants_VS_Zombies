@@ -4,8 +4,8 @@
 #define PLANTS_H
 
 #include "bullet.h"
-#include"SFML/Graphics.hpp"
 #include "Zombie.h"
+#include"SFML/Graphics.hpp"
 
 class Plants //Abstract class
 {
