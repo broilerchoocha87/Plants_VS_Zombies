@@ -12,7 +12,7 @@ bullet::bullet()
 	bulletCoord.y = 0;
 	bulletExists = true;
 	bulletDamage = 20;
-	bulletSpeed = 50;
+	bulletSpeed = 40;
 
 	// Initialising sprite
 	bulletImage.loadFromFile("Images/Plants/Peashooter.png");

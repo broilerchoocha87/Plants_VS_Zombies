@@ -51,5 +51,6 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 void Game::update()
 {
 	temp.checkCollisions();
+	temp.myPlantFactory.updatePlants();
 	temp.myZombieFactory->updateZombies();
 }

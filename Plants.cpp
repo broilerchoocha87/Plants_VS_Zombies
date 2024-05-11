@@ -18,6 +18,8 @@ PeaShooter::PeaShooter(int xCoord, int yCoord) : Plants(xCoord, yCoord)
 	myHealth = 300;
 	myCost = 100;
 	myPlantCode = 0;
+	isShooting = false;
+	shootingSpriteCount = 0;
 	// Initialise bullets
 	myNumbullets = 0;
 	myBullet = new bullet[3]; // Max bullets at a time
@@ -41,24 +43,50 @@ PeaShooter::PeaShooter(int xCoord, int yCoord) : Plants(xCoord, yCoord)
 
 void PeaShooter::animatePlant(sf::RenderWindow& window)
 {
-	if (plantClock.getElapsedTime().asMilliseconds() > 200)
+	if (plantClock.getElapsedTime().asMilliseconds() > 200){
+		if (isShooting)
+		{
+
+			plantSprite.setTexture(plantTexture);
+			plantSprite.setTextureRect(sf::IntRect(shootingSpriteCount * 26, 33, 26, 30));
+
+			if (plantClock.getElapsedTime().asMilliseconds() > 75)
+			{
+				shootingSpriteCount++;
+				plantClock.restart();
+			}
+
+			if (shootingSpriteCount > 2)
+				isShooting = false;
+	}
+	}
+	else
 	{
-		if (frame.left == 189)
+		if (plantClock.getElapsedTime().asMilliseconds() > 100)
 		{
-			frame.left = 0;
+			if (frame.left == 189)
+			{
+				frame.left = 0;
+			}
+			else
+			{
+				frame.left += 27;
+			}
+			plantSprite.setTextureRect(frame);
+			plantClock.restart();
 		}
-		else
-		{
-			frame.left += 27;
-		}
-		plantSprite.setTextureRect(frame);
-		plantClock.restart();
 	}
 
-	//if(shootClock.getElapsedTime().asSeconds()>1.05f)
-	shootBullet();
+	if (shootClock.getElapsedTime().asSeconds() > 2)
 
-	for (int i = 0; i < 1; i++)
+	{
+		shootBullet();
+		isShooting = true;
+		shootingSpriteCount = 0;
+		shootClock.restart();
+	}
+
+	for (int i = 0; i < 3; i++)
 	{
 		if (myBullet[i].bulletExists == true)
 		{
@@ -66,13 +94,11 @@ void PeaShooter::animatePlant(sf::RenderWindow& window)
 			myBullet[i].moveBullet();
 		}
 
-
+		if (myBullet[i].bulletCoord.x >= 1000)
+			myBullet[i].bulletExists = false;
 	}
-	shootClock.restart();
+
 	window.draw(plantSprite);
-
-
-
 }
 
 
@@ -97,14 +123,21 @@ void PeaShooter::shootBullet()// Creates a new bullet
 
 bool PeaShooter::zombieCollision(Zombie* zPtr)
 {
-	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (zPtr->Pos.y - 150) && zPtr->Pos.y <= (myPlantCoord.y + 150))
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
 	{
 		zPtr->isMoving = false;
-		myHealth -= zPtr->attackDamage;
+
+		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
+		{
+			myHealth -= zPtr->attackDamage;
+			zPtr->zombieAttackClock.restart();
+		}
+
 		return true;
 	}
 
-	return true;
+	zPtr->isMoving = true;
+	return false;
 }
 
 PeaShooter::~PeaShooter()

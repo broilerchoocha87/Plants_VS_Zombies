@@ -42,28 +42,19 @@ void beginnerGarden::drawBackground(sf::RenderWindow& window)
 
 void beginnerGarden::checkCollisions()
 {
-	if (myGameGrid.anyPlanted())
-	{
-		for (int i = 0; i < myTotalZombies; i++)
+		for (int i = 0; i < myZombieFactory->myTotalZombies; i++)
 		{
-			for (int j = 0; j < myNumAllowedPlants; j++)
+			for (int j = 0; j < myPlantFactory.myNumPlants; j++)
 			{
-				if (myZombieFactory->myActiveZombies[i] != nullptr && myPlantFactory.myActivePlants[j] != nullptr)
-				{
+				/*if (myZombieFactory->myActiveZombies[i] != nullptr && myPlantFactory.myActivePlants[j] != nullptr)
+				{*/
 					PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
 					SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
 
-					if (pPtr->zombieCollision(zPtr))
-					{
+					zPtr->bulletCollision(pPtr->myBullet);
 
-					}
-
-					if (zPtr->bulletCollision(pPtr->myBullet))
-					{
-
-					}
-				}
+					pPtr->zombieCollision(zPtr);
+				/*}*/
 			}
 		}
-	}
 }
