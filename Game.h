@@ -15,7 +15,7 @@ protected:
 public:
 
 	//Game();
-	void handleInput(sf::RenderWindow& window);
+	void handleInput(sf::RenderWindow& window, sf::Event& event);
 	void update();
 	void render(sf::RenderWindow& window);
 
