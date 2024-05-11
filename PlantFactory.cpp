@@ -25,35 +25,57 @@ bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
         delete [] myActivePlants;
     myActivePlants=temp;
     temp=0;
-
+   
     // Actually create the new plant
     switch(thisplantCode)
     {
         case 0://Peashooter
-            myActivePlants[myNumPlants]=new PeaShooter(x,y);
+            {myActivePlants[myNumPlants]=new PeaShooter(x,y);
+            break;}
+        case 2:
+        {//Wallnut
+            myActivePlants[myNumPlants]=new Wallnut(x,y);
             break;
+        }
         // Add more plants-->
     }
     myNumPlants++;
+    
     return true;
 
 }
 // Animates all plants stored in myActivePlants
 void PlantFactory:: animatePlants(sf::RenderWindow &window)
 {
+    cout<<"My numplant: "<<myNumPlants<<endl;
+
     for(int i =0; i<myNumPlants;i++)
     {
-
+        cout<<"i: "<<i<<endl;
         //Check plant type
         switch(myActivePlants[i]->myPlantCode)
         {
             case 0:
+            {
                 // To access derived class members
-                PeaShooter* temp= dynamic_cast<PeaShooter*>((myActivePlants[i]));
+                PeaShooter* temp0= dynamic_cast<PeaShooter*>((myActivePlants[i]));
                 // Animating
-                temp->animatePeaShooter(window);
-                temp=0;
+                temp0->animatePlant(window);
+                temp0=0;
                 break;
+            }
+            case 2:
+            {
+                
+                // To access derived class members
+                Wallnut* temp2= dynamic_cast<Wallnut*>((myActivePlants[i]));
+                // Animating
+                cout<<"Wallnut casted"<<endl;
+                temp2->animatePlant(window);
+                cout<<"Plant animated"<<endl;
+                temp2=0;
+                break;
+            }
             //--> Add more plants
         }
     }

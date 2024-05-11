@@ -12,7 +12,7 @@ Plants::Plants(int x, int y) // For ease of coordinate assignment
 	myPlantCoord.y = y;
 }
 
-
+// Peashooter definitions
 PeaShooter::PeaShooter(int xCoord, int yCoord) : Plants(xCoord, yCoord)
 {
 	myHealth = 300;
@@ -39,9 +39,9 @@ PeaShooter::PeaShooter(int xCoord, int yCoord) : Plants(xCoord, yCoord)
 	plantSprite.setScale(2.5, 2.5);
 }
 
-void PeaShooter::animatePeaShooter(sf::RenderWindow& window)
+void PeaShooter::animatePlant(sf::RenderWindow& window)
 {
-	if (plantClock.getElapsedTime().asMilliseconds() > 100)
+	if (plantClock.getElapsedTime().asMilliseconds() > 200)
 	{
 		if (frame.left == 189)
 		{
@@ -110,4 +110,51 @@ bool PeaShooter::zombieCollision(Zombie* zPtr)
 PeaShooter::~PeaShooter()
 {
 	delete[] myBullet;
+}
+
+// Wallnut Defintions
+
+Wallnut :: Wallnut (int thisX, int thisY) : Plants(thisX, thisY)
+{
+	myHealth = 4000;
+	myCost = 50;
+	myPlantCode = 2;
+
+	// Initialising sprite
+	plantImage.loadFromFile("Images/Plants/wallnut.png");
+	plantImage.createMaskFromColor(sf::Color(117,101,255,255));
+	plantTexture.loadFromImage(plantImage);
+	frame.top = 0;
+	frame.left = 0;
+	frame.height = 32;
+	frame.width = 27;
+	plantSprite.setTexture(plantTexture);
+	plantSprite.setTextureRect(frame);
+	plantSprite.setPosition(myPlantCoord.x, myPlantCoord.y);
+	plantSprite.setScale(2.5, 2.5);
+}
+
+void Wallnut :: animatePlant(sf:: RenderWindow& window)
+{
+	cout<<"Hello0"<<endl;
+	if (plantClock.getElapsedTime().asMilliseconds() > 200)
+		{
+			cout<<"Hello5"<<endl;
+			if (frame.left >= 108)
+			{
+				frame.left = 0;
+			}
+			else
+			{
+				frame.left += 27;
+			}
+			plantSprite.setTextureRect(frame);
+			plantClock.restart();
+		}
+	window.draw(plantSprite);
+}
+
+bool Wallnut::zombieCollision(Zombie* zPtr)
+{
+return true;
 }

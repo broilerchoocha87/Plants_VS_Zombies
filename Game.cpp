@@ -17,29 +17,35 @@ void Game::render(sf::RenderWindow& window)
 	temp.myZombieFactory->animateZombies(window);
 }
 
-void Game::handleInput(sf::RenderWindow& window)
+void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 {
-	// Check mouse coordinates. Confirm with gamegrid. If valid position: create plant
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))// if left mouse button clicked
-	{
+	if (event.type == event.MouseButtonReleased){
+	
+		if (event.mouseButton.button == sf::Mouse::Left)// if left mouse button clicked
+		{
 
-		sf::Vector2i mousePos = sf::Mouse::getPosition(window);// get relative coordinates
-		// Check if click is done in inventory location
-		//Check if click is done on any pause buttons
-
-		// Check if click is on game Grid
-		if (mousePos.x >= temp.myGameGrid.minBoundx && mousePos.y >= temp.myGameGrid.minBoundy && mousePos.x <= temp.myGameGrid.maxBoundx && mousePos.y <= temp.myGameGrid.maxBoundy)
-			// Check if clock is done on sun
-			//Check if click is done after selecting a plant
-			// Update Game Grid
-			if (temp.myGameGrid.grid[int(((mousePos.y - temp.myGameGrid.minBoundy) / 98))][int((mousePos.x - temp.myGameGrid.minBoundx) / 81)] == temp.myGameGrid.plantable)
-			{
-				temp.myGameGrid.grid[int(((mousePos.y - temp.myGameGrid.minBoundy) / 98))][int((mousePos.x - temp.myGameGrid.minBoundx) / 81)] = temp.myGameGrid.planted;
-				temp.createPlant(0, (int((mousePos.x) / 81) * 81 + 5), (int((mousePos.y) / 98) * 98 - 10));
-				cout << "X: " << mousePos.x << "Y: " << mousePos.y << endl;
+			sf::Vector2i mousePos = sf::Mouse::getPosition(window);// get relative coordinates
+			// Check if click is done in inventory location
+			//Check if click is done on any pause buttons
+			cout << "X: " << event.mouseButton.x << "Y: " << event.mouseButton.x << endl;
+			// Check if click is on game Grid
+			if (mousePos.x >= temp.myGameGrid.minBoundx && mousePos.y >= temp.myGameGrid.minBoundy && mousePos.x <= temp.myGameGrid.maxBoundx && mousePos.y <= temp.myGameGrid.maxBoundy)
+				// Check if clock is done on sun
+				//Check if click is done after selecting a plant
+				// Update Game Grid
+			{	
+				if (temp.myGameGrid.grid[int(((mousePos.y - temp.myGameGrid.minBoundy) / 98))][int((mousePos.x - temp.myGameGrid.minBoundx) / 81)] == temp.myGameGrid.plantable)
+				{
+					temp.myGameGrid.grid[int(((mousePos.y - temp.myGameGrid.minBoundy) / 98))][int((mousePos.x - temp.myGameGrid.minBoundx) / 81)] = temp.myGameGrid.planted;
+				
+					temp.createPlant(2, (int((mousePos.x) / 81) * 81 + 5), (int((mousePos.y) / 98) * 98 - 10));
+					
+				}
 			}
 
+		}
 	}
+	
 }
 
 void Game::update()

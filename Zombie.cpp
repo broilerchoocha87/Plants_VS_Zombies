@@ -24,7 +24,7 @@ SimpleZombie::SimpleZombie()
 	isDying = false;
 	isDead = false;
 
-	sZombieImage.loadFromFile("D:/Downloads/OOP_Project/Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
+	sZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
 	sZombieTexture.loadFromImage(sZombieImage);
 }

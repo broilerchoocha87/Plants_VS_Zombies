@@ -6,9 +6,8 @@ using namespace std;
 beginnerGarden::beginnerGarden()
 {
 	//declare allowed plants
-	myAllowedPlants = new int[1];
-	myAllowedPlants[0] = 0;
-	myNumAllowedPlants = 1;
+	myAllowedPlants = new int[2]{0,1};
+	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
 	myTotalZombies = 2;
 	myZombieTypes = new int[myTotalZombies] {1, 1};
@@ -27,12 +26,10 @@ levels::~levels()
 void beginnerGarden::createPlant(int thisplantCode, int x, int y)
 {
 	bool plantAllowed = false;
+	
 	// check if that plant is allowed (for further levels)
 	plantAllowed = myPlantFactory.createPlant(thisplantCode, x, y);
-	if (plantAllowed)
-	{
-		// gameGrid[y][x]=2; //Plant placed
-	}
+	cout<<"Hello created"<<endl;
 }
 
 void beginnerGarden::drawBackground(sf::RenderWindow& window)
