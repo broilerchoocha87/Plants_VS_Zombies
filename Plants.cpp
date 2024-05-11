@@ -191,5 +191,22 @@ void Wallnut :: animatePlant(sf:: RenderWindow& window)
 
 void Wallnut::zombieCollision(Zombie* zPtr)
 {
-	return;
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
+	{
+		zPtr->isMoving = false;
+
+		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
+		{
+			myHealth -= zPtr->attackDamage;
+
+			if (myHealth <= 0)
+				zPtr->isMoving = true;
+
+			zPtr->zombieAttackClock.restart();
+		}
+
+		return;
+	}
+
+	zPtr->isMoving = true;
 }

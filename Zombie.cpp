@@ -169,7 +169,7 @@ FootballZombie::FootballZombie()
 	isDead = false;
 
 	fZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Football Zombie.png");
-	fZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
+	fZombieImage.createMaskFromColor(sf::Color(0, 168, 96, 255));
 	fZombieTexture.loadFromImage(fZombieImage);
 }
 
@@ -178,9 +178,9 @@ void FootballZombie::drawZombie(sf::RenderWindow& window)
 	if (isDying)
 	{
 		fzombieFrame.setTexture(fZombieTexture);
-		fzombieFrame.setTextureRect(sf::IntRect(dyingSpriteCount * 52, 385, 44, 34));
+		fzombieFrame.setTextureRect(sf::IntRect(dyingSpriteCount * 47, 919, 60, 47));
 
-		if (dyingSpriteCount > 8)
+		if (dyingSpriteCount > 6)
 		{
 			isDead = true;
 			isDying = false;
@@ -199,62 +199,89 @@ void FootballZombie::drawZombie(sf::RenderWindow& window)
 	{
 		if (isMoving)
 		{
-			if (health >= 540)
+			if (health >= 460)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect((spriteCount * 65) + 8, 83, 44, 52));
-			}
-
-			else if (health >= 460)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect((spriteCount * 65) + 8, 156, 44, 52));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 78, 64, 57));
 			}
 
 			else if (health >= 360)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect((spriteCount * 65) + 8, 227, 44, 52));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 151, 64, 57));
 			}
 
 			else if (health >= 200)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect((spriteCount * 63) + 8, 299, 44, 51));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 223, 62, 57));
 			}
 
 			else if (health >= 100)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect((spriteCount * 65) + 8, 369, 44, 51));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 295, 62, 57));
 			}
 
-			else if (health < 100)
+			else if (health >= 40)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect((spriteCount * 57) + 8, 443, 44, 51));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 365, 61, 51));
 			}
+
+			else if (health < 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 438, 57, 51));
+			}
+
+			if (spriteCount >= 7)
+				spriteCount = 0;
 		}
 
 		else
 
 		{
-			if (health >= 200)
+			if (health >= 460)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 224, 37, 51));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 501, 64, 55));
 			}
 
-			else if (health < 140)
+			else if (health >= 360)
 			{
 				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 283, 37, 51));
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 572, 64, 55));
 			}
+
+			else if (health >= 200)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 642, 62, 56));
+			}
+
+			else if (health >= 100)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 713, 62, 56));
+			}
+
+			else if (health >= 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 781, 46, 56));
+			}
+
+			else if (health < 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 855, 39, 45));
+			}
+
+			if (spriteCount >= 5)
+				spriteCount = 0;
 		}
 	}
-
-	if (spriteCount >= 6)
-		spriteCount = 0;
 
 	if (animClock.getElapsedTime().asMilliseconds() > 200)
 	{
@@ -277,7 +304,7 @@ void FootballZombie::moveZombie()
 
 		if (moveClock.getElapsedTime().asMilliseconds() > 200)
 		{
-			Pos.x -= 2;
+			Pos.x -= 4;
 			moveClock.restart();
 		}
 	}
@@ -285,7 +312,17 @@ void FootballZombie::moveZombie()
 
 void FootballZombie::bulletCollision(bullet* bPtr)
 {
-
+	for (int i = 0; i < 3; i++)
+	{
+		if (bPtr[i].bulletExists)
+		{
+			if (Pos.x <= (bPtr[i].bulletCoord.x) && Pos.y >= (bPtr[i].bulletCoord.y - 25) && Pos.y <= (bPtr[i].bulletCoord.y + 75))
+			{
+				health -= bPtr[i].bulletDamage;
+				bPtr[i].bulletExists = false;
+			}
+		}
+	}
 }
 
 //FlyingZombie::FlyingZombie()
