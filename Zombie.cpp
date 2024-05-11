@@ -95,7 +95,7 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 224, 37, 51));
 			}
 
-			else if (health <  140)
+			else if (health < 140)
 			{
 				zombieFrame.setTexture(sZombieTexture);
 				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 45, 283, 37, 51));
@@ -112,35 +112,29 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 		animClock.restart();
 	}
 
-	zombieFrame.setScale(2.2, 2.2);
+	if (isDying)
+		zombieFrame.setScale(2.8, 2.8);
+	else
+		zombieFrame.setScale(2.2, 2.2);
+
 	zombieFrame.setPosition(Pos.x, Pos.y);
 	window.draw(zombieFrame);
 }
 
-//bool SimpleZombie::plantCollision(int plantX, int plantY)
-//{
-//	if (Pos.x <= (plantX + 36) && Pos.y >= (plantY - 250) && Pos.y <= (plantY + 250))
-//	{
-//		isMoving = false;
-//		return true;
-//	}
-//
-//	return true;
-//}
-
 bool SimpleZombie::bulletCollision(bullet* bPtr)
 {
-	if (Pos.x <= (bPtr->bulletCoord.x + 10) && Pos.y >= (bPtr->bulletCoord.y - 100) && Pos.y <= (bPtr->bulletCoord.y + 100))
+	for (int i = 0; i < 3; i++)
 	{
-		health -= bPtr->bulletDamage;
-		bPtr->bulletExists = false;
+		if (bPtr[i].bulletExists)
+		{
+			if (Pos.x <= (bPtr[i].bulletCoord.x) && Pos.y >= (bPtr[i].bulletCoord.y - 100) && Pos.y <= (bPtr[i].bulletCoord.y + 100))
+			{
+				health -= bPtr[i].bulletDamage;
+				bPtr[i].bulletExists = false;
 
-		//if (health = 0)
-		//{
-
-		//}
-
-		return true;
+				return true;
+			}
+		}
 	}
 
 	return false;

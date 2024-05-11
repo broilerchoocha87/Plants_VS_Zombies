@@ -31,6 +31,8 @@ protected:
 	int myNumbullets;
 	sf::Clock shootClock;
 public:
+	bool isShooting;
+	int shootingSpriteCount;
 	bullet* myBullet;
 	PeaShooter(int xCoord, int yCoord);
 	void shootBullet();

@@ -16,10 +16,10 @@ struct zombiePos {
 class Zombie
 {
 protected:
-	int spriteCount;
-	int dyingSpriteCount;
 
 public:
+	int spriteCount;
+	int dyingSpriteCount;
 	double health;
 	float speed;
 	float attackDamage;

@@ -7,68 +7,96 @@ using namespace std;
 
 PlantFactory::PlantFactory()
 {
-    myNumPlants=0;
+	myNumPlants = 0;
 }
 
 
 // Upon selection of user and condtions being met, a new plant is created and added to the array
-bool PlantFactory:: createPlant(int thisplantCode, int x , int y)
+bool PlantFactory::createPlant(int thisplantCode, int x, int y)
 {
-    // Create a similar but larger temporary dynamic memory
-    Plants **temp = new Plants*[myNumPlants+1];
-    for(int i =0; i< myNumPlants;i++)
-    {
-        temp[i]=myActivePlants[i];
-    }
-    // Delete the array of pointers (Not the object) subject to discussion
-    //for(int i =0;i<myNumPlants;i++)
-        delete [] myActivePlants;
-    myActivePlants=temp;
-    temp=0;
+	// Create a similar but larger temporary dynamic memory
+	Plants** temp = new Plants * [myNumPlants + 1];
+	for (int i = 0; i < myNumPlants; i++)
+	{
+		temp[i] = myActivePlants[i];
+	}
+	// Delete the array of pointers (Not the object) subject to discussion
+	//for(int i =0;i<myNumPlants;i++)
+	delete[] myActivePlants;
+	myActivePlants = temp;
+	temp = 0;
 
-    // Actually create the new plant
-    switch(thisplantCode)
-    {
-        case 0://Peashooter
-            myActivePlants[myNumPlants]=new PeaShooter(x,y);
-            break;
-        // Add more plants-->
-    }
-    myNumPlants++;
-    return true;
+	// Actually create the new plant
+	switch (thisplantCode)
+	{
+	case 0://Peashooter
+		myActivePlants[myNumPlants] = new PeaShooter(x, y);
+		break;
+		// Add more plants-->
+	}
 
+	myNumPlants++;
+
+	return true;
 }
 // Animates all plants stored in myActivePlants
-void PlantFactory:: animatePlants(sf::RenderWindow &window)
+void PlantFactory::animatePlants(sf::RenderWindow& window)
 {
-    for(int i =0; i<myNumPlants;i++)
-    {
+	for (int i = 0; i < myNumPlants; i++)
+	{
 
-        //Check plant type
-        switch(myActivePlants[i]->myPlantCode)
-        {
-            case 0:
-                // To access derived class members
-                PeaShooter* temp= dynamic_cast<PeaShooter*>((myActivePlants[i]));
-                // Animating
-                temp->animatePeaShooter(window);
-                temp=0;
-                break;
-            //--> Add more plants
-        }
-    }
+		//Check plant type
+		switch (myActivePlants[i]->myPlantCode)
+		{
+		case 0:
+			// To access derived class members
+			PeaShooter * temp = dynamic_cast<PeaShooter*>((myActivePlants[i]));
+			// Animating
+			temp->animatePeaShooter(window);
+			temp = 0;
+			break;
+			//--> Add more plants
+		}
+	}
+}
+
+void PlantFactory::updatePlants()
+{
+	for (int i = 0; i < myNumPlants; i++)
+	{
+		if (myActivePlants[i]->myHealth <= 0)
+			destroyPlant(i);
+	}
+}
+
+void PlantFactory::destroyPlant(int deadPlantIndex)
+{
+	delete myActivePlants[deadPlantIndex];
+	myActivePlants[deadPlantIndex] = nullptr;
+
+	Plants** temp = new Plants * [myNumPlants - 1];
+	for (int i = 0; i < myNumPlants; i++)
+	{
+		if (myActivePlants[i] != nullptr)
+		{
+			temp[i] = myActivePlants[i];
+		}
+	}
+
+	delete[] myActivePlants;
+	myActivePlants = temp;
 }
 
 
 PlantFactory:: ~PlantFactory()
 {
-    //Deleting 2d array
-    if(myNumPlants>0)
-    {
-        for(int i=0; i<myNumPlants;i++)
-        {
-            delete myActivePlants[i];
-        }
-        delete[] myActivePlants;
-    }
+	//Deleting 2d array
+	if (myNumPlants > 0)
+	{
+		for (int i = 0; i < myNumPlants; i++)
+		{
+			delete myActivePlants[i];
+		}
+		delete[] myActivePlants;
+	}
 }
