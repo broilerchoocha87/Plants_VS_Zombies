@@ -24,6 +24,7 @@ public:
 	float speed;
 	float attackDamage;
 	zombiePos Pos;
+	Clock zombieAttackClock;
 	Clock animClock;
 	Clock moveClock;
 	bool isMoving;
@@ -34,7 +35,7 @@ public:
 	Zombie();
 	virtual void drawZombie(sf::RenderWindow&) = 0;
 	virtual void moveZombie() = 0;
-	virtual bool bulletCollision(bullet* bPtr) = 0;
+	virtual void bulletCollision(bullet* bPtr) = 0;
 };
 
 class SimpleZombie :public Zombie
@@ -49,7 +50,7 @@ public:
 	SimpleZombie();
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
-	virtual bool bulletCollision(bullet* bPtr);
+	virtual void bulletCollision(bullet* bPtr);
 	//virtual bool plantCollision(Plants* pPtr);
 };
 

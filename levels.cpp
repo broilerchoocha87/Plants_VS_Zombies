@@ -45,45 +45,19 @@ void beginnerGarden::drawBackground(sf::RenderWindow& window)
 
 void beginnerGarden::checkCollisions()
 {
-	if (myGameGrid.anyPlanted())
-	{
 		for (int i = 0; i < myZombieFactory->myTotalZombies; i++)
 		{
 			for (int j = 0; j < myPlantFactory.myNumPlants; j++)
 			{
-				if (myZombieFactory->myActiveZombies[i] != nullptr && myPlantFactory.myActivePlants[j] != nullptr)
-				{
+				/*if (myZombieFactory->myActiveZombies[i] != nullptr && myPlantFactory.myActivePlants[j] != nullptr)
+				{*/
 					PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
 					SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[i]);
 
-					if (zPtr->bulletCollision(pPtr->myBullet))
-					{
-						cout << "Bullet Collision" << endl;
-					}
+					zPtr->bulletCollision(pPtr->myBullet);
 
-					if (pPtr->zombieCollision(zPtr))
-					{
-						cout << "Zombie Collision" << endl;
-					}
-				}
+					pPtr->zombieCollision(zPtr);
+				/*}*/
 			}
 		}
-
-		for (int i = 0; i < myPlantFactory.myNumPlants; i++)
-		{
-			for (int j = 0; j < myZombieFactory->myTotalZombies; j++)
-			{
-				if (myZombieFactory->myActiveZombies[j] != nullptr && myPlantFactory.myActivePlants[i] != nullptr)
-				{
-					PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[i]);
-					SimpleZombie* zPtr = (SimpleZombie*)(myZombieFactory->myActiveZombies[j]);
-
-					//if (pPtr->zombieCollision(zPtr))
-					//{
-					//	cout << "Zombie Collision" << endl;
-					//}
-				}
-			}
-		}
-	}
 }

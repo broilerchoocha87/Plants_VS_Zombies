@@ -75,16 +75,20 @@ void PlantFactory::destroyPlant(int deadPlantIndex)
 	myActivePlants[deadPlantIndex] = nullptr;
 
 	Plants** temp = new Plants * [myNumPlants - 1];
+
+	int c = 0;
 	for (int i = 0; i < myNumPlants; i++)
 	{
 		if (myActivePlants[i] != nullptr)
 		{
-			temp[i] = myActivePlants[i];
+			temp[c++] = myActivePlants[i];
 		}
 	}
 
 	delete[] myActivePlants;
 	myActivePlants = temp;
+
+	myNumPlants--;
 }
 
 

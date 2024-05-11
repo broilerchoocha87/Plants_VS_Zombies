@@ -54,7 +54,7 @@ void PeaShooter::animatePeaShooter(sf::RenderWindow& window)
 			shootingSpriteCount++;
 			plantClock.restart();
 		}
-		
+
 		if (shootingSpriteCount > 2)
 			isShooting = false;
 	}
@@ -76,7 +76,7 @@ void PeaShooter::animatePeaShooter(sf::RenderWindow& window)
 		}
 	}
 
-	if(shootClock.getElapsedTime().asSeconds() > 2)
+	if (shootClock.getElapsedTime().asSeconds() > 2)
 
 	{
 		shootBullet();
@@ -122,13 +122,20 @@ void PeaShooter::shootBullet()// Creates a new bullet
 
 bool PeaShooter::zombieCollision(Zombie* zPtr)
 {
-	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (zPtr->Pos.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
 	{
 		zPtr->isMoving = false;
-		myHealth -= zPtr->attackDamage;
+
+		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
+		{
+			myHealth -= zPtr->attackDamage;
+			zPtr->zombieAttackClock.restart();
+		}
+
 		return true;
 	}
 
+	zPtr->isMoving = true;
 	return false;
 }
 

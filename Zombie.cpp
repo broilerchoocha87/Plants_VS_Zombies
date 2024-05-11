@@ -121,7 +121,7 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 	window.draw(zombieFrame);
 }
 
-bool SimpleZombie::bulletCollision(bullet* bPtr)
+void SimpleZombie::bulletCollision(bullet* bPtr)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -131,13 +131,9 @@ bool SimpleZombie::bulletCollision(bullet* bPtr)
 			{
 				health -= bPtr[i].bulletDamage;
 				bPtr[i].bulletExists = false;
-
-				return true;
 			}
 		}
 	}
-
-	return false;
 }
 
 //FootballZombie::FootballZombie()
