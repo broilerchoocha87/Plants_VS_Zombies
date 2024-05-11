@@ -1,5 +1,4 @@
-#include "Plants.h"
-#include "bullet.h"
+#include"Plants.h"
 #include<iostream>
 using namespace std;
 
@@ -130,6 +129,7 @@ void PeaShooter::zombieCollision(Zombie* zPtr)
 		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
 		{
 			myHealth -= zPtr->attackDamage;
+			
 			if (myHealth <= 0)
 				zPtr->isMoving = true;
 
@@ -189,7 +189,7 @@ void Wallnut :: animatePlant(sf:: RenderWindow& window)
 	window.draw(plantSprite);
 }
 
-bool Wallnut::zombieCollision(Zombie* zPtr)
+void Wallnut::zombieCollision(Zombie* zPtr)
 {
-return true;
+	return;
 }

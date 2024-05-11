@@ -5,7 +5,6 @@
 
 #include "SFML/Graphics.hpp"
 #include "bullet.h"
-#include "Plants.h"
 using namespace std;
 using namespace sf;
 
@@ -31,8 +30,8 @@ public:
 	bool isMoving;
 	bool isDying;
 	bool isDead;
-
 	int zombieCode;
+	
 	Zombie();
 	virtual void drawZombie(sf::RenderWindow&) = 0;
 	virtual void moveZombie() = 0;
@@ -56,36 +55,41 @@ public:
 	//virtual void plantCollision(Plants* pPtr);
 };
 
-//class FootballZombie :public Zombie
-//{
-//protected:
-//
-//public:
-//	FootballZombie();
-//};
-//
-//class FlyingZombie :public Zombie
-//{
-//protected:
-//
-//public:
-//	FlyingZombie();
-//};
-//
-//class DancingZombie :public Zombie
-//{
-//protected:
-//
-//public:
-//	DancingZombie();
-//};
-//
-//class DolphinRiderZombie :public Zombie
-//{
-//protected:
-//
-//public:
-//	DolphinRiderZombie();
-//};
+class FootballZombie :public Zombie
+{
+protected:
+	Image fZombieImage;
+	Texture fZombieTexture;
+	Sprite fzombieFrame;
+public:
+	FootballZombie();
+	virtual void drawZombie(sf::RenderWindow& window);
+	virtual void moveZombie();
+	virtual void bulletCollision(bullet* bPtr);
+};
+
+class FlyingZombie :public Zombie
+{
+protected:
+
+public:
+	FlyingZombie();
+};
+
+class DancingZombie :public Zombie
+{
+protected:
+
+public:
+	DancingZombie();
+};
+
+class DolphinRiderZombie :public Zombie
+{
+protected:
+
+public:
+	DolphinRiderZombie();
+};
 
 #endif // !ZOMBIE_H

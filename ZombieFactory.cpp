@@ -20,8 +20,8 @@ ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
 	{
 		if (myZombieTypes[i] == 1)
 			myActiveZombies[i] = new SimpleZombie;
-		//else if (myZombieTypes[i] == 2)
-		//	myActiveZombies[i] = new FootballZombie;
+		else if (myZombieTypes[i] == 2)
+			myActiveZombies[i] = new FootballZombie;
 		//else if (myZombieTypes[i] == 3)
 		//	myActiveZombies[i] = new FlyingZombie;
 		//else if (myZombieTypes[i] == 4)
