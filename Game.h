@@ -10,6 +10,7 @@ class Game
 protected:
 
 	beginnerGarden temp;
+	Level2 level2;
 
 public:
 
