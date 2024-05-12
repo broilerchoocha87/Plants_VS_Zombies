@@ -561,7 +561,7 @@ void FlyingZombie::bulletCollision(bullet* bPtr)
 		}
 	}
 }
-
+/*
 DancingZombie::DancingZombie()
 {
 	health = 240;
@@ -639,26 +639,26 @@ void DancingZombie::drawZombie(sf::RenderWindow& window)
 
 			else if (health >= 200)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 223, 62, 57));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 223, 62, 57));
 			}
 
 			else if (health >= 100)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 295, 62, 57));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 295, 62, 57));
 			}
 
 			else if (health >= 40)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 365, 61, 51));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 365, 61, 51));
 			}
 
 			else if (health < 40)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 438, 57, 51));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 438, 57, 51));
 			}
 
 			if (spriteCount >= 7)
@@ -670,38 +670,38 @@ void DancingZombie::drawZombie(sf::RenderWindow& window)
 		{
 			if (health >= 460)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 501, 64, 55));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 501, 64, 55));
 			}
 
 			else if (health >= 360)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 572, 64, 55));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 572, 64, 55));
 			}
 
 			else if (health >= 200)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 642, 62, 56));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 642, 62, 56));
 			}
 
 			else if (health >= 100)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 713, 62, 56));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 713, 62, 56));
 			}
 
 			else if (health >= 40)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 781, 46, 56));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 781, 46, 56));
 			}
 
 			else if (health < 40)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 855, 39, 45));
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 855, 39, 45));
 			}
 
 			if (spriteCount >= 5)
@@ -755,4 +755,4 @@ BackupZombie::BackupZombie()
 	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Dancing Zombie.png");
 	ZombieImage.createMaskFromColor(sf::Color(232, 112, 248, 255));
 	ZombieTexture.loadFromImage(ZombieImage);
-}
+}*/
