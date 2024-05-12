@@ -18,6 +18,7 @@ protected:
 	int mySuns; //AMount of currency in hand
 	int* myAllowedPlants; // pointer to array of allowed plants' codes
 	int* myZombieTypes;  
+	int* zombieStartTimes;
 	int myTotalZombies; //Total number of zombies
 	sf::Clock releaseSunSkyClock; // Measure intervals between sun drops
 	sf::Clock releaseFlowSunClock; // Measure intervals between sun drops

@@ -17,7 +17,7 @@ SimpleZombie::SimpleZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	dyingSpriteCount = 0;
-	Pos.x = 900;
+	Pos.x = 1200;
 	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 1;
 	isMoving = true;
@@ -163,7 +163,7 @@ FootballZombie::FootballZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	dyingSpriteCount = 0;
-	Pos.x = 900;
+	Pos.x = 1200;
 	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 2;
 	isMoving = true;
@@ -336,7 +336,7 @@ FlyingZombie::FlyingZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	dyingSpriteCount = 0;
-	Pos.x = 900;
+	Pos.x = 1200;
 	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 3;
 	isMoving = true;
@@ -360,15 +360,19 @@ void FlyingZombie::drawZombie(sf::RenderWindow& window)
 		{
 		case 0:
 			zombieFrame.setTextureRect(sf::IntRect(543, 230, 21, 29));
+			break;
 		case 1:
 			zombieFrame.setTextureRect(sf::IntRect(564, 230, 23, 29));
+			break;
 		case 2:
 			zombieFrame.setTextureRect(sf::IntRect(587, 230, 25, 29));
+			break;
 		case 3:
 			zombieFrame.setTextureRect(sf::IntRect(587 + 25, 230, 40, 29));
+			break;
 		case 4:
 			zombieFrame.setTextureRect(sf::IntRect(587 + 25 + 40, 230, 46, 29));
-
+			break;
 		}
 
 		if (dyingSpriteCount > 5)
@@ -485,7 +489,7 @@ void FlyingZombie::drawZombie(sf::RenderWindow& window)
 					break;
 				case 3:
 					zombieFrame.setTextureRect(sf::IntRect(598 + 36 + 35, 136, 29, 46));
-
+					break;
 				}
 
 			}
@@ -507,7 +511,7 @@ void FlyingZombie::drawZombie(sf::RenderWindow& window)
 					break;
 				case 3:
 					zombieFrame.setTextureRect(sf::IntRect(598 + 36 + 35, 183, 29, 46));
-
+					break;
 				}
 
 			}
@@ -569,7 +573,7 @@ DancingZombie::DancingZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	dyingSpriteCount = 0;
-	Pos.x = 900;
+	Pos.x = 1200;
 	Pos.y = 60 + ((rand() % 4 + 1) * 95);
 	zombieCode = 4;
 	isMoving = true;
@@ -578,7 +582,8 @@ DancingZombie::DancingZombie()
 	isFlying = false;
 	isFalling = false;
 
-	
+	//backupDancers[0].Pos.y = Pos.y - 95;
+	//backupDancers[1].Pos.y = Pos.y + 95;
 
 	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Dancing Zombie.png");
 	ZombieImage.createMaskFromColor(sf::Color(232, 112, 248, 255));
@@ -591,22 +596,23 @@ void DancingZombie::drawZombie(sf::RenderWindow& window)
 	{
 		zombieFrame.setTexture(ZombieTexture);
 
-		switch (dyingSpriteCount)
+		switch (spriteCount)
 		{
 		case 0:
-			zombieFrame.setTextureRect(sf::IntRect(543, 230, 21, 29));
+			zombieFrame.setTextureRect(sf::IntRect(775, 732, 29, 57));
+			break;
 		case 1:
-			zombieFrame.setTextureRect(sf::IntRect(564, 230, 23, 29));
+			zombieFrame.setTextureRect(sf::IntRect(866, 732, 46, 53));
+			break;
 		case 2:
-			zombieFrame.setTextureRect(sf::IntRect(587, 230, 25, 29));
+			zombieFrame.setTextureRect(sf::IntRect(945, 732, 50, 50));
+			break;
 		case 3:
-			zombieFrame.setTextureRect(sf::IntRect(587 + 25, 230, 40, 29));
-		case 4:
-			zombieFrame.setTextureRect(sf::IntRect(587 + 25 + 40, 230, 46, 29));
-
+			zombieFrame.setTextureRect(sf::IntRect(1022, 732, 50, 50));
+			break;
 		}
 
-		if (dyingSpriteCount > 5)
+		if (dyingSpriteCount > 3)
 		{
 			isDead = true;
 			isDying = false;
@@ -621,104 +627,81 @@ void DancingZombie::drawZombie(sf::RenderWindow& window)
 	}
 
 	else
-
 	{
 		if (isMoving)
 		{
-			if (health >= 460)
+			if (health > 0)
 			{
 				zombieFrame.setTexture(ZombieTexture);
-				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 78, 64, 57));
+
+				switch (spriteCount)
+				{
+				case 0:
+					zombieFrame.setTextureRect(sf::IntRect(5, 6, 42, 69));
+					break;
+				case 1:
+					zombieFrame.setTextureRect(sf::IntRect(59, 6, 32, 69));
+					break;
+				case 2:
+					zombieFrame.setTextureRect(sf::IntRect(114, 6, 36, 69));
+					break;
+				case 3:
+					zombieFrame.setTextureRect(sf::IntRect(163, 6, 32, 69));
+					break;
+				}
 			}
 
-			else if (health >= 360)
+			if (animClock.getElapsedTime().asMilliseconds() > 200)
 			{
-				zombieFrame.setTexture(ZombieTexture);
-				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 151, 64, 57));
+				spriteCount++;
+				animClock.restart();
 			}
 
-			else if (health >= 200)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 223, 62, 57));
-			}
-
-			else if (health >= 100)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 295, 62, 57));
-			}
-
-			else if (health >= 40)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 365, 61, 51));
-			}
-
-			else if (health < 40)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 438, 57, 51));
-			}
-
-			if (spriteCount >= 7)
+			if (spriteCount > 3)
 				spriteCount = 0;
 		}
 
 		else
 
 		{
-			if (health >= 460)
+			if (health > 0)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 501, 64, 55));
+				zombieFrame.setTexture(ZombieTexture);
+
+				switch (spriteCount)
+				{
+				case 0:
+					zombieFrame.setTextureRect(sf::IntRect(5, 592, 42, 69));
+					break;
+				case 1:
+					zombieFrame.setTextureRect(sf::IntRect(60, 592, 40, 69));
+					break;
+				case 2:
+					zombieFrame.setTextureRect(sf::IntRect(110, 592, 43, 69));
+					break;
+				case 3:
+					zombieFrame.setTextureRect(sf::IntRect(163, 592, 43, 69));
+					break;
+				}
 			}
 
-			else if (health >= 360)
+			if (animClock.getElapsedTime().asMilliseconds() > 200)
 			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 572, 64, 55));
+				spriteCount++;
+				animClock.restart();
 			}
 
-			else if (health >= 200)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 642, 62, 56));
-			}
-
-			else if (health >= 100)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 713, 62, 56));
-			}
-
-			else if (health >= 40)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 781, 46, 56));
-			}
-
-			else if (health < 40)
-			{
-				fzombieFrame.setTexture(fZombieTexture);
-				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 855, 39, 45));
-			}
-
-			if (spriteCount >= 5)
+			if (spriteCount > 3)
 				spriteCount = 0;
 		}
 	}
 
-	if (animClock.getElapsedTime().asMilliseconds() > 200)
-	{
-		spriteCount++;
-		animClock.restart();
-	}
-
 	if (isDying)
-		zombieFrame.setScale(2.8, 2.8);
+		zombieFrame.setScale(2.1, 2.1);
 	else
 		zombieFrame.setScale(2.2, 2.2);
+
+	cout << spriteCount << endl;
 
 	zombieFrame.setPosition(Pos.x, Pos.y);
 	window.draw(zombieFrame);
@@ -726,33 +709,17 @@ void DancingZombie::drawZombie(sf::RenderWindow& window)
 
 void DancingZombie::moveZombie()
 {
+	if (isMoving) {
 
+		if (moveClock.getElapsedTime().asMilliseconds() > 300)
+		{
+			Pos.x -= 2;
+			moveClock.restart();
+		}
+	}
 }
 
 void DancingZombie::bulletCollision(bullet* bPtr)
 {
 
-}
-
-BackupZombie::BackupZombie()
-{
-	health = 140;
-	speed = 2;
-	attackDamage = 100;
-	spriteCount = 0;
-	dyingSpriteCount = 0;
-	Pos.x = 900;
-	Pos.y = 60 + ((rand() % 4 + 1) * 95);
-	zombieCode = 5;
-	isMoving = true;
-	isDying = false;
-	isDead = false;
-	isFlying = false;
-	isFalling = false;
-
-
-
-	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Dancing Zombie.png");
-	ZombieImage.createMaskFromColor(sf::Color(232, 112, 248, 255));
-	ZombieTexture.loadFromImage(ZombieImage);
 }

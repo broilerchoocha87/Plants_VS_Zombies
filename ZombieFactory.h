@@ -18,7 +18,7 @@ public:
 	int* myZombieTypes;
 	int* myGameGrid;
 	ZombieFactory();
-	ZombieFactory(int myTotalZombies, int* myZombieTypes);
+	ZombieFactory(int myTotalZombies, int* myZombieTypes, int* zombieStartTimes);
 	void animateZombies(sf::RenderWindow& window);
 	void updateZombies();
 	void removeZombie(int index);

@@ -9,7 +9,7 @@ ZombieFactory::ZombieFactory()
 	myGameGrid = nullptr;
 }
 
-ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
+ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes, int* zombieStartTimes)
 {
 	myTotalZombies = TotalZombies;
 	myZombieTypes = ZombieTypes;
@@ -19,13 +19,23 @@ ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
 	for (int i = 0; i < myTotalZombies; i++)
 	{
 		if (myZombieTypes[i] == 1)
+		{
 			myActiveZombies[i] = new SimpleZombie;
+		}
 		else if (myZombieTypes[i] == 2)
+		{
 			myActiveZombies[i] = new FootballZombie;
+		}
 		else if (myZombieTypes[i] == 3)
+		{
 			myActiveZombies[i] = new FlyingZombie;
-		//else if (myZombieTypes[i] == 4)
-		//	myActiveZombies[i] = new DancingZombie;
+		}
+		else if (myZombieTypes[i] == 4)
+		{
+			myActiveZombies[i] = new DancingZombie;
+		}
+
+		myActiveZombies[i]->startMovingTime = zombieStartTimes[i];
 	}
 }
 
@@ -34,8 +44,25 @@ void ZombieFactory::animateZombies(sf::RenderWindow& window)
 	for (int i = 0; i < myTotalZombies; i++)
 	{
 		//SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
-		myActiveZombies[i]->moveZombie();
+		//if (myActiveZombies[i]->zombieCode == 4)
+		//{
+		//	DancingZombie* zPtr = (DancingZombie*)myActiveZombies[i];
+		//	zPtr->moveZombie();
+		//	zPtr->drawZombie(window);
+		//	for (int i = 0; i < 2; i++)
+		//	{
+		//		zPtr->backupDancers[i].drawZombie(window);
+		//		zPtr->backupDancers[i].moveZombie();
+		//	}
+		//}
+
+		//else
+		//{
+		if (myActiveZombies[i]->startMovingClock.getElapsedTime().asSeconds() > myActiveZombies[i]->startMovingTime)
+			myActiveZombies[i]->moveZombie();
+
 		myActiveZombies[i]->drawZombie(window);
+		/*}*/
 	}
 }
 

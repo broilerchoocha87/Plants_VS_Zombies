@@ -14,6 +14,7 @@ public:
 	int myHealth;
 	int myCost;
 	int myPlantCode;
+	int spriteCount;
 	coordinates myPlantCoord;
 	sf::Clock plantClock;
 	sf::Image plantImage;
