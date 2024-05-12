@@ -45,9 +45,9 @@ beginnerGarden::beginnerGarden()
 	myAllowedPlants = new int[2]{0,1};
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
-	myTotalZombies = 3;
-	myZombieTypes = new int[myTotalZombies] {1, 1, 2};
-	zombieStartTimes = new int[myTotalZombies] {2, 4, 7};
+	myTotalZombies = 5;
+	myZombieTypes = new int[myTotalZombies] {1, 1, 2, 4, 3};
+	zombieStartTimes = new int[myTotalZombies] {2, 4, 50, 10, 30};
 
 	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes, zombieStartTimes);
 	myFallingSun=new SunFromSky;
@@ -111,7 +111,7 @@ Level2::Level2()
 	myNumAllowedPlants = 3;
 	myTotalZombies = 4;
 	myZombieTypes = new int[myTotalZombies] {1, 1, 2, 1};
-	zombieStartTimes = new int[myTotalZombies] {2, 4, 7, 2};
+	zombieStartTimes = new int[myTotalZombies] {2, 4, 15, 2};
 
 	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes, zombieStartTimes);
 	myFallingSun=new SunFromSky;
