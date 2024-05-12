@@ -91,15 +91,16 @@ void beginnerGarden::checkCollisions()
 				pPtr->zombieCollision(zPtr);
 			}
 
+			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 1)
+			{
+				Sunflower* pPtr = (Sunflower*)(myPlantFactory.myActivePlants[j]);
+				pPtr->zombieCollision(zPtr);
+			}
+
 			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 2)
 			{
 				Wallnut* pPtr = (Wallnut*)(myPlantFactory.myActivePlants[j]);
 				pPtr->zombieCollision(zPtr);
-			}
-
-			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 1)
-			{
-
 			}
 		}
 	}

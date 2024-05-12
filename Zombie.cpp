@@ -24,6 +24,7 @@ SimpleZombie::SimpleZombie()
 	isDying = false;
 	isDead = false;
 	isFlying = false;
+	isFalling = false;
 
 	sZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
@@ -169,6 +170,7 @@ FootballZombie::FootballZombie()
 	isDying = false;
 	isDead = false;
 	isFlying = false;
+	isFalling = false;
 
 	fZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Football Zombie.png");
 	fZombieImage.createMaskFromColor(sf::Color(0, 168, 96, 255));
@@ -341,6 +343,7 @@ FlyingZombie::FlyingZombie()
 	isDying = false;
 	isDead = false;
 	isFlying = true;
+	isFalling = false;
 
 	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Balloon Zombie.png");
 	ZombieImage.createMaskFromColor(sf::Color(104, 164, 255, 255));
@@ -373,6 +376,27 @@ void FlyingZombie::drawZombie(sf::RenderWindow& window)
 			isDead = true;
 			isDying = false;
 			return;
+		}
+
+		if (animClock.getElapsedTime().asMilliseconds() > 200)
+		{
+			dyingSpriteCount++;
+			animClock.restart();
+		}
+	}
+
+	else if (isFalling)
+	{
+		zombieFrame.setTexture(ZombieTexture);
+		 
+		if (spriteCount >= 0 && spriteCount <= 1)
+			zombieFrame.setTextureRect(sf::IntRect(96 + (33 *  spriteCount), 59, 33, 76));
+		else if (spriteCount>= 2 && spriteCount <= 3)
+			zombieFrame.setTextureRect(sf::IntRect(163 + (spriteCount - 2) * 38, 59, 38, 76));
+
+		if (spriteCount >= 3)
+		{
+			isFalling = false;
 		}
 
 		if (animClock.getElapsedTime().asMilliseconds() > 200)
@@ -538,11 +562,197 @@ void FlyingZombie::bulletCollision(bullet* bPtr)
 	}
 }
 
-//DancingZombie::DancingZombie()
-//{
-//	health = 500;
-//	speed = 2;
-//	attackDamage = 100;
-//	//Pos.x = 0;
-//	//Pos.y = rand() % 5;
-//}
+DancingZombie::DancingZombie()
+{
+	health = 240;
+	speed = 2;
+	attackDamage = 100;
+	spriteCount = 0;
+	dyingSpriteCount = 0;
+	Pos.x = 900;
+	Pos.y = 60 + ((rand() % 4 + 1) * 95);
+	zombieCode = 4;
+	isMoving = true;
+	isDying = false;
+	isDead = false;
+	isFlying = false;
+	isFalling = false;
+
+	
+
+	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Dancing Zombie.png");
+	ZombieImage.createMaskFromColor(sf::Color(232, 112, 248, 255));
+	ZombieTexture.loadFromImage(ZombieImage);
+}
+
+void DancingZombie::drawZombie(sf::RenderWindow& window)
+{
+	if (isDying)
+	{
+		zombieFrame.setTexture(ZombieTexture);
+
+		switch (dyingSpriteCount)
+		{
+		case 0:
+			zombieFrame.setTextureRect(sf::IntRect(543, 230, 21, 29));
+		case 1:
+			zombieFrame.setTextureRect(sf::IntRect(564, 230, 23, 29));
+		case 2:
+			zombieFrame.setTextureRect(sf::IntRect(587, 230, 25, 29));
+		case 3:
+			zombieFrame.setTextureRect(sf::IntRect(587 + 25, 230, 40, 29));
+		case 4:
+			zombieFrame.setTextureRect(sf::IntRect(587 + 25 + 40, 230, 46, 29));
+
+		}
+
+		if (dyingSpriteCount > 5)
+		{
+			isDead = true;
+			isDying = false;
+			return;
+		}
+
+		if (animClock.getElapsedTime().asMilliseconds() > 200)
+		{
+			dyingSpriteCount++;
+			animClock.restart();
+		}
+	}
+
+	else
+
+	{
+		if (isMoving)
+		{
+			if (health >= 460)
+			{
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 78, 64, 57));
+			}
+
+			else if (health >= 360)
+			{
+				zombieFrame.setTexture(ZombieTexture);
+				zombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 151, 64, 57));
+			}
+
+			else if (health >= 200)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 223, 62, 57));
+			}
+
+			else if (health >= 100)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 295, 62, 57));
+			}
+
+			else if (health >= 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 365, 61, 51));
+			}
+
+			else if (health < 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 438, 57, 51));
+			}
+
+			if (spriteCount >= 7)
+				spriteCount = 0;
+		}
+
+		else
+
+		{
+			if (health >= 460)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 501, 64, 55));
+			}
+
+			else if (health >= 360)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 64, 572, 64, 55));
+			}
+
+			else if (health >= 200)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 642, 62, 56));
+			}
+
+			else if (health >= 100)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 62, 713, 62, 56));
+			}
+
+			else if (health >= 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 61, 781, 46, 56));
+			}
+
+			else if (health < 40)
+			{
+				fzombieFrame.setTexture(fZombieTexture);
+				fzombieFrame.setTextureRect(sf::IntRect(spriteCount * 57, 855, 39, 45));
+			}
+
+			if (spriteCount >= 5)
+				spriteCount = 0;
+		}
+	}
+
+	if (animClock.getElapsedTime().asMilliseconds() > 200)
+	{
+		spriteCount++;
+		animClock.restart();
+	}
+
+	if (isDying)
+		zombieFrame.setScale(2.8, 2.8);
+	else
+		zombieFrame.setScale(2.2, 2.2);
+
+	zombieFrame.setPosition(Pos.x, Pos.y);
+	window.draw(zombieFrame);
+}
+
+void DancingZombie::moveZombie()
+{
+
+}
+
+void DancingZombie::bulletCollision(bullet* bPtr)
+{
+
+}
+
+BackupZombie::BackupZombie()
+{
+	health = 140;
+	speed = 2;
+	attackDamage = 100;
+	spriteCount = 0;
+	dyingSpriteCount = 0;
+	Pos.x = 900;
+	Pos.y = 60 + ((rand() % 4 + 1) * 95);
+	zombieCode = 5;
+	isMoving = true;
+	isDying = false;
+	isDead = false;
+	isFlying = false;
+	isFalling = false;
+
+
+
+	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Dancing Zombie.png");
+	ZombieImage.createMaskFromColor(sf::Color(232, 112, 248, 255));
+	ZombieTexture.loadFromImage(ZombieImage);
+}

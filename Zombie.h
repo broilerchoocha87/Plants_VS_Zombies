@@ -31,6 +31,7 @@ public:
 	bool isDying;
 	bool isDead;
 	bool isFlying;
+	bool isFalling;
 	int zombieCode;
 	
 	Zombie();
@@ -83,6 +84,21 @@ public:
 	virtual void bulletCollision(bullet* bPtr);
 };
 
+class BackupZombie :public Zombie
+{
+protected:
+	Image ZombieImage;
+	Texture ZombieTexture;
+	Sprite zombieFrame;
+
+public:
+	BackupZombie();
+
+	virtual void drawZombie(sf::RenderWindow& window);
+	virtual void moveZombie();
+	virtual void bulletCollision(bullet* bPtr);
+};
+
 class DancingZombie :public Zombie
 {
 protected:
@@ -92,6 +108,7 @@ protected:
 
 public:
 	DancingZombie();
+	BackupZombie backupDancers[2];
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
