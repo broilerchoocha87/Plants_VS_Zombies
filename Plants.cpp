@@ -215,7 +215,7 @@ void Wallnut::zombieCollision(Zombie* zPtr)
 
 Sunflower::Sunflower(int x, int y): Plants(x,y)
 {
-	myHealth = 200;
+	myHealth = 300;
 	myCost = 50;
 	myPlantCode = 1;
 	sunExists=false;
@@ -245,7 +245,6 @@ void Sunflower::dropSun()
 	{
 		mySun= new SunFromFlower{myPlantCoord.x, myPlantCoord.y};
 		sunExists=true;
-		cout<<"Droped\n";
 	}
 	else if((sunExists==true) &&Sunclock.getElapsedTime().asSeconds()>=20)
 	{
@@ -264,6 +263,126 @@ void Sunflower:: removeSun()
 }
 
 void Sunflower::zombieCollision(Zombie* zPtr)
+{
+
+}
+
+//Repeater
+
+Repeater::Repeater(int x, int y ):Plants(x,y)
+{
+	myHealth = 300;
+	myCost = 100;
+	myPlantCode = 3;
+	isShooting = false;
+	shootingSpriteCount = 0;
+	// Initialise bullets
+	myNumbullets = 0;
+	myBullet = new bullet[4]; // Max bullets at a time
+	for (int i = 0; i < 3; i++)
+	{
+		myBullet[i].bulletExists = false;
+	}
+	// Initialising sprite
+	plantImage.loadFromFile("Images/Plants/Repeater.png");
+	plantImage.createMaskFromColor(sf::Color(117, 101, 255, 255));
+	plantTexture.loadFromImage(plantImage);
+	frame.top = 3;
+	frame.left = 3;
+	frame.height = 29;
+	frame.width = 29;
+	plantSprite.setTexture(plantTexture);
+	plantSprite.setTextureRect(frame);
+	plantSprite.setPosition(myPlantCoord.x, myPlantCoord.y);
+	plantSprite.setScale(2.5, 2.5);
+}
+
+void Repeater::shootBullet()
+{
+
+	//Traverse array to find
+	for (int i = 0; i < 4; i++)
+	{
+		if (myBullet[i].bulletExists == false) // Check space to create new bullet
+		{
+			myBullet[i].bulletExists = true;
+			myBullet[i].bulletCoord.x = myPlantCoord.x + 25;//255
+			myBullet[i].bulletCoord.y = myPlantCoord.y + 10;//470
+			myBullet[i].bulletDamage = 20;
+			myBullet[i].bulletSpeed = 10;
+			myBullet[i].bulletSprite.setPosition(myBullet[i].bulletCoord.x, myBullet[i].bulletCoord.y);
+			break;
+		}
+	}
+}
+
+void Repeater::animatePlant(sf::RenderWindow& window)
+{
+	
+	if (plantClock.getElapsedTime().asMilliseconds() > 100)
+	{
+		if (frame.left >=141)
+		{
+			frame.left =3;
+		}
+		else
+		{
+			frame.left += 35;
+		}
+		plantSprite.setTextureRect(frame);
+		plantClock.restart();
+	}
+	window.draw(plantSprite);
+	//First shot
+	if (shootClock.getElapsedTime().asSeconds() >= 2.0f)
+	{
+		shootBullet();
+		
+	}
+	if (shootClock.getElapsedTime().asSeconds() >= 2.03f)// perfect time
+	{
+		shootBullet();
+		shootClock.restart();
+	}
+	
+//Animate bullet
+	for (int i = 0; i < 4; i++)
+	{
+		if (myBullet[i].bulletExists == true)
+		{
+			myBullet[i].animateBullet(window);
+			myBullet[i].moveBullet();
+		}
+
+		if (myBullet[i].bulletCoord.x >= 1000)
+			myBullet[i].bulletExists = false;
+	}
+
+	
+}
+
+void Repeater::zombieCollision(Zombie* zPtr)
+{
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
+	{
+		zPtr->isMoving = false;
+
+		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
+		{
+			myHealth -= zPtr->attackDamage;
+			
+			if (myHealth <= 0)
+				zPtr->isMoving = true;
+
+			zPtr->zombieAttackClock.restart();
+		}
+
+		return;
+	}
+
+	zPtr->isMoving = true;
+}
+Repeater::~Repeater()
 {
 
 }

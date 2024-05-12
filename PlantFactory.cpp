@@ -44,6 +44,11 @@ bool PlantFactory::createPlant(int thisplantCode, int x, int y)
 		myActivePlants[myNumPlants] = new Wallnut(x, y);
 		break;
 	}
+	case 3:
+	{//Repeater
+		myActivePlants[myNumPlants] = new Repeater(x, y);
+		break;
+	}
 	// Add more plants-->
 	}
 	myNumPlants++;
@@ -91,6 +96,18 @@ void PlantFactory::animatePlants(sf::RenderWindow& window)
                 
                 // To access derived class members
                 Wallnut* temp2= dynamic_cast<Wallnut*>((myActivePlants[i]));
+                // Animating
+
+                temp2->animatePlant(window);
+
+                temp2=0;
+                break;
+            }
+			case 3:
+            {
+                
+                // To access derived class members
+                Repeater* temp2= dynamic_cast<Repeater*>((myActivePlants[i]));
                 // Animating
 
                 temp2->animatePlant(window);

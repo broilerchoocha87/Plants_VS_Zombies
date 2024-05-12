@@ -83,7 +83,7 @@ public:
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
 };
-
+/*
 class BackupZombie :public Zombie
 {
 protected:
@@ -112,6 +112,6 @@ public:
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
-};
+};*/
 
 #endif // !ZOMBIE_H

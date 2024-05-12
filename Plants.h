@@ -68,4 +68,24 @@ class Sunflower : public Plants
 		
 };
 
+//Repeater
+
+class Repeater : public Plants
+{
+protected:
+	int myNumbullets;
+	sf::Clock shootClock;
+
+public:
+	bool isShooting;
+	int shootingSpriteCount;
+	bullet* myBullet;
+	Repeater(int xCoord, int yCoord);
+	void shootBullet();
+	void animatePlant(sf::RenderWindow& window);
+	void zombieCollision(Zombie*zPtr);
+	~Repeater();
+};
+
+
 #endif // !PLANTS_H

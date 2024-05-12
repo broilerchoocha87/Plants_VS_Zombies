@@ -41,8 +41,8 @@ beginnerGarden::beginnerGarden()
 	//declare allowed plants
 	myhotbar.setSlots(6);
 	SunSkyExists=true;
-	mySuns=100;
-	myAllowedPlants = new int[2]{0,1};
+	mySuns=1000;
+	myAllowedPlants = new int[4]{0,1,2,3};
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
 	myTotalZombies = 2;
