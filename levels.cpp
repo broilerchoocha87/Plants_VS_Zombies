@@ -39,9 +39,9 @@ void levels::createSunSky()
 beginnerGarden::beginnerGarden()
 {
 	//declare allowed plants
-	myhotbar.setSlots(2);
+	myhotbar.setSlots(6);
 	SunSkyExists=true;
-	mySuns=0;
+	mySuns=100;
 	myAllowedPlants = new int[2]{0,1};
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
