@@ -8,7 +8,7 @@ beginnerGarden::beginnerGarden()
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
 	myTotalZombies = 2;
-	myZombieTypes = new int[myTotalZombies] {2, 1};
+	myZombieTypes = new int[myTotalZombies] {2, 3};
 
 	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
 
