@@ -41,7 +41,9 @@ public:
 	virtual ~levels() = 0;//pure virtual
 	void setSuns(int sun); // setter of mysuns
 	int  getSuns(); // getter of mysuns
-
+	void virtual createPlant(int thisplantCode, int x, int y);
+	void virtual drawBackground(sf::RenderWindow& window)=0;
+	void virtual checkCollisions()=0;
 };
 
 class beginnerGarden :public levels
@@ -49,7 +51,14 @@ class beginnerGarden :public levels
 public:
 	
 	beginnerGarden();
-	void createPlant(int thisplantCode, int x, int y);
+	void drawBackground(sf::RenderWindow& window);
+	void checkCollisions();
+};
+
+class Level2: public levels
+{
+public:
+	Level2();
 	void drawBackground(sf::RenderWindow& window);
 	void checkCollisions();
 };

@@ -39,10 +39,10 @@ void levels::createSunSky()
 beginnerGarden::beginnerGarden()
 {
 	//declare allowed plants
-	myhotbar.setSlots(6);
+	myhotbar.setSlots(2);
 	SunSkyExists=true;
-	mySuns=1000;
-	myAllowedPlants = new int[4]{0,1,2,3};
+	mySuns=50;
+	myAllowedPlants = new int[2]{0,1};
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
 	myTotalZombies = 3;
@@ -62,7 +62,7 @@ levels::~levels()
 	delete myFallingSun;
 }
 
-void beginnerGarden::createPlant(int thisplantCode, int x, int y)
+void levels::createPlant(int thisplantCode, int x, int y)
 {
 	bool plantAllowed = false;
 	
@@ -79,6 +79,45 @@ void beginnerGarden::drawBackground(sf::RenderWindow& window)
 }
 
 void beginnerGarden::checkCollisions()
+{
+	for (int i = 0; i < myZombieFactory->myTotalZombies; i++)
+	{
+		for (int j = 0; j < myPlantFactory.myNumPlants; j++)
+		{
+			Zombie* zPtr = (myZombieFactory->myActiveZombies[i]);
+			
+			if (myPlantFactory.myActivePlants[j]->myPlantCode == 0)
+			{
+				PeaShooter* pPtr = (PeaShooter*)(myPlantFactory.myActivePlants[j]);
+				zPtr->bulletCollision(pPtr->myBullet);
+				pPtr->zombieCollision(zPtr);
+			}
+
+			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 1)
+			{
+				Sunflower* pPtr = (Sunflower*)(myPlantFactory.myActivePlants[j]);
+				pPtr->zombieCollision(zPtr);
+			}
+		}
+	}
+}
+Level2::Level2()
+{
+	//declare allowed plants
+	myhotbar.setSlots(3);
+	SunSkyExists=true;
+	mySuns=50;
+	myAllowedPlants = new int[3]{0,1,2};
+	myNumAllowedPlants = 3;
+	myTotalZombies = 4;
+	myZombieTypes = new int[myTotalZombies] {2, 3, 4,};
+	zombieStartTimes = new int[myTotalZombies] {2, 4, 7};
+
+	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes, zombieStartTimes);
+	myFallingSun=new SunFromSky;
+}
+
+void Level2:: checkCollisions()
 {
 	for (int i = 0; i < myZombieFactory->myTotalZombies; i++)
 	{
