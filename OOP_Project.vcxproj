@@ -146,10 +146,13 @@
     <ClCompile Include="bullets.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameGrid.cpp" />
+    <ClCompile Include="Hotbar.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="levels.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlantFactory.cpp" />
     <ClCompile Include="Plants.cpp" />
+    <ClCompile Include="Sun.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieFactory.cpp" />
   </ItemGroup>
@@ -157,9 +160,12 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameGrid.h" />
+    <ClInclude Include="Hotbar.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="PlantFactory.h" />
     <ClInclude Include="Plants.h" />
+    <ClInclude Include="Sun.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieFactory.h" />
   </ItemGroup>
