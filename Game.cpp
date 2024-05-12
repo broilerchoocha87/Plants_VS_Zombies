@@ -28,7 +28,7 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 		if (event.mouseButton.button == sf::Mouse::Left)// if left mouse button clicked
 		{
 
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);// get relative coordinates
+			//sf::Vector2i mousePos = sf::Mouse::getPosition(window);// get relative coordinates
 			// Check if click is done in inventory location
 			//Check if click is done on any pause buttons
 			//cout<<"SUn X: "<<temp.myFallingSun->mySunPos.X<<"Y: "<<temp.myFallingSun->mySunPos.Y<<endl;
@@ -39,12 +39,13 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 			    event.mouseButton.y  >= temp.myGameGrid.minBoundy && 
 				event.mouseButton.x  <= temp.myGameGrid.maxBoundx && 
 				event.mouseButton.y  <= temp.myGameGrid.maxBoundy)	
-			{	
+			{	cout<<"Yes\n";
 				//Find the grid block
 				int tempX = (event.mouseButton.x-temp.myGameGrid.minBoundx)/temp.myGameGrid.gridLenght;
 				int tempY = (event.mouseButton.y-temp.myGameGrid.minBoundy)/temp.myGameGrid.gridHeight;
 				// Check if sun
-					cout<<temp.SunSkyExists<<endl;
+				cout<<"Nes\n";
+
 				if (temp.SunSkyExists &&
 				event.mouseButton.x  >= temp.myFallingSun->mySunPos.X &&
 			    event.mouseButton.y  >= temp.myFallingSun->mySunPos.Y && 
@@ -61,12 +62,24 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 				}
 				//Check if click is done after selecting a plant
 				// Update Game Grid
-				else if (temp.myGameGrid.grid[int(((mousePos.y - temp.myGameGrid.minBoundy) / 98))][int((mousePos.x - temp.myGameGrid.minBoundx) / 81)] == temp.myGameGrid.plantable)
-				{cout<<"Hello1"<<endl;
-					temp.myGameGrid.grid[int(((mousePos.y - temp.myGameGrid.minBoundy) / 98))][int((mousePos.x - temp.myGameGrid.minBoundx) / 81)] = temp.myGameGrid.planted;
-				
-					temp.createPlant(2, (int((mousePos.x) / 81) * 81 + 5), (int((mousePos.y) / 98) * 98 - 10));
+				cout<<"tX: "<<tempX<<" TY: "<<tempY<<endl;
+				 if (temp.myGameGrid.grid[tempY][tempX] == temp.myGameGrid.plantable)
+				{
+					cout<<"Yes22\n";
+					temp.myGameGrid.grid[tempY][tempX] = temp.myGameGrid.planted;
 					
+					
+					temp.createPlant(2, (tempX*temp.myGameGrid.gridLenght +temp.myGameGrid.minBoundx), (tempY*temp.myGameGrid.gridHeight +temp.myGameGrid.minBoundy));
+				//print gamegrid
+
+					for(int i =0;i<5;i++)
+					{
+						for (int j=0;j<9;j++)
+						{
+							cout<<temp.myGameGrid.grid[i][j]<< " ";
+						}
+						cout<<endl;
+					}
 				}
 			}
 
@@ -77,9 +90,9 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 
 void Game::update()
 {
-	//temp.checkCollisions();
-	//temp.myPlantFactory.updatePlants();
-	//temp.myZombieFactory->updateZombies();
+	temp.checkCollisions();
+	temp.myPlantFactory.updatePlants();
+	temp.myZombieFactory->updateZombies();
 	// SUn operations
 	//Create sun
 

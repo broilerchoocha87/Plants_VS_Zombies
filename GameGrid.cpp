@@ -10,6 +10,10 @@ GameGrid::GameGrid()
     gridHeight=94;
     xBlocks=9;// number of col
     yBlocks=5;// number of row
+    plantable=0;
+    water=1;
+    grave=2;
+    planted=3;
     // Initialise the grid
     for(int i =0;i<yBlocks;i++)
     {

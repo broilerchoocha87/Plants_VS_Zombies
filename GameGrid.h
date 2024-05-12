@@ -15,10 +15,10 @@ class GameGrid
         int gridHeight;
         int grid[5][9];
         //Codes
-        const int plantable=0;
-        const int water=1;
-        const int grave=2;
-        const int planted=3;
+        int plantable;
+        int water;
+        int grave;
+        int planted;
 
         GameGrid();
         bool anyPlanted();
