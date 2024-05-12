@@ -2,6 +2,7 @@
 
 #ifndef LEVELS_H
 #define LEVELS_H
+#include "Hotbar.h"
 #include "Sun.h"
 #include"GameGrid.h"
 #include"PlantFactory.h"
@@ -27,6 +28,7 @@ protected:
 
 public:
 	levels();
+	Hotbar myhotbar;
 	bool SunSkyExists; // Existence of sun that drop from sky
 	SunFromSky* myFallingSun; // pointer to sun that drop from sky
 	GameGrid myGameGrid; // Instance of gamegrid
@@ -44,6 +46,7 @@ public:
 class beginnerGarden :public levels
 {
 public:
+	
 	beginnerGarden();
 	void createPlant(int thisplantCode, int x, int y);
 	void drawBackground(sf::RenderWindow& window);

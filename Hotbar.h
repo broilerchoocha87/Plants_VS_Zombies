@@ -7,12 +7,44 @@ class Hotbar
 {
 private:
 // Conatains all sprites and textures of plantsChoices          
-    sf::Sprite *myPlantChoices; 
-    sf::Sprite l;
-    int mySlots; 
-    sf:: Image tempImage;
-    sf:: Texture tempText;
-    sf:: IntRect tempFrame;
+    int allowedSlot; 
+    //Pea shooter
+// Pea Shooter
+  sf::Sprite peashooterSprite;
+  sf::Image peaShooterImage;
+  sf::Texture peaShooterTexture;
+  sf::IntRect peaShooterFrame;
+
+  // Sunflower
+  sf::Sprite sunflowerSprite;
+  sf::Image sunflowerImage;
+  sf::Texture sunflowerTexture;
+  sf::IntRect sunflowerFrame;
+
+  // Wall-nut
+  sf::Sprite wallnutSprite;
+  sf::Image wallnutImage;
+  sf::Texture wallnutTexture;
+  sf::IntRect wallnutFrame;
+
+  // Repeater
+  sf::Sprite repeaterSprite;
+  sf::Image repeaterImage;
+  sf::Texture repeaterTexture;
+  sf::IntRect repeaterFrame;
+
+  // Snow Pea Shooter
+  sf::Sprite snowPeaShooterSprite;
+  sf::Image snowPeaShooterImage;
+  sf::Texture snowPeaShooterTexture;
+  sf::IntRect snowPeaShooterFrame;
+
+  // Cherry Bomb
+  sf::Sprite cherryBombSprite;
+  sf::Image cherryBombImage;
+  sf::Texture cherryBombTexture;
+  sf::IntRect cherryBombFrame;
+    
 
 
 public:
