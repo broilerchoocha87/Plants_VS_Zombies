@@ -183,9 +183,30 @@ void FootballZombie::drawZombie(sf::RenderWindow& window)
 	if (isDying)
 	{
 		fzombieFrame.setTexture(fZombieTexture);
-		fzombieFrame.setTextureRect(sf::IntRect(dyingSpriteCount * 47, 919, 60, 47));
+		
+		switch (dyingSpriteCount)
+		{
+		case 0:
+			fzombieFrame.setTextureRect(sf::IntRect(82, 919, 36, 46));
+			break;
+		case 1:
+			fzombieFrame.setTextureRect(sf::IntRect(153, 919, 36, 46));
+			break;
+		case 2:
+			fzombieFrame.setTextureRect(sf::IntRect(221, 919, 38, 46));
+			break;
+		case 3:
+			fzombieFrame.setTextureRect(sf::IntRect(291, 919, 43, 46));
+			break;
+		case 4:
+			fzombieFrame.setTextureRect(sf::IntRect(355, 919, 45, 46));
+			break;
+		case 5:
+			fzombieFrame.setTextureRect(sf::IntRect(419, 919, 51, 46));
+			break;
+		}
 
-		if (dyingSpriteCount > 6)
+		if (dyingSpriteCount > 5)
 		{
 			isDead = true;
 			isDying = false;

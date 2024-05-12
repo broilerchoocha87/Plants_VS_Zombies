@@ -43,26 +43,10 @@ void ZombieFactory::animateZombies(sf::RenderWindow& window)
 {
 	for (int i = 0; i < myTotalZombies; i++)
 	{
-		//SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
-		//if (myActiveZombies[i]->zombieCode == 4)
-		//{
-		//	DancingZombie* zPtr = (DancingZombie*)myActiveZombies[i];
-		//	zPtr->moveZombie();
-		//	zPtr->drawZombie(window);
-		//	for (int i = 0; i < 2; i++)
-		//	{
-		//		zPtr->backupDancers[i].drawZombie(window);
-		//		zPtr->backupDancers[i].moveZombie();
-		//	}
-		//}
-
-		//else
-		//{
 		if (myActiveZombies[i]->startMovingClock.getElapsedTime().asSeconds() > myActiveZombies[i]->startMovingTime)
 			myActiveZombies[i]->moveZombie();
 
 		myActiveZombies[i]->drawZombie(window);
-		/*}*/
 	}
 }
 

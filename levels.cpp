@@ -104,6 +104,13 @@ void beginnerGarden::checkCollisions()
 				Wallnut* pPtr = (Wallnut*)(myPlantFactory.myActivePlants[j]);
 				pPtr->zombieCollision(zPtr);
 			}
+
+			else if (myPlantFactory.myActivePlants[j]->myPlantCode == 3)
+			{
+				Repeater* pPtr = (Repeater*)(myPlantFactory.myActivePlants[j]);
+				zPtr->bulletCollision(pPtr->myBullet);
+				pPtr->zombieCollision(zPtr);
+			}
 		}
 	}
 }
