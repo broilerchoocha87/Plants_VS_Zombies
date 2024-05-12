@@ -24,6 +24,8 @@ public:
 	float speed;
 	float attackDamage;
 	zombiePos Pos;
+	int startMovingTime;
+	Clock startMovingClock;
 	Clock zombieAttackClock;
 	Clock animClock;
 	Clock moveClock;
@@ -38,7 +40,6 @@ public:
 	virtual void drawZombie(sf::RenderWindow&) = 0;
 	virtual void moveZombie() = 0;
 	virtual void bulletCollision(bullet* bPtr) = 0;
-	//virtual void plantCollision(Plants* pPtr) = 0;
 };
 
 class SimpleZombie :public Zombie
@@ -54,7 +55,6 @@ public:
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
-	//virtual void plantCollision(Plants* pPtr);
 };
 
 class FootballZombie :public Zombie
@@ -83,21 +83,6 @@ public:
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
 };
-/*
-class BackupZombie :public Zombie
-{
-protected:
-	Image ZombieImage;
-	Texture ZombieTexture;
-	Sprite zombieFrame;
-
-public:
-	BackupZombie();
-
-	virtual void drawZombie(sf::RenderWindow& window);
-	virtual void moveZombie();
-	virtual void bulletCollision(bullet* bPtr);
-};
 
 class DancingZombie :public Zombie
 {
@@ -108,10 +93,9 @@ protected:
 
 public:
 	DancingZombie();
-	BackupZombie backupDancers[2];
 	virtual void drawZombie(sf::RenderWindow& window);
 	virtual void moveZombie();
 	virtual void bulletCollision(bullet* bPtr);
-};*/
+};
 
 #endif // !ZOMBIE_H

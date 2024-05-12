@@ -59,51 +59,52 @@ bool PlantFactory::createPlant(int thisplantCode, int x, int y)
 // Animates all plants stored in myActivePlants
 void PlantFactory::animatePlants(sf::RenderWindow& window)
 {
-    
 
-    for(int i =0; i<myNumPlants;i++)
-    {
-        
-        //Check plant type
-        switch(myActivePlants[i]->myPlantCode)
-        {
-            case 0:
-            {
-                // To access derived class members
-                PeaShooter* temp0= dynamic_cast<PeaShooter*>((myActivePlants[i]));
-                // Animating
-                temp0->animatePlant(window);
-                temp0=0;
-                break;
-            }
-			case 1:
-            {
-                
-                // To access derived class members
-                Sunflower* temp1= dynamic_cast<Sunflower*>((myActivePlants[i]));
-                // Animating
 
-                temp1->animatePlant(window);
-				//Render suns generated from sunflower
-				if(temp1->sunExists)
-					temp1->mySun->animateSun(window);
+	for (int i = 0; i < myNumPlants; i++)
+	{
 
-                temp1=0;
-                break;
-            }
-            case 2:
-            {
-                
-                // To access derived class members
-                Wallnut* temp2= dynamic_cast<Wallnut*>((myActivePlants[i]));
-                // Animating
+		//Check plant type
+		switch (myActivePlants[i]->myPlantCode)
+		{
+		case 0:
+		{
+			// To access derived class members
+			PeaShooter* temp0 = dynamic_cast<PeaShooter*>((myActivePlants[i]));
+			// Animating
+			temp0->animatePlant(window);
+			temp0 = 0;
+			break;
+		}
+		case 1:
+		{
 
-                temp2->animatePlant(window);
+			// To access derived class members
+			Sunflower* temp1 = dynamic_cast<Sunflower*>((myActivePlants[i]));
+			// Animating
 
-                temp2=0;
-                break;
-            }
-			case 3:
+			temp1->animatePlant(window);
+			//Render suns generated from sunflower
+			if (temp1->sunExists)
+				temp1->mySun->animateSun(window);
+
+			temp1 = 0;
+			break;
+		}
+		case 2:
+		{
+
+			// To access derived class members
+			Wallnut* temp2 = dynamic_cast<Wallnut*>((myActivePlants[i]));
+			// Animating
+
+			temp2->animatePlant(window);
+
+			temp2 = 0;
+			break;
+		}
+		//--> Add more plants
+			case 3://Repeater
             {
                 
                 // To access derived class members
@@ -127,9 +128,10 @@ void PlantFactory::updatePlants()
 	{
 		if (myActivePlants[i]->myHealth <= 0)
 			destroyPlant(i);
-		if(myActivePlants[i]->myPlantCode==1)
+
+		else if (myActivePlants[i]->myPlantCode == 1)
 		{
-			Sunflower* temp= dynamic_cast<Sunflower*>((myActivePlants[i]));
+			Sunflower* temp = dynamic_cast<Sunflower*>((myActivePlants[i]));
 			temp->dropSun();
 		}
 	}

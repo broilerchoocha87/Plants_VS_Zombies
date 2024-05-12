@@ -45,10 +45,11 @@ beginnerGarden::beginnerGarden()
 	myAllowedPlants = new int[4]{0,1,2,3};
 	myNumAllowedPlants = 2;
 	//createPlant(0,255,470);
-	myTotalZombies = 2;
-	myZombieTypes = new int[myTotalZombies] {2, 3};
+	myTotalZombies = 3;
+	myZombieTypes = new int[myTotalZombies] {2, 3, 4};
+	zombieStartTimes = new int[myTotalZombies] {2, 4, 7};
 
-	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes);
+	myZombieFactory = new ZombieFactory(myTotalZombies, myZombieTypes, zombieStartTimes);
 	myFallingSun=new SunFromSky;
 }
 
@@ -56,6 +57,7 @@ levels::~levels()
 {
 	delete[] myAllowedPlants;
 	delete[] myZombieTypes;
+	delete[] zombieStartTimes;
 	delete myZombieFactory;
 	delete myFallingSun;
 }
