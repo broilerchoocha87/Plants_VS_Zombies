@@ -40,15 +40,6 @@ class SunFromSky : public Sun // Class of sun that falls from sky
         // Temporary hitbox
         //sf::RectangleShape hitbox;
 };
-/*
-class SunFromFlower : public Sun
-{
-    public: 
-        SunFromFlower();
-        sf::Clock releaseSunFlowClock;
-        bool releaseSunFromFlower();
-};
-*/
 
 
 #endif

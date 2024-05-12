@@ -209,3 +209,34 @@ void Wallnut::zombieCollision(Zombie* zPtr)
 
 	zPtr->isMoving = true;
 }
+
+Sunflower::Sunflower(int x, int y): Plants(x,y)
+{
+	myHealth = 200;
+	myCost = 50;
+	myPlantCode = 1;
+	sunExists=false;
+	// Initialising sprite
+	plantImage.loadFromFile("Images/Plants/sunflower.png");
+	plantImage.createMaskFromColor(sf::Color(255,155,226,255));
+	plantTexture.loadFromImage(plantImage);
+	frame.top = 37;
+	frame.left = 101;
+	frame.height = 32;
+	frame.width = 27;
+	plantSprite.setTexture(plantTexture);
+	plantSprite.setTextureRect(frame);
+	plantSprite.setPosition(myPlantCoord.x, myPlantCoord.y);
+	plantSprite.setScale(2.5, 2.5);
+}
+
+void Sunflower::animatePlant(sf::RenderWindow& window)
+{
+
+	window.draw(plantSprite);
+}
+
+void Sunflower::zombieCollision(Zombie* zPtr)
+{
+
+}

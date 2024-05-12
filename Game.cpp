@@ -19,6 +19,7 @@ void Game::render(sf::RenderWindow& window)
 	if(temp.SunSkyExists)
 		temp.myFallingSun->animateSun(window);
 
+
 }
 
 void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
@@ -27,8 +28,6 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 	
 		if (event.mouseButton.button == sf::Mouse::Left)// if left mouse button clicked
 		{
-
-			//sf::Vector2i mousePos = sf::Mouse::getPosition(window);// get relative coordinates
 			// Check if click is done in inventory location
 			//Check if click is done on any pause buttons
 			//cout<<"SUn X: "<<temp.myFallingSun->mySunPos.X<<"Y: "<<temp.myFallingSun->mySunPos.Y<<endl;
@@ -62,14 +61,14 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 				}
 				//Check if click is done after selecting a plant
 				// Update Game Grid
-				cout<<"tX: "<<tempX<<" TY: "<<tempY<<endl;
+				
 				 if (temp.myGameGrid.grid[tempY][tempX] == temp.myGameGrid.plantable)
 				{
-					cout<<"Yes22\n";
+					
 					temp.myGameGrid.grid[tempY][tempX] = temp.myGameGrid.planted;
 					
 					
-					temp.createPlant(2, (tempX*temp.myGameGrid.gridLenght +temp.myGameGrid.minBoundx), (tempY*temp.myGameGrid.gridHeight +temp.myGameGrid.minBoundy));
+					temp.createPlant(1, (tempX*temp.myGameGrid.gridLenght +temp.myGameGrid.minBoundx), (tempY*temp.myGameGrid.gridHeight +temp.myGameGrid.minBoundy));
 				//print gamegrid
 
 					for(int i =0;i<5;i++)
@@ -98,6 +97,7 @@ void Game::update()
 
 	if(temp.SunSkyExists==false)
 		temp.createSunSky();// WIll only create if space availible
+	
 	if(temp.SunSkyExists)
 		temp.myFallingSun->sunMove();
 

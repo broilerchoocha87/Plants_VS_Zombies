@@ -34,6 +34,11 @@ bool PlantFactory::createPlant(int thisplantCode, int x, int y)
 		myActivePlants[myNumPlants] = new PeaShooter(x, y);
 		break;
 	}
+	case 1:
+	{//Sunflower
+		myActivePlants[myNumPlants] = new Sunflower(x, y);
+		break;
+	}
 	case 2:
 	{//Wallnut
 		myActivePlants[myNumPlants] = new Wallnut(x, y);
@@ -66,6 +71,18 @@ void PlantFactory::animatePlants(sf::RenderWindow& window)
                 temp0=0;
                 break;
             }
+			case 1:
+            {
+                
+                // To access derived class members
+                Sunflower* temp1= dynamic_cast<Sunflower*>((myActivePlants[i]));
+                // Animating
+
+                temp1->animatePlant(window);
+
+                temp1=0;
+                break;
+            }
             case 2:
             {
                 
@@ -81,22 +98,7 @@ void PlantFactory::animatePlants(sf::RenderWindow& window)
             //--> Add more plants
         }
     }
-	for (int i = 0; i < myNumPlants; i++)
-	{
-
-		//Check plant type
-		switch (myActivePlants[i]->myPlantCode)
-		{
-		case 0:
-			// To access derived class members
-			PeaShooter * temp = dynamic_cast<PeaShooter*>((myActivePlants[i]));
-			// Animating
-			temp->animatePlant(window);
-			temp = 0;
-			break;
-			//--> Add more plants
-		}
-	}
+	
 }
 
 void PlantFactory::updatePlants()

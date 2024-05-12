@@ -3,7 +3,10 @@
 #include <iostream>
 using namespace std;
 
-
+levels:: levels()
+{
+	
+}
 void levels:: setSuns(int sun)
 {
 	mySuns=sun;
@@ -18,19 +21,21 @@ void levels:: destroySunSky()
 	myFallingSun=0;
 	SunSkyExists=false;
 	releaseSunSkyClock.restart();
-	cout<<"Hello"<<endl;
 }
 
 void levels::createSunSky()
-{cout<<"..";
+{
 	if(releaseSunSkyClock.getElapsedTime().asSeconds()>=10)
     {
-		cout<<"Bye\n";
+
         myFallingSun=new SunFromSky;
 		SunSkyExists=true;
-		cout<<"SUn created\n";
+
     }
 }
+
+
+
 beginnerGarden::beginnerGarden()
 {
 	//declare allowed plants
@@ -51,6 +56,7 @@ levels::~levels()
 	delete[] myAllowedPlants;
 	delete[] myZombieTypes;
 	delete myZombieFactory;
+	delete myFallingSun;
 }
 
 void beginnerGarden::createPlant(int thisplantCode, int x, int y)

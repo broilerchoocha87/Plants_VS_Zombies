@@ -8,35 +8,37 @@
 #include"ZombieFactory.h"
 #include"Plants.h"
 #include"Zombie.h"
-#include "Sun.h"
 #include"SFML/Graphics.hpp"
 
 class levels // Abstract class
 {
 protected:
 
-	int mySuns;
+	int mySuns; //AMount of currency in hand
 	int* myAllowedPlants; // pointer to array of allowed plants' codes
-	int* myZombieTypes;   
+	int* myZombieTypes;  
 	int myNumAllowedPlants; // size of array
-	int myTotalZombies;
+	int myTotalZombies; //Total number of zombies
 	sf::Clock releaseSunSkyClock; // Measure intervals between sun drops
+	sf::Clock releaseFlowSunClock; // Measure intervals between sun drops
 	sf::Texture textureBackground; // Background texture
 	sf::Sprite spriteBackground; // Backrground sprite
 
 
 
 public:
-	bool SunSkyExists;
-	SunFromSky* myFallingSun;
-	GameGrid myGameGrid; 
-	PlantFactory myPlantFactory;
+	levels();
+	bool SunSkyExists; // Existence of sun that drop from sky
+	SunFromSky* myFallingSun; // pointer to sun that drop from sky
+	int myNumSunFromFlow; //Number of suns present at the moment that are dropped from flowers
+	GameGrid myGameGrid; // Instance of gamegrid
+	PlantFactory myPlantFactory; //Instance of myPlantFactory -responsible for handling plants
 	ZombieFactory* myZombieFactory;
-	void destroySunSky();
-	void createSunSky();
-	virtual ~levels() = 0;
-	void setSuns(int sun);
-	int  getSuns();
+	void destroySunSky(); //destroy sun sky after a particualr time or when selected
+	void createSunSky(); //creates a sun sky after every 10 seconds(after deletion of previous)
+	virtual ~levels() = 0;//pure virtual
+	void setSuns(int sun); // setter of mysuns
+	int  getSuns(); // getter of mysuns
 };
 
 class beginnerGarden :public levels

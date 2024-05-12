@@ -3,6 +3,7 @@
 using namespace std;
 Sun::Sun()
 {
+    sunExists=true;
     mySunValue=25; //FIxed
     sunImage.loadFromFile("Images/sun.png");
     sunTexture.loadFromImage(sunImage);
@@ -16,7 +17,7 @@ int Sun::getSunValue()
 
 SunFromSky::SunFromSky()
 {
-    sunExists=true;
+    
     int temp=rand()%732 + 250;;
     mySunPos.X= temp;// According to lb and ub of gamegrid
     yBound=rand()%490 +80;
@@ -48,24 +49,3 @@ void SunFromSky::animateSun(sf::RenderWindow& window)
     //window.draw(hitbox);
 
 }
-
-/*bool SunFromSky:: releaseSunFromSky()
-{
-    if(releaseSunSkyClock.getElapsedTime().asSeconds()>=10)
-    {
-        releaseSunSkyClock.restart();
-        return true;
-    }
-    return false;
-}*/
-/*
-bool SunFromFlower:: releaseSunFromFlower()
-{
-    if(releaseSunFlowClock.getElapsedTime().asSeconds()==10)
-    {
-        releaseSunFlowClock.restart();
-        return true;
-    }
-    return false;
-}
-*/

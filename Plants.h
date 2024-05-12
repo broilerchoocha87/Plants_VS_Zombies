@@ -2,7 +2,7 @@
 
 #ifndef PLANTS_H
 #define PLANTS_H
-
+//#include "Sun.h"
 #include "bullet.h"
 #include "Zombie.h"
 #include "SFML/Graphics.hpp"
@@ -55,12 +55,14 @@ class Wallnut : public Plants
 class Sunflower : public Plants
 {
 	public:
-		Sunflower(int xCoord, int yCoord);
-		void animateSunflower(sf::RenderWindow& window);
-		void releaseSun();
-		void removeSun();
+		bool sunExists;
+		sf::Clock Sunclock;
+		//Sun *mySun;
+		Sunflower(int x, int y);
+		void animatePlant(sf::RenderWindow& window);
+		//void removeSun();
 		void zombieCollision(Zombie* zPtr);
-		~Sunflower();
+		//~Sunflower();
 		
 };
 
