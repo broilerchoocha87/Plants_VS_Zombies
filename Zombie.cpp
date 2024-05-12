@@ -26,6 +26,7 @@ SimpleZombie::SimpleZombie()
 	isFlying = false;
 	isFalling = false;
 
+	// Loading specific Zombie Textures and Masking Images
 	sZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Zombie.png");
 	sZombieImage.createMaskFromColor(sf::Color(248, 152, 248, 255));
 	sZombieTexture.loadFromImage(sZombieImage);
@@ -50,6 +51,7 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 		zombieFrame.setTexture(sZombieTexture);
 		zombieFrame.setTextureRect(sf::IntRect(dyingSpriteCount * 52, 385, 44, 34));
 
+		// Checks if animation has ended
 		if (dyingSpriteCount > 8)
 		{
 			isDead = true;
@@ -57,6 +59,7 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 			return;
 		}
 
+		// Delay in animation
 		if (animClock.getElapsedTime().asMilliseconds() > 200)
 		{
 			dyingSpriteCount++;
@@ -125,37 +128,41 @@ void SimpleZombie::drawZombie(sf::RenderWindow& window)
 
 void SimpleZombie::bulletCollision(bullet* bPtr)
 {
-	for (int i = 0; i < 3; i++)
+	// Takes the bullet array and checks for collision with any three of them
+	if (bPtr[0].bulletCode == 0)
 	{
-		if (bPtr[i].bulletExists)
+		for (int i = 0; i < 3; i++)
 		{
-			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+			if (bPtr[i].bulletExists)
 			{
-				cout << "Bullet collision" << endl;
-				health -= bPtr[i].bulletDamage;
-				bPtr[i].bulletExists = false;
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
+			}
+		}
+	}
+
+	// Checks through an array of four for a repeater
+	else if (bPtr[0].bulletCode == 1)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (bPtr[i].bulletExists)
+			{
+				// Collision bounds
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
 			}
 		}
 	}
 }
-
-//void SimpleZombie::plantCollision(Plants* pPtr)
-//{
-//	if (Pos.x <= (pPtr->myPlantCoord.x + 36) && Pos.y >= (pPtr->myPlantCoord.y - 125) && Pos.y <= (pPtr->myPlantCoord.y + 125))
-//	{
-//		isMoving = false;
-//
-//		if (zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
-//		{
-//			pPtr->myHealth -= attackDamage;
-//			zombieAttackClock.restart();
-//		}
-//
-//		return;
-//	}
-//
-//	isMoving = true;
-//}
 
 FootballZombie::FootballZombie()
 {
@@ -164,7 +171,7 @@ FootballZombie::FootballZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	dyingSpriteCount = 0;
-	Pos.x = 900;
+	Pos.x = 1300;
 	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 2;
 	isMoving = true;
@@ -338,15 +345,37 @@ void FootballZombie::moveZombie()
 
 void FootballZombie::bulletCollision(bullet* bPtr)
 {
-	for (int i = 0; i < 3; i++)
+	// Takes the bullet array and checks for collision with any three of them
+	if (bPtr[0].bulletCode == 0)
 	{
-		if (bPtr[i].bulletExists)
+		for (int i = 0; i < 3; i++)
 		{
-			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+			if (bPtr[i].bulletExists)
 			{
-				cout << "Bullet collision" << endl;
-				health -= bPtr[i].bulletDamage;
-				bPtr[i].bulletExists = false;
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
+			}
+		}
+	}
+
+	// Checks through an array of four for a repeater
+	else if (bPtr[0].bulletCode == 1)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (bPtr[i].bulletExists)
+			{
+				// Collision bounds
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
 			}
 		}
 	}
@@ -576,15 +605,37 @@ void FlyingZombie::bulletCollision(bullet* bPtr)
 	if (isFlying)
 		return;
 
-	for (int i = 0; i < 3; i++)
+	// Takes the bullet array and checks for collision with any three of them
+	if (bPtr[0].bulletCode == 0)
 	{
-		if (bPtr[i].bulletExists)
+		for (int i = 0; i < 3; i++)
 		{
-			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+			if (bPtr[i].bulletExists)
 			{
-				cout << "Bullet collision" << endl;
-				health -= bPtr[i].bulletDamage;
-				bPtr[i].bulletExists = false;
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
+			}
+		}
+	}
+
+	// Checks through an array of four for a repeater
+	else if (bPtr[0].bulletCode == 1)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (bPtr[i].bulletExists)
+			{
+				// Collision bounds
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
 			}
 		}
 	}
@@ -605,9 +656,6 @@ DancingZombie::DancingZombie()
 	isDead = false;
 	isFlying = false;
 	isFalling = false;
-
-	//backupDancers[0].Pos.y = Pos.y - 95;
-	//backupDancers[1].Pos.y = Pos.y + 95;
 
 	ZombieImage.loadFromFile("Images/Zombies/DS DSi - Plants vs Zombies - Dancing Zombie.png");
 	ZombieImage.createMaskFromColor(sf::Color(232, 112, 248, 255));
@@ -744,15 +792,37 @@ void DancingZombie::moveZombie()
 
 void DancingZombie::bulletCollision(bullet* bPtr)
 {
-	for (int i = 0; i < 3; i++)
+	// Takes the bullet array and checks for collision with any three of them
+	if (bPtr[0].bulletCode == 0)
 	{
-		if (bPtr[i].bulletExists)
+		for (int i = 0; i < 3; i++)
 		{
-			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+			if (bPtr[i].bulletExists)
 			{
-				cout << "Bullet collision" << endl;
-				health -= bPtr[i].bulletDamage;
-				bPtr[i].bulletExists = false;
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
+			}
+		}
+	}
+
+	// Checks through an array of four for a repeater
+	else if (bPtr[0].bulletCode == 1)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (bPtr[i].bulletExists)
+			{
+				// Collision bounds
+				if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+				{
+					cout << "Bullet collision" << endl;
+					health -= bPtr[i].bulletDamage;
+					bPtr[i].bulletExists = false;
+				}
 			}
 		}
 	}

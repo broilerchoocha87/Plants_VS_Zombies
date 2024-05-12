@@ -25,6 +25,7 @@ PeaShooter::PeaShooter(int xCoord, int yCoord) : Plants(xCoord, yCoord)
 	for (int i = 0; i < 3; i++)
 	{
 		myBullet[i].bulletExists = false;
+		myBullet[i].bulletCode = 0;
 	}
 	// Initialising sprite
 	plantImage.loadFromFile("Images/Plants/Peashooter.png");
@@ -329,6 +330,7 @@ Repeater::Repeater(int x, int y ):Plants(x,y)
 	for (int i = 0; i < 3; i++)
 	{
 		myBullet[i].bulletExists = false;
+		myBullet[i].bulletCode = 1;
 	}
 	// Initialising sprite
 	plantImage.loadFromFile("Images/Plants/Repeater.png");

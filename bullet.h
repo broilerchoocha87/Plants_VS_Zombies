@@ -22,6 +22,7 @@ public:
     bool bulletExists;
     int bulletDamage;
     float bulletSpeed;
+    int bulletCode;
     sf:: Clock bulletAnimationClock;
     sf:: Clock bulletMoveClock;
     sf::Image bulletImage;
