@@ -30,6 +30,7 @@ public:
 	bool isMoving;
 	bool isDying;
 	bool isDead;
+	bool isFlying;
 	int zombieCode;
 	
 	Zombie();
@@ -71,25 +72,29 @@ public:
 class FlyingZombie :public Zombie
 {
 protected:
+	Image ZombieImage;
+	Texture ZombieTexture;
+	Sprite zombieFrame;
 
 public:
 	FlyingZombie();
+	virtual void drawZombie(sf::RenderWindow& window);
+	virtual void moveZombie();
+	virtual void bulletCollision(bullet* bPtr);
 };
 
 class DancingZombie :public Zombie
 {
 protected:
+	Image ZombieImage;
+	Texture ZombieTexture;
+	Sprite zombieFrame;
 
 public:
 	DancingZombie();
-};
-
-class DolphinRiderZombie :public Zombie
-{
-protected:
-
-public:
-	DolphinRiderZombie();
+	virtual void drawZombie(sf::RenderWindow& window);
+	virtual void moveZombie();
+	virtual void bulletCollision(bullet* bPtr);
 };
 
 #endif // !ZOMBIE_H

@@ -152,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlantFactory.cpp" />
     <ClCompile Include="Plants.cpp" />
+    <ClCompile Include="Sun.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieFactory.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="levels.h" />
     <ClInclude Include="PlantFactory.h" />
     <ClInclude Include="Plants.h" />
+    <ClInclude Include="Sun.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieFactory.h" />
   </ItemGroup>

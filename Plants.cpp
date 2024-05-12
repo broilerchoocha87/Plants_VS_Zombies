@@ -190,6 +190,9 @@ void Wallnut :: animatePlant(sf:: RenderWindow& window)
 
 void Wallnut::zombieCollision(Zombie* zPtr)
 {
+	if (zPtr->isFlying)
+		return;
+
 	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
 	{
 		zPtr->isMoving = false;

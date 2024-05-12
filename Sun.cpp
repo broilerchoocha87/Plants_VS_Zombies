@@ -12,7 +12,7 @@ Sun::Sun()
 }
 int Sun::getSunValue()
 {
-    return mySunValue;
+	return mySunValue;
 }
 
 SunFromSky::SunFromSky()
@@ -32,20 +32,20 @@ SunFromSky::SunFromSky()
 
 void SunFromSky::sunMove()
 {
-    if(sunExists&& moveClock.getElapsedTime().asMilliseconds()>100 && mySunPos.Y<yBound)
-    {
-        mySunPos.Y+=6;
-        //hitbox.setPosition(mySunPos.X,mySunPos.Y);
-        sunSprite.setPosition(mySunPos.X,mySunPos.Y);
-        moveClock.restart();
-    }
-    
+	if (sunExists && moveClock.getElapsedTime().asMilliseconds() > 100 && mySunPos.Y < yBound)
+	{
+		mySunPos.Y += 6;
+		//hitbox.setPosition(mySunPos.X,mySunPos.Y);
+		sunSprite.setPosition(mySunPos.X, mySunPos.Y);
+		moveClock.restart();
+	}
+
 }
 
 void SunFromSky::animateSun(sf::RenderWindow& window)
-{   
-    if(sunExists)
-        window.draw(sunSprite);
-    //window.draw(hitbox);
+{
+	if (sunExists)
+		window.draw(sunSprite);
+	//window.draw(hitbox);
 
 }

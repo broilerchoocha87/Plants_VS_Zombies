@@ -22,12 +22,10 @@ ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
 			myActiveZombies[i] = new SimpleZombie;
 		else if (myZombieTypes[i] == 2)
 			myActiveZombies[i] = new FootballZombie;
-		//else if (myZombieTypes[i] == 3)
-		//	myActiveZombies[i] = new FlyingZombie;
+		else if (myZombieTypes[i] == 3)
+			myActiveZombies[i] = new FlyingZombie;
 		//else if (myZombieTypes[i] == 4)
 		//	myActiveZombies[i] = new DancingZombie;
-		//else if (myZombieTypes[i] == 5)
-		//	myActiveZombies[i] = new DolphinRiderZombie;
 	}
 }
 
@@ -45,16 +43,16 @@ void ZombieFactory::updateZombies()
 {
 	for (int i = 0; i < myTotalZombies; i++)
 	{
-			if (myActiveZombies[i]->dyingSpriteCount >= 8)
-			{
-				removeZombie(i);
-			}
+		if (myActiveZombies[i]->health <= 0 && !myActiveZombies[i]->isDead)
+		{
+			myActiveZombies[i]->isDying = true;
+			myActiveZombies[i]->isMoving = false;
+		}
 
-			else if (myActiveZombies[i]->health <= 0 && !myActiveZombies[i]->isDead)
-			{
-				myActiveZombies[i]->isDying = true;
-				myActiveZombies[i]->isMoving = false;
-			}
+		if (myActiveZombies[i]->isDead)
+		{
+			removeZombie(i);
+		}
 	}
 }
 
