@@ -79,6 +79,9 @@ void PlantFactory::animatePlants(sf::RenderWindow& window)
                 // Animating
 
                 temp1->animatePlant(window);
+				//Render suns generated from sunflower
+				if(temp1->sunExists)
+					temp1->mySun->animateSun(window);
 
                 temp1=0;
                 break;
@@ -107,6 +110,11 @@ void PlantFactory::updatePlants()
 	{
 		if (myActivePlants[i]->myHealth <= 0)
 			destroyPlant(i);
+		if(myActivePlants[i]->myPlantCode==1)
+		{
+			Sunflower* temp= dynamic_cast<Sunflower*>((myActivePlants[i]));
+			temp->dropSun();
+		}
 	}
 }
 

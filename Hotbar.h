@@ -3,18 +3,54 @@
 #ifndef HOTBAR_H
 #define HOTBAR_H
 #include"SFML/Graphics.hpp"
-#include "Inventory.h"
-class Hotbar: public Inventory
+class Hotbar
 {
 private:
 // Conatains all sprites and textures of plantsChoices          
-    sf::Sprite myPlantChoices[6]; 
-    int mySlots;   
+    int allowedSlot; 
+    //Pea shooter
+// Pea Shooter
+  sf::Sprite peashooterSprite;
+  sf::Image peaShooterImage;
+  sf::Texture peaShooterTexture;
+  sf::IntRect peaShooterFrame;
+
+  // Sunflower
+  sf::Sprite sunflowerSprite;
+  sf::Image sunflowerImage;
+  sf::Texture sunflowerTexture;
+  sf::IntRect sunflowerFrame;
+
+  // Wall-nut
+  sf::Sprite wallnutSprite;
+  sf::Image wallnutImage;
+  sf::Texture wallnutTexture;
+  sf::IntRect wallnutFrame;
+
+  // Repeater
+  sf::Sprite repeaterSprite;
+  sf::Image repeaterImage;
+  sf::Texture repeaterTexture;
+  sf::IntRect repeaterFrame;
+
+  // Snow Pea Shooter
+  sf::Sprite snowPeaShooterSprite;
+  sf::Image snowPeaShooterImage;
+  sf::Texture snowPeaShooterTexture;
+  sf::IntRect snowPeaShooterFrame;
+
+  // Cherry Bomb
+  sf::Sprite cherryBombSprite;
+  sf::Image cherryBombImage;
+  sf::Texture cherryBombTexture;
+  sf::IntRect cherryBombFrame;
+    
+
 
 public:
     Hotbar();
-    void displayHotbar();
-    void setSlots();
+    void displayHotbar(sf:: RenderWindow& window);
+    void setSlots(int a);
 
 };
 #endif

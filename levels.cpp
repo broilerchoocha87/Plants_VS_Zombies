@@ -1,5 +1,5 @@
 #include "levels.h"
-
+#include "Hotbar.h"
 #include <iostream>
 using namespace std;
 
@@ -39,6 +39,7 @@ void levels::createSunSky()
 beginnerGarden::beginnerGarden()
 {
 	//declare allowed plants
+	myhotbar.setSlots(2);
 	SunSkyExists=true;
 	mySuns=0;
 	myAllowedPlants = new int[2]{0,1};
