@@ -122,7 +122,7 @@ void PeaShooter::shootBullet()// Creates a new bullet
 
 void PeaShooter::zombieCollision(Zombie* zPtr)
 {
-	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.x >= (myPlantCoord.x - 10) && zPtr->Pos.y >= (myPlantCoord.y - 10) && zPtr->Pos.y <= (myPlantCoord.y + 95))
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.x >= (myPlantCoord.x - 10) && zPtr->Pos.y >= (myPlantCoord.y - 50) && zPtr->Pos.y <= (myPlantCoord.y + 40))
 	{
 		zPtr->isMoving = false;
 
@@ -193,8 +193,7 @@ void Wallnut::zombieCollision(Zombie* zPtr)
 	if (zPtr->isFlying)
 		return;
 
-	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.x >= (myPlantCoord.x - 10) && zPtr->Pos.y >= (myPlantCoord.y - 10) && zPtr->Pos.y <= (myPlantCoord.y + 95))
-	{
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.x >= (myPlantCoord.x - 10) && zPtr->Pos.y >= (myPlantCoord.y - 50) && zPtr->Pos.y <= (myPlantCoord.y + 40)) {
 		zPtr->isMoving = false;
 
 		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
@@ -296,9 +295,23 @@ void Sunflower:: removeSun()
 
 void Sunflower::zombieCollision(Zombie* zPtr)
 {
-	if (zPtr->isFlying)
-		return;
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.x >= (myPlantCoord.x - 10) && zPtr->Pos.y >= (myPlantCoord.y - 50) && zPtr->Pos.y <= (myPlantCoord.y + 40)) {
+		zPtr->isMoving = false;
 
+		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
+		{
+			myHealth -= zPtr->attackDamage;
+
+			if (myHealth <= 0)
+				zPtr->isMoving = true;
+
+			zPtr->zombieAttackClock.restart();
+		}
+
+		return;
+	}
+
+	zPtr->isMoving = true;
 }
 
 //Repeater
@@ -397,14 +410,13 @@ void Repeater::animatePlant(sf::RenderWindow& window)
 
 void Repeater::zombieCollision(Zombie* zPtr)
 {
-	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.y >= (myPlantCoord.y - 125) && zPtr->Pos.y <= (myPlantCoord.y + 125))
-	{
+	if (zPtr->Pos.x <= (myPlantCoord.x + 36) && zPtr->Pos.x >= (myPlantCoord.x - 10) && zPtr->Pos.y >= (myPlantCoord.y - 50) && zPtr->Pos.y <= (myPlantCoord.y + 40)) {
 		zPtr->isMoving = false;
 
 		if (zPtr->zombieAttackClock.getElapsedTime().asSeconds() > 1.5f)
 		{
 			myHealth -= zPtr->attackDamage;
-			
+
 			if (myHealth <= 0)
 				zPtr->isMoving = true;
 
