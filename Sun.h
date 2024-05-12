@@ -37,9 +37,14 @@ class SunFromSky : public Sun // Class of sun that falls from sky
         //bool releaseSunFromSky(); // Check if corret time to drop sun
         void sunMove(); // Movement of sun
         void animateSun(sf::RenderWindow& window); // animate falling sun
-        // Temporary hitbox
-        //sf::RectangleShape hitbox;
 };
 
+class SunFromFlower :public Sun
+{
+public:
+
+    SunFromFlower(int x, int y);
+    void animateSun(sf::RenderWindow& window);
+};
 
 #endif

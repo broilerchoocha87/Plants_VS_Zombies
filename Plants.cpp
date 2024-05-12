@@ -239,6 +239,30 @@ void Sunflower::animatePlant(sf::RenderWindow& window)
 	window.draw(plantSprite);
 }
 
+void Sunflower::dropSun()
+{
+	if((sunExists==false) && Sunclock.getElapsedTime().asSeconds()>=10 && Sunclock.getElapsedTime().asSeconds()<=12)
+	{
+		mySun= new SunFromFlower{myPlantCoord.x, myPlantCoord.y};
+		sunExists=true;
+		cout<<"Droped\n";
+	}
+	else if((sunExists==true) &&Sunclock.getElapsedTime().asSeconds()>=20)
+	{
+		delete mySun;
+		sunExists=false;
+		Sunclock.restart();
+	}
+	
+}
+
+void Sunflower:: removeSun()
+{
+	//delete mySun;
+	sunExists=false;
+	Sunclock.restart();
+}
+
 void Sunflower::zombieCollision(Zombie* zPtr)
 {
 

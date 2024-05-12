@@ -5,6 +5,7 @@
 //#include "Sun.h"
 #include "bullet.h"
 #include "Zombie.h"
+#include "Sun.h"
 #include "SFML/Graphics.hpp"
 
 class Plants //Abstract class
@@ -57,10 +58,11 @@ class Sunflower : public Plants
 	public:
 		bool sunExists;
 		sf::Clock Sunclock;
-		//Sun *mySun;
+		SunFromFlower *mySun;
 		Sunflower(int x, int y);
+		void dropSun();
 		void animatePlant(sf::RenderWindow& window);
-		//void removeSun();
+		void removeSun();
 		void zombieCollision(Zombie* zPtr);
 		//~Sunflower();
 		

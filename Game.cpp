@@ -18,8 +18,7 @@ void Game::render(sf::RenderWindow& window)
 	temp.myZombieFactory->animateZombies(window);
 	if(temp.SunSkyExists)
 		temp.myFallingSun->animateSun(window);
-
-
+	
 }
 
 void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
@@ -38,31 +37,32 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 			    event.mouseButton.y  >= temp.myGameGrid.minBoundy && 
 				event.mouseButton.x  <= temp.myGameGrid.maxBoundx && 
 				event.mouseButton.y  <= temp.myGameGrid.maxBoundy)	
-			{	cout<<"Yes\n";
+			{	
 				//Find the grid block
 				int tempX = (event.mouseButton.x-temp.myGameGrid.minBoundx)/temp.myGameGrid.gridLenght;
 				int tempY = (event.mouseButton.y-temp.myGameGrid.minBoundy)/temp.myGameGrid.gridHeight;
-				// Check if sun
-				cout<<"Nes\n";
+				// Check if sun in the sky
 
 				if (temp.SunSkyExists &&
 				event.mouseButton.x  >= temp.myFallingSun->mySunPos.X &&
 			    event.mouseButton.y  >= temp.myFallingSun->mySunPos.Y && 
-				event.mouseButton.x  <= temp.myFallingSun->mySunPos.X + 30&& 
-				event.mouseButton.y  <= temp.myFallingSun->mySunPos.Y +30 &&
+				event.mouseButton.x  <= temp.myFallingSun->mySunPos.X + 55&& 
+				event.mouseButton.y  <= temp.myFallingSun->mySunPos.Y +55 &&
 				temp.myFallingSun->mySunPos.Y>=temp.myFallingSun->yBound)// If sun landed, only then can pick
 				{
-					//Increment suns
 					
+					//Increment suns
 					temp.setSuns(temp.myFallingSun->getSunValue()+temp.getSuns());
 					// Delete current sun
 					temp.destroySunSky();
 
 				}
+				
+
 				//Check if click is done after selecting a plant
 				// Update Game Grid
 				
-				 if (temp.myGameGrid.grid[tempY][tempX] == temp.myGameGrid.plantable)
+				else if (temp.myGameGrid.grid[tempY][tempX] == temp.myGameGrid.plantable)
 				{
 					
 					temp.myGameGrid.grid[tempY][tempX] = temp.myGameGrid.planted;
@@ -79,6 +79,32 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 						}
 						cout<<endl;
 					}
+				}
+				//Check for Sunflower Suns ///CLICK IS REGISTERING!!!!!!!!!
+				else{
+					int i =0;
+					while(i<temp.myPlantFactory.myNumPlants &&
+						temp.myPlantFactory.myActivePlants[i]->myPlantCode==1)//Only check sunflower
+					{
+						if (temp.SunSkyExists &&
+						event.mouseButton.x  >= temp.myPlantFactory.myActivePlants[i]->myPlantCoord.x &&
+						event.mouseButton.y  >= temp.myPlantFactory.myActivePlants[i]->myPlantCoord.y+50 && 
+						event.mouseButton.x  <= temp.myPlantFactory.myActivePlants[i]->myPlantCoord.x + 55&& 
+						event.mouseButton.y  <= temp.myPlantFactory.myActivePlants[i]->myPlantCoord.y +55+50 
+							)
+						{
+							
+							//Increment suns
+							temp.setSuns(25+temp.getSuns());
+							cout<<temp.getSuns()<<"\n";
+							// Delete current sun
+							Sunflower* sunTemp= dynamic_cast<Sunflower*>((temp.myPlantFactory.myActivePlants[i]));
+							sunTemp->removeSun();
+
+						}
+						i++;
+					}
+					cout<<"s2\n";
 				}
 			}
 

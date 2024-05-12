@@ -17,7 +17,6 @@ protected:
 	int mySuns; //AMount of currency in hand
 	int* myAllowedPlants; // pointer to array of allowed plants' codes
 	int* myZombieTypes;  
-	int myNumAllowedPlants; // size of array
 	int myTotalZombies; //Total number of zombies
 	sf::Clock releaseSunSkyClock; // Measure intervals between sun drops
 	sf::Clock releaseFlowSunClock; // Measure intervals between sun drops
@@ -30,15 +29,16 @@ public:
 	levels();
 	bool SunSkyExists; // Existence of sun that drop from sky
 	SunFromSky* myFallingSun; // pointer to sun that drop from sky
-	int myNumSunFromFlow; //Number of suns present at the moment that are dropped from flowers
 	GameGrid myGameGrid; // Instance of gamegrid
 	PlantFactory myPlantFactory; //Instance of myPlantFactory -responsible for handling plants
+	int myNumAllowedPlants; // size of array
 	ZombieFactory* myZombieFactory;
 	void destroySunSky(); //destroy sun sky after a particualr time or when selected
 	void createSunSky(); //creates a sun sky after every 10 seconds(after deletion of previous)
 	virtual ~levels() = 0;//pure virtual
 	void setSuns(int sun); // setter of mysuns
 	int  getSuns(); // getter of mysuns
+
 };
 
 class beginnerGarden :public levels
