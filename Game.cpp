@@ -8,6 +8,7 @@ void Game::render(sf::RenderWindow& window)
 {
 	//BackGround
 	temp.drawBackground(window);
+	temp.myhotbar.displayHotbar(window);
 	//CardDeck
 	// sf::RectangleShape rectangle(sf::Vector2f(730, 490));
 	// rectangle.setPosition(250.0f,80.0f);
@@ -104,7 +105,7 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 						}
 						i++;
 					}
-					cout<<"s2\n";
+
 				}
 			}
 
