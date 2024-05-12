@@ -171,10 +171,9 @@ Wallnut :: Wallnut (int thisX, int thisY) : Plants(thisX, thisY)
 
 void Wallnut :: animatePlant(sf:: RenderWindow& window)
 {
-	cout<<"Hello0"<<endl;
 	if (plantClock.getElapsedTime().asMilliseconds() > 200)
 		{
-			cout<<"Hello5"<<endl;
+			
 			if (frame.left >= 108)
 			{
 				frame.left = 0;

@@ -2,12 +2,18 @@
 
 GameGrid::GameGrid()
 {
-    minBoundx=250;// the least x value of grid
-    minBoundy=80; // the least y value of grid
-    maxBoundx=980;// max x calue of grid
+    minBoundx=259;// the least x value of grid
+    minBoundy=100; // the least y value of grid
+    maxBoundx=976;// max x calue of grid
     maxBoundy=570; // max y value of grid
+    gridLenght=80;
+    gridHeight=94;
     xBlocks=9;// number of col
     yBlocks=5;// number of row
+    plantable=0;
+    water=1;
+    grave=2;
+    planted=3;
     // Initialise the grid
     for(int i =0;i<yBlocks;i++)
     {

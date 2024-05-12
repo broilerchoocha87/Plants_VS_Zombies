@@ -146,8 +146,6 @@
     <ClCompile Include="bullets.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameGrid.cpp" />
-    <ClCompile Include="Hotbar.cpp" />
-    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="levels.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlantFactory.cpp" />
@@ -159,8 +157,6 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameGrid.h" />
-    <ClInclude Include="Hotbar.h" />
-    <ClInclude Include="Inventory.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="PlantFactory.h" />
     <ClInclude Include="Plants.h" />
