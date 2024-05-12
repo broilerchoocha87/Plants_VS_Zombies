@@ -129,8 +129,9 @@ void SimpleZombie::bulletCollision(bullet* bPtr)
 	{
 		if (bPtr[i].bulletExists)
 		{
-			if (Pos.x <= (bPtr[i].bulletCoord.x) && Pos.y >= (bPtr[i].bulletCoord.y - 25) && Pos.y <= (bPtr[i].bulletCoord.y + 75))
+			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
 			{
+				cout << "Bullet collision" << endl;
 				health -= bPtr[i].bulletDamage;
 				bPtr[i].bulletExists = false;
 			}
@@ -163,7 +164,7 @@ FootballZombie::FootballZombie()
 	attackDamage = 100;
 	spriteCount = 0;
 	dyingSpriteCount = 0;
-	Pos.x = 1200;
+	Pos.x = 900;
 	Pos.y = 60 + (rand() % 5 * 95);
 	zombieCode = 2;
 	isMoving = true;
@@ -320,8 +321,9 @@ void FootballZombie::bulletCollision(bullet* bPtr)
 	{
 		if (bPtr[i].bulletExists)
 		{
-			if (Pos.x <= (bPtr[i].bulletCoord.x) && Pos.y >= (bPtr[i].bulletCoord.y - 25) && Pos.y <= (bPtr[i].bulletCoord.y + 75))
+			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
 			{
+				cout << "Bullet collision" << endl;
 				health -= bPtr[i].bulletDamage;
 				bPtr[i].bulletExists = false;
 			}
@@ -557,8 +559,9 @@ void FlyingZombie::bulletCollision(bullet* bPtr)
 	{
 		if (bPtr[i].bulletExists)
 		{
-			if (Pos.x <= (bPtr[i].bulletCoord.x) && Pos.y >= (bPtr[i].bulletCoord.y - 25) && Pos.y <= (bPtr[i].bulletCoord.y + 75))
+			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
 			{
+				cout << "Bullet collision" << endl;
 				health -= bPtr[i].bulletDamage;
 				bPtr[i].bulletExists = false;
 			}
@@ -701,7 +704,6 @@ void DancingZombie::drawZombie(sf::RenderWindow& window)
 	else
 		zombieFrame.setScale(2.2, 2.2);
 
-	cout << spriteCount << endl;
 
 	zombieFrame.setPosition(Pos.x, Pos.y);
 	window.draw(zombieFrame);
@@ -721,5 +723,16 @@ void DancingZombie::moveZombie()
 
 void DancingZombie::bulletCollision(bullet* bPtr)
 {
-
+	for (int i = 0; i < 3; i++)
+	{
+		if (bPtr[i].bulletExists)
+		{
+			if ((bPtr[i].bulletCoord.x) >= Pos.x && Pos.y >= (bPtr[i].bulletCoord.y - 50) && Pos.y <= (bPtr[i].bulletCoord.y + 40))
+			{
+				cout << "Bullet collision" << endl;
+				health -= bPtr[i].bulletDamage;
+				bPtr[i].bulletExists = false;
+			}
+		}
+	}
 }
