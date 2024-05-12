@@ -16,7 +16,7 @@ void Game::render(sf::RenderWindow& window)
 	temp.myPlantFactory.animatePlants(window);
 	//Zombies
 	temp.myZombieFactory->animateZombies(window);
-	if(temp.SunSkyExists)
+	if (temp.SunSkyExists)
 		temp.myFallingSun->animateSun(window);
 
 
@@ -24,8 +24,8 @@ void Game::render(sf::RenderWindow& window)
 
 void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 {
-	if (event.type == event.MouseButtonReleased){
-	
+	if (event.type == event.MouseButtonReleased) {
+
 		if (event.mouseButton.button == sf::Mouse::Left)// if left mouse button clicked
 		{
 			// Check if click is done in inventory location
@@ -34,57 +34,58 @@ void Game::handleInput(sf::RenderWindow& window, sf::Event& event)
 			cout << "Event X: " << event.mouseButton.x << "Y: " << event.mouseButton.y << endl;
 			//cout << "MOsue X: " << mousePos.x << "Y: " << mousePos.y << endl;
 			// Check if click is on game Grid
-			if (event.mouseButton.x  >= temp.myGameGrid.minBoundx &&
-			    event.mouseButton.y  >= temp.myGameGrid.minBoundy && 
-				event.mouseButton.x  <= temp.myGameGrid.maxBoundx && 
-				event.mouseButton.y  <= temp.myGameGrid.maxBoundy)	
-			{	cout<<"Yes\n";
+			if (event.mouseButton.x >= temp.myGameGrid.minBoundx &&
+				event.mouseButton.y >= temp.myGameGrid.minBoundy &&
+				event.mouseButton.x <= temp.myGameGrid.maxBoundx &&
+				event.mouseButton.y <= temp.myGameGrid.maxBoundy)
+			{
+				cout << "Yes\n";
 				//Find the grid block
-				int tempX = (event.mouseButton.x-temp.myGameGrid.minBoundx)/temp.myGameGrid.gridLenght;
-				int tempY = (event.mouseButton.y-temp.myGameGrid.minBoundy)/temp.myGameGrid.gridHeight;
+				int tempX = (event.mouseButton.x - temp.myGameGrid.minBoundx) / temp.myGameGrid.gridLenght;
+				int tempY = (event.mouseButton.y - temp.myGameGrid.minBoundy) / temp.myGameGrid.gridHeight;
 				// Check if sun
-				cout<<"Nes\n";
+				cout << "Nes\n";
 
 				if (temp.SunSkyExists &&
-				event.mouseButton.x  >= temp.myFallingSun->mySunPos.X &&
-			    event.mouseButton.y  >= temp.myFallingSun->mySunPos.Y && 
-				event.mouseButton.x  <= temp.myFallingSun->mySunPos.X + 30&& 
-				event.mouseButton.y  <= temp.myFallingSun->mySunPos.Y +30 &&
-				temp.myFallingSun->mySunPos.Y>=temp.myFallingSun->yBound)// If sun landed, only then can pick
+					event.mouseButton.x >= temp.myFallingSun->mySunPos.X &&
+					event.mouseButton.y >= temp.myFallingSun->mySunPos.Y &&
+					event.mouseButton.x <= temp.myFallingSun->mySunPos.X + 30 &&
+					event.mouseButton.y <= temp.myFallingSun->mySunPos.Y + 30 &&
+					temp.myFallingSun->mySunPos.Y >= temp.myFallingSun->yBound)// If sun landed, only then can pick
 				{
 					//Increment suns
-					
-					temp.setSuns(temp.myFallingSun->getSunValue()+temp.getSuns());
+
+					temp.setSuns(temp.myFallingSun->getSunValue() + temp.getSuns());
 					// Delete current sun
 					temp.destroySunSky();
 
 				}
 				//Check if click is done after selecting a plant
 				// Update Game Grid
-				
-				 if (temp.myGameGrid.grid[tempY][tempX] == temp.myGameGrid.plantable)
-				{
-					
-					temp.myGameGrid.grid[tempY][tempX] = temp.myGameGrid.planted;
-					
-					
-					temp.createPlant(1, (tempX*temp.myGameGrid.gridLenght +temp.myGameGrid.minBoundx), (tempY*temp.myGameGrid.gridHeight +temp.myGameGrid.minBoundy));
-				//print gamegrid
 
-					for(int i =0;i<5;i++)
+				if (temp.myGameGrid.grid[tempY][tempX] == temp.myGameGrid.plantable)
+				{
+
+					temp.myGameGrid.grid[tempY][tempX] = temp.myGameGrid.planted;
+
+
+					temp.createPlant(1, (tempX * temp.myGameGrid.gridLenght + temp.myGameGrid.minBoundx), (tempY * temp.myGameGrid.gridHeight + temp.myGameGrid.minBoundy));
+					//print gamegrid
+
+					for (int i = 0; i < 5; i++)
 					{
-						for (int j=0;j<9;j++)
+						for (int j = 0; j < 9; j++)
 						{
-							cout<<temp.myGameGrid.grid[i][j]<< " ";
+							cout << temp.myGameGrid.grid[i][j] << " ";
 						}
-						cout<<endl;
+						cout << endl;
 					}
 				}
 			}
 
 		}
 	}
-	
+
 }
 
 void Game::update()
@@ -95,12 +96,12 @@ void Game::update()
 	// SUn operations
 	//Create sun
 
-	if(temp.SunSkyExists==false)
+	if (temp.SunSkyExists == false)
 		temp.createSunSky();// WIll only create if space availible
-	
-	if(temp.SunSkyExists)
+
+	if (temp.SunSkyExists)
 		temp.myFallingSun->sunMove();
 
-	
+
 
 }
