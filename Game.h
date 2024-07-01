@@ -2,7 +2,6 @@
 
 #ifndef GAME_H
 #define	GAME_H
-
 #include "levels.h"
 #include"SFML/Graphics.hpp"
 
@@ -11,11 +10,12 @@ class Game
 protected:
 
 	beginnerGarden temp;
+	Level2 level2;
 
 public:
 
 	//Game();
-	void handleInput();
+	void handleInput(sf::RenderWindow& window, sf::Event& event);
 	void update();
 	void render(sf::RenderWindow& window);
 

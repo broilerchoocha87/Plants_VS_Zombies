@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/main.cpp.o -c /home/paradox/Desktop/OOP_Project/main.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/main.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/Sun.cpp.o -c /home/paradox/Desktop/OOP_Project/Sun.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/Sun.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/Game.cpp.o -c /home/paradox/Desktop/OOP_Project/Game.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/Game.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/GameGrid.cpp.o -c /home/paradox/Desktop/OOP_Project/GameGrid.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/GameGrid.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/levels.cpp.o -c /home/paradox/Desktop/OOP_Project/levels.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/levels.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/bullets.cpp.o -c /home/paradox/Desktop/OOP_Project/bullets.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/bullets.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/PlantFactory.cpp.o -c /home/paradox/Desktop/OOP_Project/PlantFactory.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/PlantFactory.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/ZombieFactory.cpp.o -c /home/paradox/Desktop/OOP_Project/ZombieFactory.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/ZombieFactory.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/Zombie.cpp.o -c /home/paradox/Desktop/OOP_Project/Zombie.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/Zombie.cpp"
+},
+{
+  "directory": "/home/paradox/Desktop/OOP_Project/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/oop.dir/Plants.cpp.o -c /home/paradox/Desktop/OOP_Project/Plants.cpp",
+  "file": "/home/paradox/Desktop/OOP_Project/Plants.cpp"
+}
+]

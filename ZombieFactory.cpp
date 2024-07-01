@@ -9,7 +9,7 @@ ZombieFactory::ZombieFactory()
 	myGameGrid = nullptr;
 }
 
-ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
+ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes, int* zombieStartTimes)
 {
 	myTotalZombies = TotalZombies;
 	myZombieTypes = ZombieTypes;
@@ -19,15 +19,23 @@ ZombieFactory::ZombieFactory(int TotalZombies, int* ZombieTypes)
 	for (int i = 0; i < myTotalZombies; i++)
 	{
 		if (myZombieTypes[i] == 1)
+		{
 			myActiveZombies[i] = new SimpleZombie;
+		}
 		else if (myZombieTypes[i] == 2)
+		{
 			myActiveZombies[i] = new FootballZombie;
+		}
 		else if (myZombieTypes[i] == 3)
+		{
 			myActiveZombies[i] = new FlyingZombie;
+		}
 		else if (myZombieTypes[i] == 4)
+		{
 			myActiveZombies[i] = new DancingZombie;
-		else if (myZombieTypes[i] == 5)
-			myActiveZombies[i] = new DolphinRiderZombie;
+		}
+
+		myActiveZombies[i]->startMovingTime = zombieStartTimes[i];
 	}
 }
 
@@ -35,17 +43,66 @@ void ZombieFactory::animateZombies(sf::RenderWindow& window)
 {
 	for (int i = 0; i < myTotalZombies; i++)
 	{
-		if (myZombieTypes[i] == 1)
+		if (myActiveZombies[i]->startMovingClock.getElapsedTime().asSeconds() > myActiveZombies[i]->startMovingTime)
+			myActiveZombies[i]->moveZombie();
+
+		myActiveZombies[i]->drawZombie(window);
+	}
+}
+
+void ZombieFactory::updateZombies()
+{
+	for (int i = 0; i < myTotalZombies; i++)
+	{
+		if (myActiveZombies[i]->health <= 0 && !myActiveZombies[i]->isDead)
 		{
-			SimpleZombie* zPtr = (SimpleZombie*) myActiveZombies[i];
-			zPtr->moveZombie();
-			zPtr->drawZombie(window);
+			myActiveZombies[i]->isDying = true;
+			myActiveZombies[i]->isMoving = false;
+		}
+
+		if (myActiveZombies[i]->isDead)
+		{
+			removeZombie(i);
 		}
 	}
+}
+
+void ZombieFactory::removeZombie(int deadZombieIndex)
+{
+	delete myActiveZombies[deadZombieIndex];
+	myActiveZombies[deadZombieIndex] = nullptr;
+
+	if (myTotalZombies - 1 == 0)
+	{
+		delete[] myActiveZombies;
+		myActiveZombies = nullptr;
+	}
+
+	else
+	{
+		Zombie** updatedZombies;
+		updatedZombies = new Zombie * [myTotalZombies - 1];
+
+		int c = 0;
+		for (int i = 0; i < myTotalZombies; i++)
+		{
+			if (myActiveZombies[i] != nullptr)
+			{
+				updatedZombies[c++] = myActiveZombies[i];
+			}
+		}
+
+		delete[] myActiveZombies;
+		myActiveZombies = updatedZombies;
+	}
+
+	myTotalZombies--;
 }
 
 ZombieFactory::~ZombieFactory()
 {
 	for (int i = 0; i < myTotalZombies; i++)
 		delete myActiveZombies[i];
+
+	delete[] myActiveZombies;
 }

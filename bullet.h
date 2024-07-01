@@ -22,10 +22,18 @@ public:
     bool bulletExists;
     int bulletDamage;
     float bulletSpeed;
-
+    int bulletCode;
+    sf:: Clock bulletAnimationClock;
+    sf:: Clock bulletMoveClock;
+    sf::Image bulletImage;
+    sf::Texture bulletTexture; //Loads the spriteSheet
+    sf:: Sprite bulletSprite; // Stores different variations of peashooter at different times
+    sf:: IntRect frame; // Used in Animation() to choose different sprites
 
     bullet();
-    bullet(int xCoord, int yCoord, bool thisbulletExists, int thisbulletDamage,float thisBulletSpeed);
+    //bullet(int xCoord, int yCoord, bool thisbulletExists, int thisbulletDamage,float thisBulletSpeed);
+    void moveBullet();
+    void animateBullet(sf::RenderWindow& window);
 };
 
 class SnowBullet: public bullet
@@ -38,4 +46,4 @@ public:
     SnowBullet(int xCoord, int yCoord, bool thisbulletExists, int thisbulletDamage,float thisBulletSpeed);
 };
 
-#endif // !BULLETS_H
+#endif
