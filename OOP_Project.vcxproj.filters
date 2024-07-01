@@ -36,7 +36,7 @@
     <ClCompile Include="ZombieFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bullets.cpp">
+    <ClCompile Include="bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
